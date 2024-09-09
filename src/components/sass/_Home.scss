@@ -1,0 +1,39 @@
+@media (max-width: 846px) {
+  .hero {
+    background-image: url("./assets/imagenes/FONDO.png");
+    height: 100vh;
+
+    .hero-textos-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      .una {
+        display: flex;
+        position: absolute;
+        top: 0%;
+        p {
+          color: red;
+          font-size: 2rem;
+        }
+      }
+
+      .dos {
+        width: 70vw;
+        img {
+          width: 100%;
+        }
+      }
+
+      .tres {
+        width: 50vw;
+        position: absolute;
+        left: 20%;
+        margin-top: 20px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
