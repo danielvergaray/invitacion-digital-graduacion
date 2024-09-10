@@ -1,0 +1,79 @@
+@media (max-width: 846px) {
+  .section-cuentaRegresiva {
+    color: white;
+    background-color: black;
+    .cuentaRegresiva-imagen {
+      width: 100%;
+      text-align: center;
+      img {
+        width: 25%;
+      }
+    }
+
+    .cuentaRegresiva-titulo {
+      text-align: center;
+      padding-top: 10px;
+      h1 {
+        line-height: 0.8;
+      }
+      p {
+        line-height: 0.9;
+        padding-top: 5px;
+      }
+    }
+
+    .conteo {
+      display: flex;
+      padding: 10px 0 50px 0;
+      justify-content: space-around;
+      .contador-recuadro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: fit-content;
+        padding: 5px;
+        height: fit-content;
+
+        .contador-recuadro-numero {
+          .contador-recuadro-digito {
+            p {
+              font-size: 3rem;
+              /*  padding-left: 3vw; */
+              /*  font-family: "NT-SEAWAVE"; */
+              color: white;
+            }
+          }
+        }
+        .contador-texto {
+          margin-top: 5px;
+          background-color: $Secundario-naranja;
+          width: fit-content;
+          p {
+            padding: 2px 2px;
+            font-weight: 700;
+            text-transform: lowercase;
+            font-size: 0.5rem;
+            color: white;
+            width: fit-content;
+            text-align: center;
+          }
+        }
+      }
+      .contador-recuadro:nth-child(1) {
+        .contador-recuadro-numero {
+          .contador-recuadro-span {
+            padding-left: 10px;
+          }
+        }
+      }
+
+      .contador-recuadro:nth-child(4) {
+        .contador-recuadro-numero {
+          .contador-recuadro-span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,22 +1,41 @@
-import React from "react";
-import imagenHero from "../../assets/imagenes/NOMBREEVENTO.png";
-import imagenProm from "../../assets/imagenes/NOMBREPROM.png";
+import React, { useContext } from "react";
+import CuentaRegresiva from "./CuentaRegresiva";
+import SobreEvento from "./SobreEvento";
+import InfoContext from "../infoContext/infoContext";
 
 const Home = () => {
+  const { infoHomeArray } = useContext(InfoContext);
   return (
-    <div className="hero">
-      <div className="hero-textos-container">
-        <div className="una">
-          <p>21.12.24</p>
-        </div>
-        <div className="dos">
-          <img src={imagenHero} alt="" />
-        </div>
-        <div className="tres">
-          <img src={imagenProm} alt="" />
-        </div>
+    <>
+      <div className="section-hero">
+        {infoHomeArray.map((info, index) => (
+          <div key={index}>
+            <div className="hero-cabecera">
+              <p>sor querubina de san pedro</p>
+            </div>
+            <div className="hero-titulo-container">
+              <div className="una">
+                <p>{info.fecha} </p>
+              </div>
+              <div className="dos">
+                <img src={info.imagenEvento} alt="" />
+              </div>
+              <div className="tres">
+                <img src={info.imagenProm} alt="" />
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
+
+      <div className="section-cuentaRegresiva">
+        <CuentaRegresiva />
+      </div>
+
+      <div className="section-sobreEvento">
+        <SobreEvento />
+      </div>
+    </>
   );
 };
 

@@ -1,9 +1,17 @@
 @media (max-width: 846px) {
-  .hero {
+  .section-hero {
     background-image: url("./assets/imagenes/FONDO.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     height: 100vh;
 
-    .hero-textos-container {
+    .hero-cabecera {
+      color: white;
+      text-align: center;
+    }
+
+    .hero-titulo-container {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -34,6 +42,14 @@
           width: 100%;
         }
       }
+    }
+  }
+  .titulo-imagen {
+    width: 100%;
+    text-align: center;
+    padding: 50px 0;
+    img {
+      width: 50%;
     }
   }
 }

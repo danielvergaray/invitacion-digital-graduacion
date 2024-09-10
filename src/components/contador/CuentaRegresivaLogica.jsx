@@ -35,7 +35,7 @@ const CuentaRegresivaLogica = () => {
           2,
           "0"
         ),
-        segundos: String(Math.floor((difference / 1000) % 60)).padStart(2, "0"),
+        /* segundos: String(Math.floor((difference / 1000) % 60)).padStart(2, "0"), */
       };
     }
 
@@ -78,7 +78,7 @@ const CuentaRegresivaLogica = () => {
   });
 
   return (
-    <div>
+    <div className="conteo">
       {timerComponents.length ? timerComponents : <span>Time's up!</span>}
     </div>
   );
