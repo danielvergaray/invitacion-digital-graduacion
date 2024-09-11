@@ -6,6 +6,7 @@ import imagenTItulo from "../../assets/imagenes/EVENTO.png";
 import imagenTItuloDressCode from "../../assets/imagenes/DRESSCODE.png";
 
 const InfoContextProvider = ({ children }) => {
+    
 
     const informacion = [
         {
