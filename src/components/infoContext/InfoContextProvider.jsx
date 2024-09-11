@@ -1,12 +1,12 @@
 import React from 'react'
-import InfoContext from './infoContext'
+import InfoContext from './InfoContext'
 import imagenEvento from "../../assets/imagenes/NOMBREEVENTO.png";
 import imagenProm from "../../assets/imagenes/NOMBREPROM.png";
 import imagenTItulo from "../../assets/imagenes/EVENTO.png";
 import imagenTItuloDressCode from "../../assets/imagenes/DRESSCODE.png";
 
 const InfoContextProvider = ({ children }) => {
-    
+
 
     const informacion = [
         {

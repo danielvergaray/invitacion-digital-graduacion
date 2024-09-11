@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import InfoContext from "../infoContext/infoContext";
+import InfoContext from "../infoContext/InfoContext";
 
 const SobreEvento = () => {
   const { infoSobreEventoArray } = useContext(InfoContext);

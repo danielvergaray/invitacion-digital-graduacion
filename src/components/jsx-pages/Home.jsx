@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import CuentaRegresiva from "./CuentaRegresiva";
 import SobreEvento from "./SobreEvento";
-import InfoContext from "../infoContext/infoContext";
+import InfoContext from "../infoContext/InfoContext";
 
 const Home = () => {
   const { infoHomeArray } = useContext(InfoContext);
