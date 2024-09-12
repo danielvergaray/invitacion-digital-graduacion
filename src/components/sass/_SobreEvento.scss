@@ -1,5 +1,6 @@
 @media (max-width: 846px) {
   .section-sobreEvento {
+    padding: 20px 0 70px;
     .sobreEvento-subtitulo {
       text-align: center;
       padding: 0px 0 10px;
@@ -52,12 +53,10 @@
         }
       }
     }
-    .sobreEvento-lugar {
+    .informacion-boton-container {
       text-align: center;
-      padding-bottom: 30px;
       .lugar-titulo {
         text-align: center;
-        padding-bottom: 20px;
         p {
           text-align: center;
         }
@@ -65,51 +64,28 @@
     }
 
     .dresscode{
-      .titulo-imagen{
+      .titulo-imagen-letras{
         padding-bottom: 10px;
       }
       .lugar-titulo{
         padding-bottom: 5px;
+
+        p{
+          font-size: 1.2rem;
+        }
+        
       }
       .sobreEvento-subtitulo{
         
         p{
           width: 40%;
           margin: auto;
+          font-weight: bold;
+          font-size: .7rem;
         }
       }
     }
 
-    button {
-      padding: 10px 30px;
-      border: none;
-      background-color: $Secundario-naranja;
-      text-transform: uppercase;
-      font-weight: 100;
-      color: white;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      animation: ZoomIn 1s infinite;
-      a {
-        text-decoration: none;
-        color: white;
-      }
-
-      /*  @keyframes ZoomIn {
-        0% {
-          opacity: 1;
-          transform: scale(0.95);
-        }
-        50% {
-          opacity: 1;
-          transform: scale(1);
-        }
-        100% {
-          opacity: 1;
-          transform: scale(0.95);
-        }
-      } */
-    }
+    
   }
 }

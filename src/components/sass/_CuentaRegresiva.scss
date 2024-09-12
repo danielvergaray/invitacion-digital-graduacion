@@ -2,23 +2,27 @@
   .section-cuentaRegresiva {
     color: white;
     background-color: black;
-    .cuentaRegresiva-imagen {
+    /* .cuentaRegresiva-imagen {
       width: 100%;
       text-align: center;
       img {
         width: 25%;
       }
-    }
+    } */
 
     .cuentaRegresiva-titulo {
       text-align: center;
       padding-top: 10px;
       h1 {
         line-height: 0.8;
+        width: 60%;
+        margin: auto;
       }
       p {
         line-height: 0.9;
-        padding-top: 5px;
+        padding: 5px 0 10px;
+        width: 60%;
+        margin: auto;
       }
     }
 

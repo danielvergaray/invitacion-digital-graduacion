@@ -1,0 +1,46 @@
+@media (max-width: 846px) {
+  .section-carrusel {
+    overflow-x: hidden;
+    /* padding-bottom: 0 !important; */
+    background-color: $Principal-negro;
+    padding: 0 0 100px;
+    p {
+      padding: 30px 0 40px;
+      line-height: 18px;
+      color: white;
+      width: 60%;
+      margin: auto;
+      text-align: center;
+    }
+
+    .slider {
+        padding: 0 40px;
+      .slider-track {
+        display: flex;
+        /*  overflow-x: scroll; */
+        width: calc(400px * 20); //Cantidad de imagenes * 2
+        animation: scroll 20s linear infinite alternate;
+
+        &:hover {
+          animation-play-state: paused;
+        }
+        .slide {
+          img {
+            height: 300px;
+            margin: 0 5px;
+            perspective: 100px;
+          }
+        }
+      }
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-250px * 11.5)); //cantidad de iconos
+      }
+    }
+  }
+}

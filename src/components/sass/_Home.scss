@@ -44,12 +44,55 @@
       }
     }
   }
-  .titulo-imagen {
+  .titulo-imagen-letras {
     width: 100%;
     text-align: center;
-    padding: 50px 0;
+    padding: 60px 0;
     img {
       width: 50%;
+    }
+  }
+
+  .titulo-imagen-onda {
+    width: 100%;
+    text-align: center;
+    padding-top: 80px;
+    img {
+      width: 25%;
+    }
+  }
+  .boton-container {
+    padding: 20px 0;
+    button {
+      padding: 10px 30px;
+      border: none;
+      background-color: $Secundario-naranja;
+      text-transform: uppercase;
+      font-weight: 100;
+      color: white;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      animation: ZoomIn 1s infinite;
+      a {
+        text-decoration: none;
+        color: white;
+      }
+
+      /*  @keyframes ZoomIn {
+      0% {
+        opacity: 1;
+        transform: scale(0.95);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(0.95);
+      }
+    } */
     }
   }
 }

@@ -1,26 +1,27 @@
-import React from "react";
+import React, {useContext} from "react";
 import CuentaRegresivaLogica from "../contador/CuentaRegresivaLogica";
-import imagenCuentaRegresiva from "../../assets/imagenes/ONDA.png";
+import InfoContext from "../infoContext/InfoContext";
 
 const CuentaRegresiva = () => {
-  return (
-    <div>
-      <div className="cuentaRegresiva-imagen">
-        <img src={imagenCuentaRegresiva} alt="Imagen cuenta regresiva" />
-      </div>
+  const { infoContadorArray } = useContext(InfoContext);
 
-      <div className="cuentaRegresiva-titulo">
-        <h1>
-          ¡La cuenta atrás <br /> ha comenzado!
-        </h1>
-        <p>
-          Prepárate para una noche mágica llena de baile, risas y recuerdos
-          inolvidables
-        </p>
-      </div>
+  return (
+    <>
+      {infoContadorArray.map((info, index) => (
+        <div key={index}>
+          <div className="titulo-imagen-onda">
+            <img src={info.imagenTitulo} alt="Imagen cuenta regresiva" />
+          </div>
+
+          <div className="cuentaRegresiva-titulo">
+            <h1> {info.textoTitulo} </h1>
+            <p>{info.textoSubtitulo}</p>
+          </div>
+        </div>
+      ))}
 
       <CuentaRegresivaLogica />
-    </div>
+    </>
   );
 };
 

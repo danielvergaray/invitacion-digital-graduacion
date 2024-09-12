@@ -9,10 +9,10 @@ const SobreEvento = () => {
     <>
       {infoSobreEventoArray.map((info, index) => (
         <div key={index}>
-          <div className="titulo-imagen">
+          <div className="titulo-imagen-letras">
             <img
               key={index}
-              src={info.imagenTItulo}
+              src={info.imagenTitulo}
               alt="titulo sobre el evento"
             />
           </div>
@@ -37,7 +37,7 @@ const SobreEvento = () => {
             </div>
           </div>
 
-          <div className="sobreEvento-lugar">
+          <div className="informacion-boton-container">
             <div className="sobreEvento-subtitulo">
               <p>{info.textoLugar}</p>
             </div>
@@ -46,26 +46,28 @@ const SobreEvento = () => {
               <p>{info.textoDistrito} </p>
             </div>
 
-            <button>
-              <Link
-                target="_blank"
-                to="https://maps.app.goo.gl/KBWfrP3hXLg3M3ty5"
-              >
-                {info.textoVermapa}
-              </Link>
-            </button>
+            <div className="boton-container">
+              <button>
+                <Link
+                  target="_blank"
+                  to={info.linkUbicacion}
+                >
+                  {info.textoVermapa}
+                </Link>
+              </button>
+            </div>
           </div>
 
           <div className="dresscode">
-            <div className="titulo-imagen">
+            <div className="titulo-imagen-letras">
               <img
                 key={index}
-                src={info.imagenTItuloDressCode}
+                src={info.imagenTituloDressCode}
                 alt="titulo sobre el evento"
               />
             </div>
 
-            <div className="sobreEvento-lugar">
+            <div className="informacion-boton-container">
               <div className="lugar-titulo">
                 <p>Etiqueta</p>
               </div>
@@ -73,14 +75,16 @@ const SobreEvento = () => {
                 <p>{info.vestimenta} </p>
               </div>
 
-              <button>
-                <Link
-                  target="_blank"
-                  to="https://maps.app.goo.gl/KBWfrP3hXLg3M3ty5"
-                >
-                  {info.textoVerideas}
-                </Link>
-              </button>
+              <div className="boton-container">
+                <button>
+                  <Link
+                    target="_blank"
+                    to={info.linkDressCode}
+                  >
+                    {info.textoVerideas}
+                  </Link>
+                </button>
+              </div>
             </div>
           </div>
         </div>
