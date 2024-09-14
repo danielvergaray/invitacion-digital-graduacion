@@ -5,6 +5,7 @@ import InfoContext from "../infoContext/InfoContext";
 import SeccionCarrusel from "./SeccionCarrusel";
 import SeccionPlaylist from "./SeccionPlaylist";
 import Footer from "./Footer";
+import SeccionMesas from "./SeccionMesas";
 
 const Home = () => {
   const { infoHomeArray } = useContext(InfoContext);
@@ -40,6 +41,9 @@ const Home = () => {
       </div>
       <div className="section-carrusel">
         <SeccionCarrusel/>
+      </div>
+      <div className="section-mesas">
+        <SeccionMesas/>
       </div>
       <div className="section-playlist">
         <SeccionPlaylist/>

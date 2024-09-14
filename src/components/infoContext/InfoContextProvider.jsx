@@ -6,7 +6,8 @@ import imagenTituloSobreEvento from "../../assets/imagenes/EVENTO.png";
 import imagenTituloDressCode from "../../assets/imagenes/DRESSCODE.png";
 import imagenOnda from "../../assets/imagenes/ONDA.png";
 import imagen1 from "../../assets/imagenes/carrusel/imagenAmigos.jpg";
-import imagenTituloPlaylist from "../../assets/imagenes/PLAYLIST.png"; 
+import imagenTituloPlaylist from "../../assets/imagenes/PLAYLIST.png";
+import imagenTituloMesas from "../../assets/imagenes/MESA.png";  
 
 const InfoContextProvider = ({ children }) => {
   const informacion = [
@@ -87,6 +88,15 @@ const InfoContextProvider = ({ children }) => {
         },
       ],
 
+      seccionMesas: [
+        {
+            imagenTitulo: imagenTituloMesas,
+            textoTitulo: 'Selecciona tu mesa ideal y regístrate',
+            textoBoton: 'Regístrate',
+            link: '',
+        },
+      ],
+
       seccionPlaylist: [
         {
             imagenTitulo: imagenTituloPlaylist,
@@ -110,6 +120,7 @@ const InfoContextProvider = ({ children }) => {
   const infoSobreEventoArray = Object.values(informacion[0].seccionSobreEvento);
   const infoContadorArray = Object.values(informacion[0].seccionContador);
   const infoCarruselArray = Object.values(informacion[0].seccionCarrusel);
+  const infoMesasArray = Object.values(informacion[0].seccionMesas);
   const infoPlaylistArray = Object.values(informacion[0].seccionPlaylist);
   const infoFooterArray = Object.values(informacion[0].footer);
 
@@ -123,6 +134,7 @@ const InfoContextProvider = ({ children }) => {
     infoSobreEventoArray,
     infoContadorArray,
     infoCarruselArray,
+    infoMesasArray,
     infoPlaylistArray,
     infoFooterArray,
   };

@@ -1,0 +1,53 @@
+.section-acordion {
+  padding: 20px 30px 50px;
+  .accordion {
+    .accordion-item {
+      .accordion-header {
+        .accordion-button {
+          display: grid;
+          padding: 10px 20px;
+
+          .acordion-header {
+            display: flex;
+            flex-direction: column;
+
+            ::after {
+              color: white;
+            }
+            p {
+              margin: 0;
+            }
+          }
+        }
+      }
+
+      .acordion-expandido-container {
+        display: grid;
+        grid-template-columns: 60% 40%;
+        background-color: black;
+
+        .acordion-expandido-boton {
+          grid-column: 1;
+          margin-top: 50px;
+        }
+
+        .acordion-expandido-asistentes {
+          grid-column: 2;
+
+          p {
+            margin: 0;
+            color: white;
+          }
+          span {
+            background-color: white; /* Cambia el color de fondo según tu preferencia */
+            width: 100%; /* Ajusta el tamaño del span */
+            height: 2px;
+            display: block;
+            margin: auto;
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+  }
+}
