@@ -1,50 +1,91 @@
 .section-acordion {
   padding: 20px 30px 50px;
+
   .accordion {
     .accordion-item {
+      border-color: $Cards-acordion;
+      background-color: transparent;
+
       .accordion-header {
-        .accordion-button {
+        .accordion-button,
+        .collapsed {
           display: grid;
-          padding: 10px 20px;
+          grid-template-columns: 80% 20%;
+          padding: 20px 20px 10px;
+          background-color: $Cards-acordion;
+          box-shadow: none;
+          border-top-left-radius: 0.5rem;
+          border-top-right-radius: 0.5rem;
 
           .acordion-header {
             display: flex;
+            grid-column: 1;
             flex-direction: column;
+            color: white;
 
-            ::after {
-              color: white;
-            }
             p {
               margin: 0;
             }
           }
+          .acordion-header-flecha {
+            grid-column: 2;
+            text-align: right;
+            svg {
+              font-size: 1.8rem;
+              color: red;
+            }
+          }
+        }
+        ::after {
+          display: none;
         }
       }
 
       .acordion-expandido-container {
         display: grid;
-        grid-template-columns: 60% 40%;
-        background-color: black;
-
+        grid-template-columns: 40% 60%;
+        background-color: $Cards-acordion;
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
         .acordion-expandido-boton {
           grid-column: 1;
-          margin-top: 50px;
+          margin: auto 0;
+
+          .boton-container {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            button {
+              padding: 0.5rem;
+              a {
+                font-size: 0.5rem;
+                font-weight: 700;
+              }
+            }
+          }
         }
 
         .acordion-expandido-asistentes {
           grid-column: 2;
-
+          display: grid;
+          grid-template-columns: 50% 50%;
           p {
             margin: 0;
             color: white;
+            font-size: 0.8rem;
           }
           span {
             background-color: white; /* Cambia el color de fondo según tu preferencia */
-            width: 100%; /* Ajusta el tamaño del span */
+            width: 90%; /* Ajusta el tamaño del span */
             height: 2px;
             display: block;
-            margin: auto;
+            margin: left;
             margin-top: 5px;
+          }
+          .acordion-expandido-asistentes-1 {
+            grid-column: 1;
+          }
+          .acordion-expandido-asistentes-2 {
+            grid-column: 2;
           }
         }
       }

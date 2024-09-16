@@ -18,13 +18,13 @@ const Home = () => {
               <p>sor querubina de san pedro</p>
             </div>
             <div className="hero-titulo-container">
-              <div className="una">
+              <div className="hero-titulo-fecha">
                 <p>{info.fecha} </p>
               </div>
-              <div className="dos">
+              <div className="hero-titulo-imagen">
                 <img src={info.imagenEvento} alt="" />
               </div>
-              <div className="tres">
+              <div className="hero-titulo-subtitulo">
                 <img src={info.imagenProm} alt="" />
               </div>
             </div>
