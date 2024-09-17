@@ -53,11 +53,13 @@
         border-bottom-right-radius: 0rem;
         .acordion-expandido-boton {
           grid-column: 1;
-          margin: auto 0;
+          margin: auto auto 0 0;
 
           .boton-container {
             margin-bottom: 0;
-            padding-bottom: 0;
+            padding: 0;
+            
+            
             button {
               padding: 0.5rem;
               a {

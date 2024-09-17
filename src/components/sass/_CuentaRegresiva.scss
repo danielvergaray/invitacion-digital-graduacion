@@ -22,7 +22,7 @@
       p {
         line-height: 0.9;
         padding: 5px 0 10px;
-        width: 60%;
+        width: 65vw;
         margin: auto;
       }
     }
@@ -47,6 +47,7 @@
               /*  font-family: "NT-SEAWAVE"; */
               color: white;
               font-family: "Selofier";
+              margin: 0;
             }
           }
         }
@@ -55,10 +56,10 @@
           background-color: $Principal-dorado;
           width: fit-content;
           p {
-            padding: 2px 2px;
-            font-weight: 700;
+            padding: 2px 8px;
+            font-weight: 100;
             text-transform: lowercase;
-            font-size: 0.5rem;
+            font-size: 0.8rem;
             color: white;
             width: fit-content;
             text-align: center;
