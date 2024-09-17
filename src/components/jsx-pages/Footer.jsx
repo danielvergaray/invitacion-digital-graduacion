@@ -1,21 +1,26 @@
-import React, {useContext} from 'react'
-import InfoContext from '../infoContext/InfoContext'
+import React, { useContext } from "react";
+import InfoContext from "../infoContext/InfoContext";
+import { PiArrowCircleDownRightLight } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
-
-    const {infoFooterArray} = useContext(InfoContext)
+  const { infoFooterArray } = useContext(InfoContext);
 
   return (
     <>
-        {infoFooterArray.map((info, index)=>(
-            <div key={index}>
-                <p>{info.texto} </p>
-                <p>{info.empresa}</p>
-                <p>Flecha</p>
-            </div>
-        ))}
-    </>
-  )
-}
+      {infoFooterArray.map((info, index) => (
+        <div key={index}>
+          <p>
+            {info.texto} {info.empresa}
+          </p>
 
-export default Footer
+          <Link className="footer-flecha">
+            <PiArrowCircleDownRightLight />
+          </Link>
+        </div>
+      ))}
+    </>
+  );
+};
+
+export default Footer;

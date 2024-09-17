@@ -21,7 +21,7 @@
         position: absolute;
         top: 0%;
         p {
-          color: red;
+          color: $Principal-dorado;
           font-size: 2rem;
         }
       }
@@ -66,7 +66,7 @@
     button {
       padding: 10px 30px;
       border: none;
-      background-color: $Secundario-naranja;
+      background-color: $Principal-dorado;
       text-transform: uppercase;
       font-weight: 100;
       color: white;

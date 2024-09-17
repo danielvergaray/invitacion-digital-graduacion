@@ -17,6 +17,7 @@
         line-height: 0.8;
         width: 60%;
         margin: auto;
+        font-family: "Selofier-Italic";
       }
       p {
         line-height: 0.9;
@@ -45,12 +46,13 @@
               /*  padding-left: 3vw; */
               /*  font-family: "NT-SEAWAVE"; */
               color: white;
+              font-family: "Selofier";
             }
           }
         }
         .contador-texto {
           margin-top: 5px;
-          background-color: $Secundario-naranja;
+          background-color: $Principal-dorado;
           width: fit-content;
           p {
             padding: 2px 2px;

@@ -21,12 +21,15 @@ const AcordionBootstrap = ({ titulo, disponibles, textoDisponibles }) => {
               <p>
                 {textoDisponibles} {disponibles}{" "}
               </p>
-            ) : null}
+            ) : (
+              <br></br>
+            )}
           </div>
-          <div className="acordion-header-flecha">
-            { cardColapsado ? <PiArrowCircleUpLeftLight />
-              : <PiArrowCircleDownRightLight />}
-          </div>
+          {!cardColapsado ? (
+            <div className="acordion-header-flecha">
+              <PiArrowCircleDownRightLight />
+            </div>
+          ) : null}
         </Accordion.Header>
         <Accordion.Body className="acordion-expandido-container">
           <div className="acordion-expandido-boton">
@@ -40,7 +43,7 @@ const AcordionBootstrap = ({ titulo, disponibles, textoDisponibles }) => {
           </div>
 
           <div className="acordion-expandido-asistentes">
-            <div className="acordion-expandido-asistentes-1">
+            {/* <div className="acordion-expandido-asistentes-1">
               <p>Daniel Vergaray</p>
               <span></span>
               <p>Daniel Vergaray</p>
@@ -57,9 +60,50 @@ const AcordionBootstrap = ({ titulo, disponibles, textoDisponibles }) => {
               <p>Daniel Vergaray</p>
               <span></span>
               <p>Daniel Vergaray</p>
+            </div> */}
+
+            <div>
+              <p>Daniel Vergaray</p>
+              <span></span>
+            </div>
+            <div>
+              <p>Daniel Vergaray</p>
+              <span></span>
+            </div>
+            <div>
+              <p>Daniel Vergaray</p>
+              <span></span>
+            </div>
+            <div>
+              <p>Daniel Vergaray</p>
+              <span></span>
+            </div>
+            <div>
+              <p>Daniel Vergaray</p>
+              <span></span>
+            </div>
+            <div>
+              <p>Daniel Vergaray</p>
+              <span></span>
+            </div>
+            <div>
+              <p>Daniel Vergaray</p>
+              <span></span>
+            </div>
+            <div>
+              <p>Daniel Vergaray</p>
             </div>
           </div>
         </Accordion.Body>
+        {cardColapsado ? (
+          <div className="accordion-footer">
+            <Accordion.Header onClick={ocultarInfo}>
+              <div className="acordion-header-flecha">
+                <PiArrowCircleUpLeftLight />
+              </div>
+            </Accordion.Header>
+          </div>
+        ) : null}
       </Accordion.Item>
     </Accordion>
   );
