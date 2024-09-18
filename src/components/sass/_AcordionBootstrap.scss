@@ -3,8 +3,9 @@
 
   .accordion {
     .accordion-item {
-      border-color: $Cards-acordion;
+      margin: 10px 0;
       background-color: transparent;
+      border: none;
 
       .accordion-header {
         .accordion-button,
@@ -12,6 +13,7 @@
           display: grid;
           grid-template-columns: 80% 20%;
           padding: 20px;
+          padding-bottom: 0px;
           background-color: $Cards-acordion;
           box-shadow: none;
           border-top-left-radius: 0.5rem;
@@ -21,7 +23,7 @@
             display: flex;
             grid-column: 1;
             flex-direction: column;
-
+            
             p {
               margin: 0;
               color: white;
@@ -44,22 +46,64 @@
           display: none;
         }
       }
+      .acordion-colapsado-header {
+        padding: 20px;
+        background-color: $Cards-acordion;
+        color: white;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        p {
+          margin: 0;
+          padding-top: 5px;
+        }
+      }
 
       .acordion-expandido-container {
+        padding: 20px;
+        padding-top: 0;
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-rows: 60% 40%;
         background-color: $Cards-acordion;
         border-bottom-left-radius: 0rem;
         border-bottom-right-radius: 0rem;
-        .acordion-expandido-boton {
-          grid-column: 1;
-          margin: auto auto 0 0;
 
+        .acordion-expandido-asistentes {
+          grid-row: 1;
+          display: grid;
+          grid-template-columns: 50% 50%;
+
+          p {
+            margin: 0;
+            color: white;
+            font-size: 0.8rem;
+            text-align: left;
+          }
+          span {
+            background-color: white;
+            width: 100%;
+            height: 1px;
+            display: block;
+
+            margin-top: 0px;
+          }
+
+          .acordion-expandido-asistentes-1 {
+            grid-column: 1;
+            margin: auto;
+          }
+          .acordion-expandido-asistentes-2 {
+            grid-column: 2;
+            margin: auto;
+          }
+        }
+
+        .acordion-expandido-boton {
+          grid-row: 2;
+          padding: 10px 0;
           .boton-container {
             margin-bottom: 0;
             padding: 0;
-            
-            
+            text-align: right;
             button {
               padding: 0.5rem;
               a {
@@ -69,45 +113,9 @@
             }
           }
         }
-
-        .acordion-expandido-asistentes {
-          grid-column: 2;
-          /* display: grid;
-          grid-template-columns: 50% 50%; */
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-
-          div {
-            display: flex;
-            flex-direction: column;
-            width: 70%;
-            p {
-              margin: 0;
-              color: white;
-              font-size: 0.8rem;
-              text-align: left;
-            }
-            span {
-              background-color: white; /* Cambia el color de fondo según tu preferencia */
-              width: 100%; /* Ajusta el tamaño del span */
-              height: 1px;
-              display: block;
-
-              margin-top: 0px;
-            }
-          }
-
-          /* .acordion-expandido-asistentes-1 {
-            grid-column: 1;
-          }
-          .acordion-expandido-asistentes-2 {
-            grid-column: 2;
-          } */
-        }
       }
 
-      .accordion-footer{
+      .accordion-footer {
         .accordion-header {
           .accordion-button,
           .collapsed {
@@ -115,7 +123,7 @@
             border-top-right-radius: 0rem;
             border-bottom-left-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
-            padding: 0 20px;
+            padding: 0 20px 20px;
             .acordion-header-flecha {
               grid-column: 2;
               text-align: right;
@@ -128,7 +136,13 @@
           }
         }
       }
-      
     }
+  }
+
+  .popup-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }

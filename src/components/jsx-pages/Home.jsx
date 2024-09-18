@@ -6,6 +6,7 @@ import SeccionCarrusel from "./SeccionCarrusel";
 import SeccionPlaylist from "./SeccionPlaylist";
 import Footer from "./Footer";
 import SeccionMesas from "./SeccionMesas";
+import AgregarAsistentes from "../agregarAsistentes/AgregarAsistentes";
 
 const Home = () => {
   const { infoHomeArray } = useContext(InfoContext);
@@ -40,17 +41,19 @@ const Home = () => {
         <SobreEvento />
       </div>
       <div className="section-carrusel">
-        <SeccionCarrusel/>
+        <SeccionCarrusel />
       </div>
       <div className="section-mesas">
-        <SeccionMesas/>
+        <SeccionMesas />
       </div>
       <div className="section-playlist">
-        <SeccionPlaylist/>
+        <SeccionPlaylist />
       </div>
       <div className="section-footer">
-        <Footer/>
+        <Footer />
       </div>
+
+      {/* <AgregarAsistentes/> */}
     </>
   );
 };

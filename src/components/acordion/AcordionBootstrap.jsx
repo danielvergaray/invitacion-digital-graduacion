@@ -1,111 +1,100 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import { Link } from "react-router-dom";
 import { PiArrowCircleDownRightLight } from "react-icons/pi";
 import { PiArrowCircleUpLeftLight } from "react-icons/pi";
+import PopUpModal from "../modal/PopUpModal";
+import InfoContext from "../infoContext/InfoContext";
 
 const AcordionBootstrap = ({ titulo, disponibles, textoDisponibles }) => {
-  const [cardColapsado, setCardColapsado] = useState(false);
+  const { cantidadMesas } = useContext(InfoContext);
 
-  const ocultarInfo = () => {
-    setCardColapsado(!cardColapsado);
+  // Cambié el estado para que solo uno se abra a la vez
+  const [cardColapsado, setCardColapsado] = useState(
+    Array(cantidadMesas.length).fill(false)
+  );
+
+  const ocultarInfo = (index) => {
+    // Actualiza el estado para que solo el acordeón clicado esté abierto
+    const updatedState = Array(cantidadMesas.length).fill(false);
+    updatedState[index] = !cardColapsado[index];
+    setCardColapsado(updatedState);
+  };
+
+  const [abrirPopUp, setAbrirPopUp] = useState(false);
+
+  const funcionAbrirPopUp = () => {
+    setAbrirPopUp(true);
   };
 
   return (
-    <Accordion>
-      <Accordion.Item eventKey="0">
-        <Accordion.Header onClick={ocultarInfo}>
-          <div className="acordion-header">
-            <p>{titulo} </p>
-            {!cardColapsado ? (
-              <p>
-                {textoDisponibles} {disponibles}{" "}
-              </p>
-            ) : (
-              <br></br>
-            )}
-          </div>
-          {!cardColapsado ? (
-            <div className="acordion-header-flecha">
-              <PiArrowCircleDownRightLight />
-            </div>
-          ) : null}
-        </Accordion.Header>
-        <Accordion.Body className="acordion-expandido-container">
-          <div className="acordion-expandido-boton">
-            <div className="boton-container">
-              <button>
-                <Link target="_blank" /* to={info.link} */>
-                  {/* {info.textoBoton} */} REGISTRARSE
-                </Link>
-              </button>
-            </div>
-          </div>
+    <>
+      <Accordion>
+        {cantidadMesas.map((mesa, index) => (
+          <Accordion.Item eventKey={index} key={index}>
+            <Accordion.Header onClick={() => ocultarInfo(index)}>
+              <div className="acordion-header">
+                <p>{titulo} </p>
+                <p>
+                  {textoDisponibles} {disponibles}{" "}
+                </p>
+              </div>
 
-          <div className="acordion-expandido-asistentes">
-            {/* <div className="acordion-expandido-asistentes-1">
-              <p>Daniel Vergaray</p>
-              <span></span>
-              <p>Daniel Vergaray</p>
-              <span></span>
-              <p>Daniel Vergaray</p>
-              <span></span>
-              <p>Daniel Vergaray</p>
-            </div>
-            <div className="acordion-expandido-asistentes-2">
-              <p>Daniel Vergaray</p>
-              <span></span>
-              <p>Daniel Vergaray</p>
-              <span></span>
-              <p>Daniel Vergaray</p>
-              <span></span>
-              <p>Daniel Vergaray</p>
-            </div> */}
-
-            <div>
-              <p>Daniel Vergaray</p>
-              <span></span>
-            </div>
-            <div>
-              <p>Daniel Vergaray</p>
-              <span></span>
-            </div>
-            <div>
-              <p>Daniel Vergaray</p>
-              <span></span>
-            </div>
-            <div>
-              <p>Daniel Vergaray</p>
-              <span></span>
-            </div>
-            <div>
-              <p>Daniel Vergaray</p>
-              <span></span>
-            </div>
-            <div>
-              <p>Daniel Vergaray</p>
-              <span></span>
-            </div>
-            <div>
-              <p>Daniel Vergaray</p>
-              <span></span>
-            </div>
-            <div>
-              <p>Daniel Vergaray</p>
-            </div>
-          </div>
-        </Accordion.Body>
-        {cardColapsado ? (
-          <div className="accordion-footer">
-            <Accordion.Header onClick={ocultarInfo}>
+              {/* Mostrar la flecha correcta dependiendo del estado */}
               <div className="acordion-header-flecha">
-                <PiArrowCircleUpLeftLight />
+                {!cardColapsado[index] ? (
+                  <PiArrowCircleDownRightLight /> // Flecha hacia abajo cuando está cerrado
+                ) : (
+                  <PiArrowCircleUpLeftLight /> // Flecha hacia arriba cuando está abierto
+                )}
               </div>
             </Accordion.Header>
-          </div>
-        ) : null}
-      </Accordion.Item>
-    </Accordion>
+
+            {cardColapsado[index] && (
+              <>
+                <Accordion.Body className="acordion-expandido-container">
+                  <div className="acordion-expandido-asistentes">
+                    <div className="acordion-expandido-asistentes-1">
+                      <p>Daniel Vergaray</p>
+                      <span></span>
+                      <p>Daniel Vergaray</p>
+                      <span></span>
+                      <p>Daniel Vergaray</p>
+                      <span></span>
+                      <p>Daniel Vergaray</p>
+                    </div>
+                    <div className="acordion-expandido-asistentes-2">
+                      <p>Daniel Vergaray</p>
+                      <span></span>
+                      <p>Daniel Vergaray</p>
+                      <span></span>
+                      <p>Daniel Vergaray</p>
+                      <span></span>
+                      <p>Daniel Vergaray</p>
+                    </div>
+                  </div>
+
+                  <div className="acordion-expandido-boton">
+                    <div className="boton-container">
+                      <button onClick={funcionAbrirPopUp}>
+                        <Link>REGISTRARSE</Link>
+                      </button>
+                    </div>
+                  </div>
+
+                  {abrirPopUp ? (
+                    <PopUpModal
+                      abrirPopUp={abrirPopUp}
+                      setAbrirPopUp={setAbrirPopUp}
+                    />
+                  ) : null}
+                </Accordion.Body>
+              </>
+            )}
+          </Accordion.Item>
+        ))}
+      </Accordion>
+    </>
   );
 };
 

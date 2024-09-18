@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import AcordionBootstrap from "../acordion/AcordionBootstrap";
 
 const SeccionMesas = () => {
-  const { infoMesasArray } = useContext(InfoContext);
+  const { infoMesasArray, cantidadMesas } = useContext(InfoContext);
+
   return (
     <>
       {infoMesasArray.map((info, index) => (
@@ -22,13 +23,45 @@ const SeccionMesas = () => {
               <h1> {info.textoTitulo} </h1>
             </div>
 
+            {/* <div className="section-acordion">
+              {cantidadMesas.map((mesa, index) => (
+                <AcordionBootstrap key={index}
+                  titulo={`Mesa ${mesa}`}
+                  disponibles="3"
+                  textoDisponibles="Asientos disponibles:"
+                  index = {index}
+                />
+              ))} */}
+
             <div className="section-acordion">
-              <AcordionBootstrap
-                titulo="Mesa 1"
+          
+                <AcordionBootstrap
+                  key={index}
+                  titulo={`Mesa ${1+1}`}
+                  disponibles="3"
+                  textoDisponibles="Asientos disponibles:"
+                  
+                />
+        
+
+              {/* <AcordionBootstrap
+                
+                titulo={`Mesa `}
                 disponibles="3"
                 textoDisponibles="Asientos disponibles:"
-              />
+              
+              /> */}
             </div>
+
+            {/* <div className="section-acordion">
+              <AcordionBootstrap
+                titulo= "Hola"
+                disponibles="3"
+                textoDisponibles="Asientos disponibles:" 
+                 />
+              
+            
+            </div> */}
           </div>
         </div>
       ))}
