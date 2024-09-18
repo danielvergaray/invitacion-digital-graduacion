@@ -45,7 +45,7 @@ const AcordionBootstrap = ({ titulo, disponibles, textoDisponibles }) => {
                 {!cardColapsado[index] ? (
                   <PiArrowCircleDownRightLight /> // Flecha hacia abajo cuando está cerrado
                 ) : (
-                  <PiArrowCircleUpLeftLight /> // Flecha hacia arriba cuando está abierto
+                  null
                 )}
               </div>
             </Accordion.Header>
@@ -89,6 +89,21 @@ const AcordionBootstrap = ({ titulo, disponibles, textoDisponibles }) => {
                     />
                   ) : null}
                 </Accordion.Body>
+
+
+                <div className="accordion-footer">
+                  {cardColapsado[index] ? (
+                    <Accordion.Header onClick={ocultarInfo}>
+                      {cardColapsado[index] ? (
+                        <div className="acordion-header-flecha">
+                          <PiArrowCircleUpLeftLight />
+                        </div>
+                      ) : null}
+                    </Accordion.Header>
+                  ) : null}
+                </div>
+
+
               </>
             )}
           </Accordion.Item>
