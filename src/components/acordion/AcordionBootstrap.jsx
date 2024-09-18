@@ -6,7 +6,7 @@ import { PiArrowCircleUpLeftLight } from "react-icons/pi";
 import PopUpModal from "../modal/PopUpModal";
 import InfoContext from "../infoContext/InfoContext";
 
-const AcordionBootstrap = ({ titulo, disponibles, textoDisponibles }) => {
+const AcordionBootstrap = ({ disponibles, textoDisponibles }) => {
   const { cantidadMesas } = useContext(InfoContext);
 
   // Cambié el estado para que solo uno se abra a la vez
@@ -34,9 +34,9 @@ const AcordionBootstrap = ({ titulo, disponibles, textoDisponibles }) => {
           <Accordion.Item eventKey={index} key={index}>
             <Accordion.Header onClick={() => ocultarInfo(index)}>
               <div className="acordion-header">
-                <p>{titulo} </p>
+                <p>Mesa {mesa} </p>
                 <p>
-                  {textoDisponibles} {disponibles}{" "}
+                  {textoDisponibles} {disponibles}
                 </p>
               </div>
 
@@ -44,9 +44,7 @@ const AcordionBootstrap = ({ titulo, disponibles, textoDisponibles }) => {
               <div className="acordion-header-flecha">
                 {!cardColapsado[index] ? (
                   <PiArrowCircleDownRightLight /> // Flecha hacia abajo cuando está cerrado
-                ) : (
-                  null
-                )}
+                ) : null}
               </div>
             </Accordion.Header>
 
@@ -90,7 +88,6 @@ const AcordionBootstrap = ({ titulo, disponibles, textoDisponibles }) => {
                   ) : null}
                 </Accordion.Body>
 
-
                 <div className="accordion-footer">
                   {cardColapsado[index] ? (
                     <Accordion.Header onClick={ocultarInfo}>
@@ -102,8 +99,6 @@ const AcordionBootstrap = ({ titulo, disponibles, textoDisponibles }) => {
                     </Accordion.Header>
                   ) : null}
                 </div>
-
-
               </>
             )}
           </Accordion.Item>

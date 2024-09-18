@@ -14,9 +14,10 @@ const Footer = () => {
             {info.texto} {info.empresa}
           </p>
 
-          <Link className="footer-flecha">
+          <Link className="footer-flecha" target="_blank" to={info.link}>
             <PiArrowCircleDownRightLight />
           </Link>
+
         </div>
       ))}
     </>

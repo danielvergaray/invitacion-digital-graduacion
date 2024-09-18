@@ -29,13 +29,13 @@ const InfoContextProvider = ({ children }) => {
           hora: "7.00",
           turno: "de la noche",
           textoLugar: "lugar",
-          textoDireccion: "Insertar direccion del evento",
-          textoDistrito: "Distrito del evento",
+          textoDireccion: "Local Cocos Villa Club",
+          textoDistrito: "Chorrillos",
           textoVermapa: "Ver mapa",
           textoVerideas: "Ver ideas",
           vestimenta: "usar negro, blanco y dorado",
-          linkUbicacion: "https://maps.app.goo.gl/KBWfrP3hXLg3M3ty5",
-          linkDressCode: "https://maps.app.goo.gl/KBWfrP3hXLg3M3ty5",
+          linkUbicacion: "https://www.google.com/maps/place/12%C2%B012'36.5%22S+76%C2%B058'40.2%22W/@-12.2101316,-76.9804191,17z/data=!3m1!4b1!4m4!3m3!8m2!3d-12.2101316!4d-76.9778442?hl=es&entry=ttu&g_ep=EgoyMDI0MDkxNi4wIKXMDSoASAFQAw%3D%3D",
+          linkDressCode: "https://pin.it/NpTAelzaf",
         },
       ],
 
@@ -112,7 +112,7 @@ const InfoContextProvider = ({ children }) => {
         {
           texto: "Designed by",
           empresa: "Studiocode",
-          link: "",
+          link: "www.devdanielvergaray.com",
         },
       ],
 

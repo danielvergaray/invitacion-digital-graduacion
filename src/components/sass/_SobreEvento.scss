@@ -4,11 +4,12 @@
     .sobreEvento-subtitulo {
       text-align: center;
       padding: 0px 0 10px;
-
+      font-weight: bolder;
       p {
         text-transform: uppercase;
-        font-size: 0.8em;
+        font-size: 0.6em;
         margin: 0;
+        letter-spacing: 3px;
       }
     }
 
@@ -59,16 +60,18 @@
       text-align: center;
       .lugar-titulo {
         text-align: center;
+        line-height: 1;
         p {
           text-align: center;
           margin: 0;
+          font-size: 1.25rem;
         }
       }
     }
 
     .dresscode{
       .titulo-imagen-letras{
-        padding-bottom: 10px;
+        padding-bottom: 20px;
       }
       .lugar-titulo{
         padding-bottom: 5px;
@@ -84,7 +87,8 @@
           width: 40%;
           margin: auto;
           font-weight: bold;
-          font-size: .7rem;
+          font-size: .6rem;
+          letter-spacing: 1;
         }
       }
     }
