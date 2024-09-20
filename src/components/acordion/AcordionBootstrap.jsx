@@ -7,7 +7,13 @@ import PopUpModal from "../modal/PopUpModal";
 import InfoContext from "../infoContext/InfoContext";
 
 const AcordionBootstrap = ({ disponibles, textoDisponibles }) => {
-  const { cantidadMesas } = useContext(InfoContext);
+  const {
+    cantidadMesas,
+    abrirPopUp,
+    setAbrirPopUp,
+    funcionAbrirPopUp,
+    setUserData,
+  } = useContext(InfoContext);
 
   // Cambié el estado para que solo uno se abra a la vez
   const [cardColapsado, setCardColapsado] = useState(
@@ -19,12 +25,6 @@ const AcordionBootstrap = ({ disponibles, textoDisponibles }) => {
     const updatedState = Array(cantidadMesas.length).fill(false);
     updatedState[index] = !cardColapsado[index];
     setCardColapsado(updatedState);
-  };
-
-  const [abrirPopUp, setAbrirPopUp] = useState(false);
-
-  const funcionAbrirPopUp = () => {
-    setAbrirPopUp(true);
   };
 
   return (
@@ -74,7 +74,15 @@ const AcordionBootstrap = ({ disponibles, textoDisponibles }) => {
 
                   <div className="acordion-expandido-boton">
                     <div className="boton-container">
-                      <button onClick={funcionAbrirPopUp}>
+                      <button
+                        onClick={() => {
+                          funcionAbrirPopUp();
+                          setUserData((prevUserData) => ({
+                            ...prevUserData, // Copia el estado previo
+                            mesa: mesa, // Actualiza solo el campo 'mesa'
+                          }));
+                        }}
+                      >
                         <Link>REGISTRARSE</Link>
                       </button>
                     </div>
