@@ -53,7 +53,7 @@ const Home = () => {
         <Footer />
       </div>
 
-      {/* <AgregarAsistentes/> */}
+     {/*  <AgregarAsistentes/> */}
     </>
   );
 };
