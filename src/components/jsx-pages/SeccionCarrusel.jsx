@@ -11,8 +11,8 @@ const SeccionCarrusel = () => {
           <div className="titulo-imagen-onda">
             <img src={info.imagenTitulo} alt="imagen onda" />
           </div>
-          <div>
-            <p>{info.textoTitulo} </p>
+          <div className="seccion-titulo">
+            <h1>{info.textoTitulo} </h1>
           </div>
 
           <div className="slider">

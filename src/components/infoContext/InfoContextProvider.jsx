@@ -67,7 +67,7 @@ const InfoContextProvider = ({ children }) => {
         {
           imagenTitulo: imagenOnda,
           textoTitulo:
-            "Cada momento guarda la emoción, la complicidad y los recuerdos que quedarán para siempre en nuestros corazones",
+            "Cada momento guarda la emoción, la complicidad y los recuerdos que quedarán para siempre en nuestros corazones.",
             carruselImagenes: [
               { imagenCarrusel: imagen1 },
               { imagenCarrusel: imagen2 },

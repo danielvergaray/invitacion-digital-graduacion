@@ -6,6 +6,7 @@ import SeccionCarrusel from "./SeccionCarrusel";
 import SeccionPlaylist from "./SeccionPlaylist";
 import Footer from "./Footer";
 import SeccionMesas from "./SeccionMesas";
+import { IoIosArrowDropdown } from "react-icons/io";
 import AgregarAsistentes from "../agregarAsistentes/AgregarAsistentes";
 
 const Home = () => {
@@ -13,24 +14,29 @@ const Home = () => {
   return (
     <>
       <div className="section-hero">
-        {infoHomeArray.map((info, index) => (
-          <div key={index}>
-            <div className="hero-cabecera">
-              <p>sor querubina de san pedro</p>
+        <>
+          {infoHomeArray.map((info, index) => (
+            <div key={index}>
+              <div className="hero-cabecera">
+                <p>sor querubina de san pedro</p>
+              </div>
+              <div className="hero-titulo-container">
+                <div className="hero-titulo-fecha">
+                  <p>{info.fecha} </p>
+                </div>
+                <div className="hero-titulo-imagen">
+                  <img src={info.imagenEvento} alt="" />
+                </div>
+                <div className="hero-titulo-subtitulo">
+                  <img src={info.imagenProm} alt="" />
+                </div>
+              </div>
             </div>
-            <div className="hero-titulo-container">
-              <div className="hero-titulo-fecha">
-                <p>{info.fecha} </p>
-              </div>
-              <div className="hero-titulo-imagen">
-                <img src={info.imagenEvento} alt="" />
-              </div>
-              <div className="hero-titulo-subtitulo">
-                <img src={info.imagenProm} alt="" />
-              </div>
-            </div>
-          </div>
-        ))}
+          ))}
+        </>
+        <div className="hero-flecha-mobile">
+          <IoIosArrowDropdown />
+        </div>
       </div>
 
       <div className="section-cuentaRegresiva">
@@ -53,7 +59,7 @@ const Home = () => {
         <Footer />
       </div>
 
-     {/*  <AgregarAsistentes/> */}
+      {/*  <AgregarAsistentes/> */}
     </>
   );
 };

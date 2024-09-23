@@ -1,4 +1,5 @@
 @import "./reutilizables/tipografias";
+@import "./reutilizables/colors";
 
 @media (max-width: 846px) {
   .section-hero {
@@ -11,6 +12,11 @@
     .hero-cabecera {
       color: white;
       text-align: center;
+      padding-top: 10px;
+      p {
+        text-transform: uppercase;
+        word-spacing: 0.4rem;
+      }
     }
 
     .hero-titulo-container {
@@ -22,9 +28,13 @@
         display: flex;
         position: absolute;
         top: 0%;
+        width: 100%;
+
         p {
           color: $Principal-dorado;
           font-size: 2rem;
+          letter-spacing: 0.5rem;
+          width: 100%;
         }
       }
 
@@ -45,7 +55,40 @@
         }
       }
     }
+
+    .hero-flecha-mobile {
+      display: flex;
+      position: absolute;
+      top: 90vh;
+      justify-items: center;
+      width: 100%;
+      /* animation: pulse 1s infinite; */
+      animation: fadeInUp 1s infinite;
+
+      @keyframes fadeInUp {
+        0% {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(10px);
+          padding: 0;
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+
+      svg {
+        font-size: 60px;
+        margin: auto;
+        color: $Principal-dorado;
+      }
+    }
   }
+
   .titulo-imagen-letras {
     width: 100%;
     text-align: center;
@@ -109,6 +152,4 @@
       font-weight: 100;
     }
   }
-
-  
 }

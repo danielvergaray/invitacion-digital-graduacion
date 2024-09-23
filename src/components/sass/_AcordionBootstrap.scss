@@ -23,13 +23,13 @@
             display: flex;
             grid-column: 1;
             flex-direction: column;
-            
+
             p {
               margin: 0;
               color: white;
             }
             :nth-child(2) {
-              color: $Gris-claro;
+              color: gray;
               font-size: 0.8rem;
             }
           }
@@ -64,53 +64,63 @@
         padding-top: 0;
         padding-bottom: 10px;
         display: grid;
-        grid-template-rows: 60% 40%;
+        grid-template-rows: 50% 40%;
         background-color: $Cards-acordion;
         border-bottom-left-radius: 0rem;
         border-bottom-right-radius: 0rem;
 
-        .acordion-expandido-asistentes {
-          grid-row: 1;
-          display: grid;
-          grid-template-columns: 50% 50%;
+        div {
+          height: fit-content;
 
-          p {
-            margin: 0;
-            color: white;
-            font-size: 0.8rem;
-            text-align: left;
-          }
-          span {
-            background-color: white;
-            width: 100%;
-            height: 1px;
-            display: block;
+          .acordion-expandido-asistentes {
+            grid-row: 1;
+            display: grid;
+            grid-template-columns: 50% 50%;
 
-            margin-top: 0px;
+            p {
+              margin: 0;
+              color: white;
+              font-size: 0.8rem;
+              text-align: left;
+            }
+            span {
+              background-color: white;
+              width: 100%;
+              height: 1px;
+              display: block;
+
+              margin-top: 0px;
+            }
+
+            .acordion-expandido-asistentes-1 {
+              grid-column: 1;
+              margin: auto;
+            }
+
+            .acordion-expandido-asistentes-2 {
+              grid-column: 2;
+              margin: auto;
+            }
           }
 
-          .acordion-expandido-asistentes-1 {
-            grid-column: 1;
-            margin: auto;
-          }
-          .acordion-expandido-asistentes-2 {
-            grid-column: 2;
-            margin: auto;
-          }
+          
         }
-
         .acordion-expandido-boton {
           grid-row: 2;
           padding: 10px 0;
+
+          margin-top: 10px;
           .boton-container {
-            margin-bottom: 0;
-            padding: 0;
             text-align: center;
+            padding: 0;
             button {
               padding: 0.5rem;
+
               a {
                 font-size: 0.5rem;
                 font-weight: 700;
+                margin: 0;
+                padding: 0;
               }
             }
           }

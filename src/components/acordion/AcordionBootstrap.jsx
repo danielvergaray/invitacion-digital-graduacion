@@ -15,7 +15,7 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
     abrirPopUp,
     setAbrirPopUp,
     funcionAbrirPopUp,
-    setUserData
+    setUserData,
   } = useContext(InfoContext);
 
   const [cardColapsado, setCardColapsado] = useState(
@@ -59,8 +59,6 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
     fetchAsistentes();
   }, [cantidadMesas]);
 
-  
-
   return (
     <>
       <Accordion>
@@ -82,12 +80,21 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
             {cardColapsado[index] && (
               <>
                 <Accordion.Body className="acordion-expandido-container">
-                  <div className="acordion-expandido-asistentes">
-                    <div className="acordion-expandido-asistentes-1">
-                      {asistentesPorMesa[index].map((nombre, i) => (
-                        <p key={i}>{nombre}</p>
-                      ))}
-                    </div>
+                  <div >
+                    {espaciosRestantes[index] === 8 ? (
+                      <p style={{ color: "white", margin: "auto" }}>
+                        No hay personas registradas
+                      </p>
+                    ) : (
+                      <div className="acordion-expandido-asistentes">
+                        <p style={{ color: "white" }}>Personas registradas</p>
+                        <div className="acordion-expandido-asistentes-1">
+                          {asistentesPorMesa[index].map((nombre, i) => (
+                            <p key={i}>{nombre}</p>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* <div className="acordion-expandido-asistentes-1">
