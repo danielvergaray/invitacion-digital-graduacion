@@ -92,9 +92,10 @@ const InfoContextProvider = ({ children }) => {
       seccionPlaylist: [
         {
           imagenTitulo: imagenTituloPlaylist,
+          textoBoton: "Ver Playlist",
           textoTitulo:
             "Sube las canciones que más te gusten, para crear juntos una noche inolvidable",
-          link: "https://maps.app.goo.gl/KBWfrP3hXLg3M3ty5",
+          link: "https://open.spotify.com/playlist/4POc50gu3Wiv4xN16M7hc0?si=dd07f6f998a64554&pt=44b98d1983b622e2b1542daed7752f51",
         },
       ],
       footer: [
@@ -232,61 +233,61 @@ const InfoContextProvider = ({ children }) => {
   const handleEnviar = async (event) => {
     event.preventDefault();
     setLoading(true);
-
+  
     const db = getFirestore();
     const nombreMinusculas = userData.nombre.toLowerCase().split(" ").join("");
-
+  
     const invitadosFirebase = collection(db, "invitados");
     const buscarInvitado = query(
       invitadosFirebase,
       where("nombre", "==", nombreMinusculas)
     );
-
+  
     try {
       const querySnapshot = await getDocs(buscarInvitado);
       if (!querySnapshot.empty) {
         const existingData = querySnapshot.docs[0].data();
         const docRef = querySnapshot.docs[0].ref;
-
+  
         // Primero, actualiza la mesa y el menú de la mesa anterior
         if (existingData.mesa) {
           const previousMesaRef = doc(db, "mesas", `mesa_${existingData.mesa}`);
-
+  
           // Remover el usuario de la mesa anterior
           await updateDoc(previousMesaRef, {
             invitados: arrayRemove(existingData.nombre),
           });
-
-          // Remover el acompañante de la mesa anterior si tenía uno
+  
+          // Remover el acompañante de la mesa anterior si tenía uno y no está vacío
           if (
             existingData.tieneAcompaniante &&
-            existingData.nombreAcompaniante
+            existingData.nombreAcompaniante.trim() !== ""
           ) {
             await updateDoc(previousMesaRef, {
               invitados: arrayRemove(existingData.nombreAcompaniante),
             });
           }
-
+  
           // Restar el menú anterior
           await actualizarConteoMenus(existingData.menu, -1);
         }
-
+  
         // Añadir el nombre a la nueva mesa
         const newMesaRef = doc(db, "mesas", `mesa_${userData.mesa}`);
         const invitadosArray = [userData.nombre]; // Nombre del usuario
-
-         // Verificar si el acompañante tiene un nombre válido
-      if (userData.tieneAcompaniante && userData.nombreAcompaniante.trim() !== "") {
-        invitadosArray.push(userData.nombreAcompaniante.trim()); // Añadir acompañante solo si no está vacío
-      }
-
+  
+        // Verificar si el acompañante tiene un nombre válido
+        if (userData.tieneAcompaniante && userData.nombreAcompaniante.trim() !== "") {
+          invitadosArray.push(userData.nombreAcompaniante.trim()); // Añadir acompañante solo si no está vacío
+        }
+  
         console.log("Invitados a agregar:", invitadosArray); // Verifica los nombres que se intentan agregar
-
+  
         // Actualizar mesa con ambos nombres
         await updateDoc(newMesaRef, {
           invitados: arrayUnion(...invitadosArray),
         });
-
+  
         // Actualizar el registro del usuario
         await updateDoc(docRef, {
           mesa: userData.mesa,
@@ -295,12 +296,12 @@ const InfoContextProvider = ({ children }) => {
           nombreAcompaniante: userData.nombreAcompaniante,
           menuAcompaniante: userData.menuAcompaniante,
         });
-
+  
         // Actualizar el conteo del menú del acompañante si aplica
         if (userData.tieneAcompaniante && userData.menuAcompaniante) {
           await actualizarConteoMenus(userData.menuAcompaniante, 1);
         }
-
+  
         // Reiniciar el estado
         setUserData({
           nombre: "",
@@ -326,19 +327,20 @@ const InfoContextProvider = ({ children }) => {
       setInvitadoRegistrado("");
     }
   };
+  
 
   const actualizarMesasYMenus = async () => {
     const db = getFirestore();
     const invitadosCollection = collection(db, "invitados");
-
+  
     try {
       // Obtener todos los documentos de invitados
       const invitadosSnapshot = await getDocs(invitadosCollection);
-
+  
       // Inicializar objetos para almacenar la información
       const mesasData = {};
       const menusData = { asado: 0, lasagna: 0 };
-
+  
       // Recorrer los invitados y organizar la información
       invitadosSnapshot.forEach((doc) => {
         const data = doc.data();
@@ -350,23 +352,27 @@ const InfoContextProvider = ({ children }) => {
           menuAcompaniante,
           nombreAcompaniante,
         } = data;
-
+  
         // Actualizar la información de las mesas
         if (mesa) {
           if (!mesasData[mesa]) {
             mesasData[mesa] = []; // Inicializa una nueva mesa
           }
           mesasData[mesa].push(nombre); // Añade el nombre del invitado a la mesa
-          mesasData[mesa].push(nombreAcompaniante);
+          
+          // Solo añadir nombre del acompañante si no está vacío
+          if (tieneAcompaniante && nombreAcompaniante.trim() !== "") {
+            mesasData[mesa].push(nombreAcompaniante.trim()); // Añadir acompañante solo si no está vacío
+          }
         }
-
+  
         // Contar los menús seleccionados
         if (menu === "asado") {
           menusData.asado++;
         } else if (menu === "lasagna") {
           menusData.lasagna++;
         }
-
+  
         // Considerar el acompañante si tiene
         if (tieneAcompaniante && menuAcompaniante) {
           if (menuAcompaniante === "asado") {
@@ -376,20 +382,21 @@ const InfoContextProvider = ({ children }) => {
           }
         }
       });
-
+  
       // Guardar la información de mesas en la colección "mesas"
       for (const [mesa, invitados] of Object.entries(mesasData)) {
         await setDoc(doc(db, "mesas", `mesa_${mesa}`), { invitados });
       }
-
+  
       // Guardar la información de menús en la colección "menus"
       await setDoc(doc(db, "menus", "totalMenus"), menusData);
-
+  
       console.log("Mesas y menús actualizados correctamente.");
     } catch (error) {
       console.error("Error al actualizar mesas y menús:", error);
     }
   };
+  
 
   const actualizarConteoMenus = async (menu, cantidad) => {
     const db = getFirestore();
