@@ -37,8 +37,6 @@ const SeccionMesas = () => {
           
                 <AcordionBootstrap
                   key={index}
-                 
-                  disponibles="3"
                   textoDisponibles="Asientos disponibles:"
                   
                 />
