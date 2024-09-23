@@ -5,7 +5,16 @@ import imagenProm from "../../assets/imagenes/NOMBREPROM.png";
 import imagenTituloSobreEvento from "../../assets/imagenes/EVENTO.png";
 import imagenTituloDressCode from "../../assets/imagenes/DRESSCODE.png";
 import imagenOnda from "../../assets/imagenes/ONDA.png";
-import imagen1 from "../../assets/imagenes/carrusel/imagenAmigos.jpg";
+import imagen1 from "../../assets/imagenes/carrusel/1.jpg";
+import imagen2 from "../../assets/imagenes/carrusel/2.jpg";
+import imagen3 from "../../assets/imagenes/carrusel/3.jpg";
+import imagen4 from "../../assets/imagenes/carrusel/4.jpg";
+import imagen5 from "../../assets/imagenes/carrusel/5.jpg";
+import imagen6 from "../../assets/imagenes/carrusel/6.jpg";
+import imagen7 from "../../assets/imagenes/carrusel/7.jpg";
+import imagen8 from "../../assets/imagenes/carrusel/8.jpg";
+import imagen9 from "../../assets/imagenes/carrusel/9.jpg";
+import imagen10 from "../../assets/imagenes/carrusel/10.jpg";
 import imagenTituloPlaylist from "../../assets/imagenes/PLAYLIST.png";
 import imagenTituloMesas from "../../assets/imagenes/MESA.png";
 import {
@@ -59,7 +68,18 @@ const InfoContextProvider = ({ children }) => {
           imagenTitulo: imagenOnda,
           textoTitulo:
             "Cada momento guarda la emoción, la complicidad y los recuerdos que quedarán para siempre en nuestros corazones",
-          carruselImagenes: Array(4).fill({ imagenCarrusel: imagen1 }),
+            carruselImagenes: [
+              { imagenCarrusel: imagen1 },
+              { imagenCarrusel: imagen2 },
+              { imagenCarrusel: imagen3 },
+              { imagenCarrusel: imagen4 },
+              { imagenCarrusel: imagen5 },
+              { imagenCarrusel: imagen6 },
+              { imagenCarrusel: imagen7 },
+              { imagenCarrusel: imagen8 },
+              { imagenCarrusel: imagen9 },
+              { imagenCarrusel: imagen10 },
+            ],
         },
       ],
       seccionMesas: [

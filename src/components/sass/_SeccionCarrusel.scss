@@ -14,12 +14,12 @@
     }
 
     .slider {
-        padding: 0 40px;
+      padding: 0 40px;
       .slider-track {
         display: flex;
         /*  overflow-x: scroll; */
         width: calc(400px * 20); //Cantidad de imagenes * 2
-        animation: scroll 20s linear infinite alternate;
+        animation: scroll 30s linear infinite alternate;
 
         &:hover {
           animation-play-state: paused;
@@ -39,7 +39,7 @@
         transform: translateX(0);
       }
       100% {
-        transform: translateX(calc(-250px * 11.5)); //cantidad de iconos
+        transform: translateX(calc(-405px * 11.5)); //cantidad de iconos
       }
     }
   }
