@@ -19,6 +19,8 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
     setAcompanianteNombre, */
     nombreOriginal,
     handleClose,
+    verificarInvitado,
+    cerrarSesion,
   } = useContext(InfoContext);
 
   const nombreAcompanianteMinuscula = userData.nombreAcompaniante
@@ -58,11 +60,38 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
         </Modal.Header>
 
         <Modal.Body>
-          {seccionActual === "pantalla1" && invitadoRegistrado === "" ? (
+          {seccionActual === "pantalla1" && invitadoRegistrado === "" && (
+            <form
+              className="inputs-container"
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <label htmlFor="nombre"></label>
+              <input
+                type="text"
+                name="nombre"
+                placeholder="Nombre y Apellido"
+                value={userData.nombre}
+                onChange={getUserDataName}
+                required
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                onClick={verificarInvitado}
+              >
+                {loading ? "Enviando..." : "Enviar"}
+              </button>
+            </form>
+          )}
+
+          {seccionActual === "pantalla1" && invitadoRegistrado === "no" && (
             <form
               className="inputs-container"
               onSubmit={(e) => handleEnviar(e)}
             >
+              {invitadoRegistrado === "no" ? (
+                <p>Usuario no encontrado, intente nuevamente</p>
+              ) : null}
               <label htmlFor="nombre"></label>
               <input
                 type="text"
@@ -76,35 +105,19 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
                 {loading ? "Enviando..." : "Enviar"}
               </button>
             </form>
-          ) : null}
-
-          {/* Pantalla 1: Usuario no encontrado */}
-          {seccionActual === "pantalla1" && invitadoRegistrado === "no" ? (
-            <form
-              className="inputs-container"
-              onSubmit={(e) => handleEnviar(e)}
-            >
-              <p>Usuario no encontrado, intente nuevamente</p>
-              <label htmlFor="nombre"></label>
-              <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre y Apellido"
-                value={userData.nombre}
-                onChange={getUserDataName}
-                required
-              />
-              <button type="submit" disabled={loading}>
-                {loading ? "Enviando..." : "Enviar"}
-              </button>
-            </form>
-          ) : null}
-
-          {/* Pantalla 2: Opciones menu invitado */}
+          )}
 
           {seccionActual === "pantalla2" && (
             <>
               <p>Escoge tu menu</p>
+              <button
+                onClick={() => {
+                  setSeccionActual("pantalla3");
+                  setUserData({ ...userData, menu: "lasagna" });
+                }}
+              >
+                Lasagna
+              </button>
               <button
                 onClick={() => {
                   setSeccionActual("pantalla3");
@@ -113,18 +126,9 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
               >
                 Asado
               </button>
-              <button
-                onClick={() => {
-                  setSeccionActual("pantalla3");
-                  setUserData({ ...userData, menu: "milanesa" });
-                }}
-              >
-                Milanesa
-              </button>
             </>
           )}
 
-          {/* Pantalla 3: Confirmar si viene con acompañante */}
           {seccionActual === "pantalla3" && (
             <>
               <p>Vienes con acompañante</p>
@@ -175,10 +179,17 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
             </form>
           )}
 
-          {/* Pantalla 4: Opciones menu acompañante */}
           {seccionActual === "pantalla4" && (
             <>
               <p>Escoge el menu de tu acompañante</p>
+              <button
+                onClick={() => {
+                  setSeccionActual("pantalla5");
+                  setUserData({ ...userData, menuAcompaniante: "lasagna" });
+                }}
+              >
+                Lasagna
+              </button>
               <button
                 onClick={() => {
                   setSeccionActual("pantalla5");
@@ -187,20 +198,10 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
               >
                 Asado
               </button>
-              <button
-                onClick={() => {
-                  setSeccionActual("pantalla5");
-                  setUserData({ ...userData, menuAcompaniante: "milanesa" });
-                }}
-              >
-                Milanesas
-              </button>
             </>
           )}
 
-          {/* Pantalla 5: pantalla resumen */}
           {seccionActual === "pantalla5" && (
-            /* Convertir el objeto userData en array de arrays */
             <>
               {userData.tieneAcompaniante === "Si" ? (
                 <>
@@ -225,6 +226,207 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
           )}
         </Modal.Body>
 
+        <Modal.Body>
+          {seccionActual === "pantalla6" && (
+            <p>Datos registrados correctamente</p>
+          )}
+        </Modal.Body>
+
+        <Modal.Footer>
+          {seccionActual !== "pantalla6" && (
+            <Button
+              variant="primary"
+              onClick={() => {
+                setSeccionActual("pantalla1");
+                cerrarSesion();
+              }}
+            >
+              Cerrar Sesión
+            </Button>
+          )}
+
+          {seccionActual === "pantalla5" && (
+            <Button
+              variant="primary"
+              onClick={(event) => {
+                handleEnviar(event);
+                //handleClose();
+                
+              }}
+            >
+              ENVIAR PEDIDO
+            </Button>
+          )}
+
+          {seccionActual === "pantalla6" && (
+            <Button
+              variant="primary"
+              onClick={() => {
+                setSeccionActual("pantalla1");
+                cerrarSesion();
+              }}
+            >
+              Cerrar
+            </Button>
+          )}
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}
+
+export default PopUpModal;
+
+{
+  /* <>
+      <Modal show={abrirPopUp} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            {seccionActual === "pantalla1"
+              ? "Hola"
+              : `Bienvenido ${nombreOriginal}`}
+          </Modal.Title>
+        </Modal.Header>
+
+        <form className="inputs-container" onSubmit={(e) => e.preventDefault()}>
+          {invitadoRegistrado === "" || invitadoRegistrado === "no" ? (
+            <Modal.Body>
+              <>
+                {invitadoRegistrado === "no" && <p>Usuario no encontrado</p>}
+                <label htmlFor="nombre"></label>
+                <input
+                  type="text"
+                  name="nombre"
+                  placeholder="Nombre y Apellido"
+                  value={userData.nombre}
+                  onChange={getUserDataName}
+                  required
+                />
+
+                <button type="submit" disabled={loading}>
+                  {loading ? "Enviando..." : "Enviar"}
+                </button>
+              </>
+            </Modal.Body>
+          ) : (
+            <>
+              <Modal.Body>
+                <>
+                  <p>Escoge tu menu</p>
+                  <button
+                    onClick={() => {
+                      setUserData({ ...userData, menu: "asado" });
+                      setSeccionActual("pantalla3");
+                    }}
+                  >
+                    Asado
+                  </button>
+                  <button
+                    onClick={() => {
+                      setUserData({ ...userData, menu: "milanesa" });
+                      setSeccionActual("pantalla3");
+                    }}
+                  >
+                    Milanesa
+                  </button>
+                </>
+              </Modal.Body>
+
+              {seccionActual === "pantalla3" ? (
+                <Modal.Body>
+                  <p>Vienes con acompañante</p>
+                  <button
+                    onClick={() => {
+                      setUserData({
+                        ...userData,
+                        tieneAcompaniante: "Si",
+                      });
+                    }}
+                  >
+                    SI
+                  </button>
+                  <button
+                    onClick={() => {
+                      setUserData({
+                        ...userData,
+                        tieneAcompaniante: "No",
+                      });
+                    }}
+                  >
+                    NO
+                  </button>
+
+                  {userData.tieneAcompaniante === "Si" ? (
+                    <>
+                      <label htmlFor="nombreInvitado"></label>
+                      <input
+                        type="text"
+                        name="nombreInvitado"
+                        placeholder="Nombre y Apellido"
+                        value={userData.nombre}
+                        onChange={getUserDataName}
+                        required
+                      />
+
+                      <>
+                        <p>Escoge tu menu</p>
+                        <button
+                          onClick={() => {
+                            setUserData({ ...userData, menu: "asado" });
+                          }}
+                        >
+                          Asado
+                        </button>
+                        <button
+                          onClick={() => {
+                            setUserData({ ...userData, menu: "milanesa" });
+                          }}
+                        >
+                          Milanesa
+                        </button>
+
+                        <p>Escoge el menu de tu acompañante</p>
+                        <button
+                          onClick={() => {
+                            setUserData({ ...userData, menuAcompaniante: "asado" });
+                          }}
+                        >
+                          Asado
+                        </button>
+                        <button
+                          onClick={() => {
+                            setUserData({ ...userData, menu: "milanesa" });
+                          }}
+                        >
+                          Milanesa
+                        </button>
+                      </>
+                    </>
+                  ) : (
+                    <>
+                      <p>Escoge tu menu</p>
+                      <button
+                        onClick={() => {
+                          setUserData({ ...userData, menu: "asado" });
+                        }}
+                      >
+                        Asado
+                      </button>
+                      <button
+                        onClick={() => {
+                          setUserData({ ...userData, menu: "milanesa" });
+                        }}
+                      >
+                        Milanesa
+                      </button>
+                    </>
+                  )}
+                </Modal.Body>
+              ) : null}
+            </>
+          )}
+        </form>
+
         <Modal.Footer>
           <Button
             variant="primary"
@@ -238,9 +440,10 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
           {seccionActual === "pantalla5" && (
             <Button
               variant="primary"
-              onClick={() => {
+              onClick={(event) => {
                 setSeccionActual("pantalla1");
                 handleClose();
+                handleEnviar(event);
               }}
             >
               ENVIAR PEDIDO
@@ -248,8 +451,5 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
           )}
         </Modal.Footer>
       </Modal>
-    </>
-  );
+    </> */
 }
-
-export default PopUpModal;

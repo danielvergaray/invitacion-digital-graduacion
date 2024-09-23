@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InfoContext from "./InfoContext";
 import imagenEvento from "../../assets/imagenes/NOMBREEVENTO.png";
 import imagenProm from "../../assets/imagenes/NOMBREPROM.png";
@@ -12,8 +12,15 @@ import {
   getFirestore,
   collection,
   query,
+  updateDoc,
   getDocs,
   where,
+  setDoc,
+  doc,
+  arrayUnion,
+  arrayRemove,
+  increment,
+  getDoc,
 } from "firebase/firestore";
 
 const InfoContextProvider = ({ children }) => {
@@ -83,16 +90,18 @@ const InfoContextProvider = ({ children }) => {
   const cantidadMesas = Array.from({ length: 8 }, (_, i) => i + 1);
 
   const [loading, setLoading] = useState(false);
-  const [userData, setUserData] = useState({ 
+  const [userData, setUserData] = useState({
     mesa: "",
     nombre: "",
     menu: "",
     tieneAcompaniante: "",
-    nombreAcompaniante: "", 
+    nombreAcompaniante: "",
     menuAcompaniante: "",
   });
 
-  
+  // Estados para los datos de mesas y menús
+  const [datosMesas, setDatosMesas] = useState([]);
+  const [datosMenus, setDatosMenus] = useState({});
   const [invitadoRegistrado, setInvitadoRegistrado] = useState("");
   const [seccionActual, setSeccionActual] = useState("pantalla1");
   //const [acompanianteNombre, setAcompanianteNombre] = useState("");
@@ -115,41 +124,6 @@ const InfoContextProvider = ({ children }) => {
       .join(" "); // Une las palabras de nuevo en una cadena
   }
 
-  const handleEnviar = async (event) => {
-    event.preventDefault();
-    setLoading(true);
-
-    const db = getFirestore();
-    const nombreMinusculas = userData.nombre.toLowerCase().split(" ").join("");
-
-    try {
-      const invitadosFirebase = collection(db, "invitados");
-      const buscarInvitado = query(
-        invitadosFirebase,
-        where("nombre", "==", nombreMinusculas)
-      );
-      const querySnapshot = await getDocs(buscarInvitado);
-
-      if (!querySnapshot.empty) {
-        const existingData = querySnapshot.docs[0].data();
-        setNombreOriginal(capitalizeWords(userData.nombre)); // Guarda el nombre original
-        setUserData({ ...userData, nombre: existingData.nombre, nombreAcompaniante:userData.nombreAcompaniante });
-        setInvitadoRegistrado("si");
-        cambiarSeccion("pantalla2");
-      } else {
-        setInvitadoRegistrado("no");
-        console.log(
-          "Lo siento, su nombre no se encuentra en la lista de invitados"
-        );
-      }
-    } catch (error) {
-      console.error("Error al verificar el invitado en Firebase:", error);
-    } finally {
-      setLoading(false);
-      /* setUserData({ nombre: "" }); */
-    }
-  };
-
   const cambiarSeccion = (seccionADirigir) => {
     setSeccionActual(seccionADirigir);
   };
@@ -162,10 +136,256 @@ const InfoContextProvider = ({ children }) => {
 
   const handleClose = () => {
     setAbrirPopUp(false);
-    setUserData({ nombre: "" });
+    /*  setUserData({
+      nombre: "",
+      mesa: "",
+      menu: "",
+      tieneAcompaniante: "",
+      nombreAcompaniante: "",
+      menuAcompaniante: "",
+    });
+    setNombreOriginal("");
     setInvitadoRegistrado("");
+    console.log(invitadoRegistrado);
+    console.log(userData);
+    console.log(nombreOriginal); */
   };
-console.log(userData)
+
+  const cerrarSesion = () => {
+    setAbrirPopUp(false);
+    setUserData({
+      mesa: "",
+      nombre: "",
+      menu: "",
+      tieneAcompaniante: "",
+      nombreAcompaniante: "",
+      menuAcompaniante: "",
+    });
+    setInvitadoRegistrado("");
+    console.log(userData);
+  };
+
+  const verificarInvitado = () => {
+    const db = getFirestore();
+    const nombreMinusculas = userData.nombre.toLowerCase().split(" ").join("");
+
+    const invitadosFirebase = collection(db, "invitados");
+    const buscarInvitado = query(
+      invitadosFirebase,
+      where("nombre", "==", nombreMinusculas)
+    );
+
+    getDocs(buscarInvitado)
+      .then((querySnapshot) => {
+        if (!querySnapshot.empty) {
+          const existingData = querySnapshot.docs[0].data();
+          const docRef = querySnapshot.docs[0].ref;
+
+          setNombreOriginal(capitalizeWords(userData.nombre)); // Guarda el nombre original
+          setUserData({
+            ...userData,
+            nombre: existingData.nombre,
+            nombreAcompaniante: userData.nombreAcompaniante,
+          });
+          setInvitadoRegistrado("si");
+          cambiarSeccion("pantalla2");
+        } else {
+          setInvitadoRegistrado("no");
+          console.log(
+            "Lo siento, su nombre no se encuentra en la lista de invitados"
+          );
+          return Promise.reject("No se encontró el invitado");
+        }
+      })
+      .then(() => {})
+      .catch((error) => {
+        console.error("Error al verificar el invitado en Firebase:", error);
+      })
+      .finally(() => {
+        setLoading(false);
+        //setInvitadoRegistrado("");
+      });
+
+    console.log(userData);
+  };
+
+  const handleEnviar = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    const db = getFirestore();
+    const nombreMinusculas = userData.nombre.toLowerCase().split(" ").join("");
+
+    const invitadosFirebase = collection(db, "invitados");
+    const buscarInvitado = query(
+      invitadosFirebase,
+      where("nombre", "==", nombreMinusculas)
+    );
+
+    try {
+      const querySnapshot = await getDocs(buscarInvitado);
+      if (!querySnapshot.empty) {
+        const existingData = querySnapshot.docs[0].data();
+        const docRef = querySnapshot.docs[0].ref;
+
+        // Primero, actualiza la mesa y el menú de la mesa anterior
+        if (existingData.mesa) {
+          const previousMesaRef = doc(db, "mesas", `mesa_${existingData.mesa}`);
+
+          // Remover el usuario de la mesa anterior
+          await updateDoc(previousMesaRef, {
+            invitados: arrayRemove(existingData.nombre),
+          });
+
+          // Remover el acompañante de la mesa anterior si tenía uno
+          if (
+            existingData.tieneAcompaniante &&
+            existingData.nombreAcompaniante
+          ) {
+            await updateDoc(previousMesaRef, {
+              invitados: arrayRemove(existingData.nombreAcompaniante),
+            });
+          }
+
+          // Restar el menú anterior
+          await actualizarConteoMenus(existingData.menu, -1);
+        }
+
+        // Añadir el nombre a la nueva mesa
+        const newMesaRef = doc(db, "mesas", `mesa_${userData.mesa}`);
+        const invitadosArray = [userData.nombre]; // Nombre del usuario
+
+         // Verificar si el acompañante tiene un nombre válido
+      if (userData.tieneAcompaniante && userData.nombreAcompaniante.trim() !== "") {
+        invitadosArray.push(userData.nombreAcompaniante.trim()); // Añadir acompañante solo si no está vacío
+      }
+
+        console.log("Invitados a agregar:", invitadosArray); // Verifica los nombres que se intentan agregar
+
+        // Actualizar mesa con ambos nombres
+        await updateDoc(newMesaRef, {
+          invitados: arrayUnion(...invitadosArray),
+        });
+
+        // Actualizar el registro del usuario
+        await updateDoc(docRef, {
+          mesa: userData.mesa,
+          menu: userData.menu,
+          tieneAcompaniante: userData.tieneAcompaniante,
+          nombreAcompaniante: userData.nombreAcompaniante,
+          menuAcompaniante: userData.menuAcompaniante,
+        });
+
+        // Actualizar el conteo del menú del acompañante si aplica
+        if (userData.tieneAcompaniante && userData.menuAcompaniante) {
+          await actualizarConteoMenus(userData.menuAcompaniante, 1);
+        }
+
+        // Reiniciar el estado
+        setUserData({
+          nombre: "",
+          mesa: "",
+          menu: "",
+          tieneAcompaniante: "",
+          nombreAcompaniante: "",
+          menuAcompaniante: "",
+        });
+        actualizarMesasYMenus(); // Actualiza las mesas en Firebase
+      } else {
+        setInvitadoRegistrado("no");
+        console.log(
+          "Lo siento, su nombre no se encuentra en la lista de invitados"
+        );
+        return;
+      }
+    } catch (error) {
+      console.error("Error al verificar el invitado en Firebase:", error);
+    } finally {
+      setLoading(false);
+      cambiarSeccion("pantalla6");
+      setInvitadoRegistrado("");
+    }
+  };
+
+  const actualizarMesasYMenus = async () => {
+    const db = getFirestore();
+    const invitadosCollection = collection(db, "invitados");
+
+    try {
+      // Obtener todos los documentos de invitados
+      const invitadosSnapshot = await getDocs(invitadosCollection);
+
+      // Inicializar objetos para almacenar la información
+      const mesasData = {};
+      const menusData = { asado: 0, lasagna: 0 };
+
+      // Recorrer los invitados y organizar la información
+      invitadosSnapshot.forEach((doc) => {
+        const data = doc.data();
+        const {
+          mesa,
+          menu,
+          nombre,
+          tieneAcompaniante,
+          menuAcompaniante,
+          nombreAcompaniante,
+        } = data;
+
+        // Actualizar la información de las mesas
+        if (mesa) {
+          if (!mesasData[mesa]) {
+            mesasData[mesa] = []; // Inicializa una nueva mesa
+          }
+          mesasData[mesa].push(nombre); // Añade el nombre del invitado a la mesa
+          mesasData[mesa].push(nombreAcompaniante);
+        }
+
+        // Contar los menús seleccionados
+        if (menu === "asado") {
+          menusData.asado++;
+        } else if (menu === "lasagna") {
+          menusData.lasagna++;
+        }
+
+        // Considerar el acompañante si tiene
+        if (tieneAcompaniante && menuAcompaniante) {
+          if (menuAcompaniante === "asado") {
+            menusData.asado++;
+          } else if (menuAcompaniante === "lasagna") {
+            menusData.lasagna++;
+          }
+        }
+      });
+
+      // Guardar la información de mesas en la colección "mesas"
+      for (const [mesa, invitados] of Object.entries(mesasData)) {
+        await setDoc(doc(db, "mesas", `mesa_${mesa}`), { invitados });
+      }
+
+      // Guardar la información de menús en la colección "menus"
+      await setDoc(doc(db, "menus", "totalMenus"), menusData);
+
+      console.log("Mesas y menús actualizados correctamente.");
+    } catch (error) {
+      console.error("Error al actualizar mesas y menús:", error);
+    }
+  };
+
+  const actualizarConteoMenus = async (menu, cantidad) => {
+    const db = getFirestore();
+    const menuDocRef = doc(db, "menus", "totalMenus");
+
+    try {
+      // Actualizar el conteo de menús
+      await updateDoc(menuDocRef, {
+        [menu]: increment(cantidad), // Sumar o restar según la cantidad
+      });
+      console.log(`Conteo de ${menu} actualizado correctamente.`);
+    } catch (error) {
+      console.error("Error al actualizar el conteo de menús:", error);
+    }
+  };
+
   const values = {
     infoHomeArray: Object.values(informacion[0].seccionHome),
     infoSobreEventoArray: Object.values(informacion[0].seccionSobreEvento),
@@ -192,7 +412,8 @@ console.log(userData)
     abrirPopUp,
     setAbrirPopUp,
     funcionAbrirPopUp,
-
+    verificarInvitado,
+    cerrarSesion,
   };
 
   return <InfoContext.Provider value={values}>{children}</InfoContext.Provider>;
