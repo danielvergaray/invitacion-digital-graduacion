@@ -101,7 +101,7 @@ const InfoContextProvider = ({ children }) => {
       footer: [
         {
           texto: "Designed by",
-          empresa: "Studiocode",
+          empresa: "StudioCode",
           link: "www.devdanielvergaray.com",
         },
       ],
