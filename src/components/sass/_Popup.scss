@@ -1,0 +1,109 @@
+.modal-dialog {
+  padding: 0 20px;
+  margin-top: 40px;
+  .modal-content {
+    background-color: $Cards-acordion;
+
+    .modal-header {
+      border: none;
+      padding-bottom: 0;
+
+      .modal-title {
+        color: white;
+        width: 100%;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+
+        .Xcerrar-container {
+          width: 100%;
+          text-align: right;
+
+          svg {
+            color: $Principal-dorado;
+            font-size: 30px;
+          }
+        }
+      }
+      button {
+        display: none;
+      }
+    }
+    .modal-body {
+      padding: 16px 0;
+      padding-top: 0;
+      padding-bottom: 0;
+
+      p {
+        color: white;
+        margin: 0;
+        padding-left: 16px;
+      }
+      .inputs-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        input {
+          height: 34px;
+          border: none;
+          width: 190px;
+          padding: 10px;
+          background-color: $Gris-claro;
+
+          outline: none;
+        }
+      }
+
+      .menus-opciones-container {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+
+        .menu1-container,
+        .menu2-container {
+          display: grid;
+          grid-template-columns: 80% 20%;
+          background-color: gray;
+          padding: 16px;
+          .menu1-textos {
+            grid-column: 1;
+            p {
+              padding: 0;
+              line-height: 1.25;
+            }
+          }
+          input {
+            width: 20%;
+            margin: auto;
+          }
+        }
+        .menu2-container {
+          margin-top: 10px;
+        }
+      }
+
+      .acompaniantes-seccion {
+      p{
+        font-size: 14px;
+      }
+        .acompaniantes-preguntas {
+          padding-top: 20px;
+          .pregunta-acompaniante-container {
+            display: flex;
+            padding-left: 16px;
+
+            p {
+              padding-left: 5px;
+            }
+            input{
+                border-color: blue;
+            }
+          }
+        }
+      }
+    }
+    .modal-footer {
+      border: none;
+    }
+  }
+}

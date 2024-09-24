@@ -204,7 +204,7 @@ const InfoContextProvider = ({ children }) => {
           setUserData({
             ...userData,
             nombre: existingData.nombre,
-            nombreAcompaniante: userData.nombreAcompaniante,
+            nombreAcompaniante: (userData.nombreAcompaniante),
             nombreOriginal: nombreOriginal,
           });
           setInvitadoRegistrado("si");
@@ -226,7 +226,7 @@ const InfoContextProvider = ({ children }) => {
         //setInvitadoRegistrado("");
       });
   };
-  console.log(userData.nombre);
+ 
 
   // Verificar si hay espacio en una mesa
   const verificarEspaciosDisponibles = async (mesa) => {

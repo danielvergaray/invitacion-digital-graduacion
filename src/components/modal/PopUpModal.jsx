@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import InfoContext from "../infoContext/InfoContext";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
@@ -53,9 +54,14 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
       <Modal show={abrirPopUp} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>
-            {seccionActual === "pantalla1"
-              ? "Hola"
-              : `Bienvenido ${nombreOriginal}`}
+            <div className="Xcerrar-container">
+              <IoIosCloseCircleOutline onClick={handleClose} />
+            </div>
+            <>
+              {seccionActual === "pantalla1"
+                ? "Hola"
+                : `Hola ${nombreOriginal}`}
+            </>
           </Modal.Title>
         </Modal.Header>
 
@@ -69,18 +75,20 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
               <input
                 type="text"
                 name="nombre"
-                placeholder="Nombre y Apellido"
+                placeholder="Ingrese Nombre y Apellido"
                 value={userData.nombre}
                 onChange={getUserDataName}
                 required
               />
-              <button
-                type="submit"
-                disabled={loading}
-                onClick={verificarInvitado}
-              >
-                {loading ? "Enviando..." : "Enviar"}
-              </button>
+              <div className="boton-container">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  onClick={verificarInvitado}
+                >
+                  {loading ? "Enviando..." : "Enviar"}
+                </button>
+              </div>
             </form>
           )}
 
@@ -92,36 +100,76 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
               {invitadoRegistrado === "no" ? (
                 <p>Usuario no encontrado, intente nuevamente</p>
               ) : null}
-              
             </form>
           )}
 
           {seccionActual === "pantalla2" && (
             <>
               <p>Escoge tu menu</p>
-              <button
-                onClick={() => {
-                  setSeccionActual("pantalla3");
-                  setUserData({ ...userData, menu: "lasagna" });
-                }}
-              >
-                Lasagna
-              </button>
-              <button
-                onClick={() => {
-                  setSeccionActual("pantalla3");
-                  setUserData({ ...userData, menu: "asado" });
-                }}
-              >
-                Asado
-              </button>
+              <div className="menus-opciones-container">
+                {/* <button
+                  onClick={() => {
+                    setSeccionActual("pantalla3");
+                    setUserData({ ...userData, menu: "lasagna" });
+                  }}
+                >
+                  <p>Menú 1</p>
+                  <p>
+                    Lasagna de carne con salsa bolognesa y salsa bechamel,
+                    acompañado de 3 panes al ajoa
+                  </p>
+                </button> */}
+
+                <div className="menu1-container">
+                  <div className="menu1-textos">
+                    <p>Menú 1</p>
+                    <p>
+                      Lasagna de carne con salsa bolognesa y salsa bechamel,
+                      acompañado de 3 panes al ajo
+                    </p>
+                  </div>
+                  <input
+                    type="radio"
+                    onClick={() => {
+                      setSeccionActual("pantalla3");
+                      setUserData({ ...userData, menu: "lasagna" });
+                    }}
+                  />
+                </div>
+
+                <div className="menu2-container">
+                  <div className="menu1-textos">
+                    <p>Menú 2</p>
+                    <p>
+                      Asado en su jugo con pure de papa amarilla y arroz con
+                      alverjas
+                    </p>
+                  </div>
+                  <input
+                    type="radio"
+                    onClick={() => {
+                      setSeccionActual("pantalla3");
+                      setUserData({ ...userData, menu: "asado" });
+                    }}
+                  />
+                </div>
+
+                {/*  <button
+                  onClick={() => {
+                    setSeccionActual("pantalla3");
+                    setUserData({ ...userData, menu: "asado" });
+                  }}
+                >
+                  Asado
+                </button> */}
+              </div>
             </>
           )}
 
           {seccionActual === "pantalla3" && (
-            <>
-              <p>Vienes con acompañante</p>
-              <button
+            <div className="acompaniantes-seccion">
+              <p>¿Vienes con acompañante?</p>
+              {/* <button
                 onClick={() => {
                   setSeccionActual("conAcompaniante");
                   setUserData({
@@ -131,8 +179,39 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
                 }}
               >
                 SI
-              </button>
-              <button
+              </button> */}
+
+              <div className="acompaniantes-preguntas">
+                <div className="pregunta-acompaniante-container">
+                  <input
+                    type="radio"
+                    onClick={() => {
+                      setSeccionActual("conAcompaniante");
+                      setUserData({
+                        ...userData,
+                        tieneAcompaniante: "Si",
+                      });
+                    }}
+                  />
+                  <p>Sí</p>
+                </div>
+
+                <div className="pregunta-acompaniante-container">
+                  <input
+                    type="radio"
+                    onClick={() => {
+                      setSeccionActual("pantalla5");
+                      setUserData({
+                        ...userData,
+                        tieneAcompaniante: "No",
+                      });
+                    }}
+                  />
+                  <p>No</p>
+                </div>
+              </div>
+
+              {/* <button
                 onClick={() => {
                   setSeccionActual("pantalla5");
                   setUserData({
@@ -142,12 +221,12 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
                 }}
               >
                 NO
-              </button>
-            </>
+              </button> */}
+            </div>
           )}
 
           {seccionActual === "conAcompaniante" && (
-            <form
+            <form className="inputs-container"
               onSubmit={(e) => {
                 e.preventDefault();
                 setSeccionActual("pantalla4");
@@ -158,13 +237,18 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
               <input
                 type="text"
                 name="nombreAcompaniante"
-                placeholder="Ingrese nombre y apellido"
+                placeholder="Ingrese Nombre y Apellido"
                 value={userData.nombreAcompaniante || ""}
                 onChange={getUserDataName}
               />
-              <button type="submit" disabled={loading}>
-                {loading ? "Enviando..." : "Enviar"}
-              </button>
+              <div className="boton-container">
+                <button
+                  type="submit"
+                  disabled={loading}
+                >
+                  {loading ? "Enviando..." : "Enviar"}
+                </button>
+              </div>
             </form>
           )}
 
@@ -240,7 +324,6 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
               onClick={(event) => {
                 handleEnviar(event);
                 //handleClose();
-                
               }}
             >
               ENVIAR PEDIDO

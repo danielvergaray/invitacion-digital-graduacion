@@ -63,8 +63,8 @@
         padding: 20px;
         padding-top: 0;
         padding-bottom: 10px;
-        display: grid;
-        grid-template-rows: 50% 40%;
+      /*   display: grid;
+        grid-template-rows: 50% 40%; */
         background-color: $Cards-acordion;
         border-bottom-left-radius: 0rem;
         border-bottom-right-radius: 0rem;
@@ -85,16 +85,15 @@
             }
             span {
               background-color: white;
-              width: 100%;
-              height: 1px;
+              width: 60%;
+              height: 0.5px;
               display: block;
 
               margin-top: 0px;
             }
 
             .acordion-expandido-asistentes-1 {
-              grid-column: 1;
-              margin: auto;
+             padding-top: 20px;
             }
 
             .acordion-expandido-asistentes-2 {
@@ -109,7 +108,7 @@
           grid-row: 2;
           padding: 10px 0;
 
-          margin-top: 10px;
+          margin-top: 20px;
           .boton-container {
             text-align: center;
             padding: 0;

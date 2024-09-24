@@ -85,6 +85,10 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                       <p style={{ color: "white", margin: "auto" }}>
                         No hay personas registradas
                       </p>
+                    ) : espaciosRestantes[index] === 0 ? (
+                      <p style={{ color: "white", margin: "auto" }}>
+                        La mesa está llena
+                      </p>
                     ) : (
                       <div className="acordion-expandido-asistentes">
                         <p style={{ color: "white" }}>Personas registradas</p>
@@ -100,22 +104,18 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                               ) // Capitaliza la primera letra de cada parte y convierte el resto a minúsculas
                               .join(" "); // Une las palabras con un espacio
 
-                            return <p key={i}>{nombreSeparado}</p>; // Devuelve el nombre separado
+                            return (
+                              <>
+                                <p key={i}>{nombreSeparado}</p>
+                                <span></span>
+                              </>
+                            ); // Devuelve el nombre separado
                           })}
                         </div>
                       </div>
                     )}
                   </div>
 
-                  {/* <div className="acordion-expandido-asistentes-1">
-                      <p>Daniel Vergaray</p>
-                      <span></span>
-                      <p>Daniel Vergaray</p>
-                      <span></span>
-                      <p>Daniel Vergaray</p>
-                      <span></span>
-                      <p>Daniel Vergaray</p>
-                    </div> */}
 
                   <div className="acordion-expandido-boton">
                     <div className="boton-container">
