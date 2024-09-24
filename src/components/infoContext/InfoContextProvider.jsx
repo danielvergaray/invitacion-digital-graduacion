@@ -68,18 +68,18 @@ const InfoContextProvider = ({ children }) => {
           imagenTitulo: imagenOnda,
           textoTitulo:
             "Cada momento guarda la emoción, la complicidad y los recuerdos que quedarán para siempre en nuestros corazones.",
-            carruselImagenes: [
-              { imagenCarrusel: imagen1 },
-              { imagenCarrusel: imagen2 },
-              { imagenCarrusel: imagen3 },
-              { imagenCarrusel: imagen4 },
-              { imagenCarrusel: imagen5 },
-              { imagenCarrusel: imagen6 },
-              { imagenCarrusel: imagen7 },
-              { imagenCarrusel: imagen8 },
-              { imagenCarrusel: imagen9 },
-              { imagenCarrusel: imagen10 },
-            ],
+          carruselImagenes: [
+            { imagenCarrusel: imagen1 },
+            { imagenCarrusel: imagen2 },
+            { imagenCarrusel: imagen3 },
+            { imagenCarrusel: imagen4 },
+            { imagenCarrusel: imagen5 },
+            { imagenCarrusel: imagen6 },
+            { imagenCarrusel: imagen7 },
+            { imagenCarrusel: imagen8 },
+            { imagenCarrusel: imagen9 },
+            { imagenCarrusel: imagen10 },
+          ],
         },
       ],
       seccionMesas: [
@@ -109,7 +109,7 @@ const InfoContextProvider = ({ children }) => {
   ];
 
   const cantidadMesas = Array.from({ length: 8 }, (_, i) => i + 1);
-  
+
   // Estado para gestionar si hay espacio disponible en la mesa
   const [espacioDisponibleMesa, setEspacioDisponibleMesa] = useState(true);
 
@@ -121,7 +121,6 @@ const InfoContextProvider = ({ children }) => {
     tieneAcompaniante: "",
     nombreAcompaniante: "",
     menuAcompaniante: "",
-
   });
 
   // Estados para los datos de mesas y menús
@@ -142,8 +141,6 @@ const InfoContextProvider = ({ children }) => {
 
   const [nombreOriginal, setNombreOriginal] = useState(""); // Nuevo estado para el nombre original
 
-   
-
   function capitalizeWords(str) {
     return str
       .split(" ") // Divide la cadena en palabras
@@ -163,7 +160,6 @@ const InfoContextProvider = ({ children }) => {
 
   const handleClose = () => {
     setAbrirPopUp(false);
-
   };
 
   const cerrarSesion = () => {
@@ -179,15 +175,23 @@ const InfoContextProvider = ({ children }) => {
     setInvitadoRegistrado("");
     console.log(userData);
   };
-
+  console.log(userData.nombre);
   const verificarInvitado = () => {
     const db = getFirestore();
-    const nombreMinusculas = userData.nombre.toLowerCase().split(" ").join("");
+    //const nombreCapitalizado = userData.nombre.toLowerCase().split(" ").join("");
+
+    const nombreCapitalizado = userData.nombre
+      .toLowerCase() // Convierte todo a minúsculas
+      .split(" ") // Separa las palabras
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitaliza la primera letra de cada palabra
+      .join(""); // Une las palabras en una sola cadena
+
+    console.log(nombreCapitalizado);
 
     const invitadosFirebase = collection(db, "invitados");
     const buscarInvitado = query(
       invitadosFirebase,
-      where("nombre", "==", nombreMinusculas)
+      where("nombre", "==", nombreCapitalizado)
     );
 
     getDocs(buscarInvitado)
@@ -201,7 +205,7 @@ const InfoContextProvider = ({ children }) => {
             ...userData,
             nombre: existingData.nombre,
             nombreAcompaniante: userData.nombreAcompaniante,
-            nombreOriginal: nombreOriginal
+            nombreOriginal: nombreOriginal,
           });
           setInvitadoRegistrado("si");
           cambiarSeccion("pantalla2");
@@ -221,9 +225,8 @@ const InfoContextProvider = ({ children }) => {
         setLoading(false);
         //setInvitadoRegistrado("");
       });
-
-    console.log(userData);
   };
+  console.log(userData.nombre);
 
   // Verificar si hay espacio en una mesa
   const verificarEspaciosDisponibles = async (mesa) => {
@@ -231,7 +234,9 @@ const InfoContextProvider = ({ children }) => {
     const mesaRef = doc(db, "mesas", `mesa_${mesa}`);
     const mesaDoc = await getDoc(mesaRef);
 
-    const invitadosActuales = mesaDoc.exists() ? mesaDoc.data().invitados || [] : [];
+    const invitadosActuales = mesaDoc.exists()
+      ? mesaDoc.data().invitados || []
+      : [];
     const espaciosRestantes = 8 - invitadosActuales.length;
 
     setEspacioDisponibleMesa(espaciosRestantes > 0); // Actualiza el estado de espacio disponible
@@ -243,127 +248,136 @@ const InfoContextProvider = ({ children }) => {
     setLoading(true);
 
     const db = getFirestore();
-    const nombreMinusculas = userData.nombre.toLowerCase().split(" ").join("");
 
     const invitadosFirebase = collection(db, "invitados");
-    const buscarInvitado = query(invitadosFirebase, where("nombre", "==", nombreMinusculas));
+    const buscarInvitado = query(
+      invitadosFirebase,
+      where("nombre", "==", userData.nombre)
+    );
 
     try {
-        const querySnapshot = await getDocs(buscarInvitado);
-        if (!querySnapshot.empty) {
-            const existingData = querySnapshot.docs[0].data();
-            const docRef = querySnapshot.docs[0].ref;
+      const querySnapshot = await getDocs(buscarInvitado);
+      if (!querySnapshot.empty) {
+        const existingData = querySnapshot.docs[0].data();
+        const docRef = querySnapshot.docs[0].ref;
 
-     
+        // Guardar el nombre capitalizado
+        setUserData((prevState) => ({
+          ...prevState,
+          nombreOriginal: nombreOriginal,
+        }));
 
-      // Guardar el nombre capitalizado
-      setUserData((prevState) => ({
-        ...prevState,
-        nombreOriginal: nombreOriginal,
-      }));
+        // Eliminar al usuario de la mesa anterior, si existía
+        if (existingData.mesa) {
+          const previousMesaRef = doc(db, "mesas", `mesa_${existingData.mesa}`);
 
-            // Eliminar al usuario de la mesa anterior, si existía
-            if (existingData.mesa) {
-                const previousMesaRef = doc(db, "mesas", `mesa_${existingData.mesa}`);
+          // Usa arrayRemove para quitar al usuario y su acompañante de la mesa anterior
+          const invitadosArray = [existingData.nombre];
+          if (
+            existingData.tieneAcompaniante &&
+            existingData.nombreAcompaniante
+          ) {
+            invitadosArray.push(existingData.nombreAcompaniante);
+          }
 
-                // Usa arrayRemove para quitar al usuario y su acompañante de la mesa anterior
-                const invitadosArray = [existingData.nombre];
-                if (existingData.tieneAcompaniante && existingData.nombreAcompaniante) {
-                    invitadosArray.push(existingData.nombreAcompaniante);
-                }
+          await updateDoc(previousMesaRef, {
+            invitados: arrayRemove(...invitadosArray),
+          });
 
-                await updateDoc(previousMesaRef, {
-                    invitados: arrayRemove(...invitadosArray),
-                });
-
-                await actualizarConteoMenus(existingData.menu, -1); // Actualizar el conteo de menús
-            }
-
-            // Verificar si hay espacio en la nueva mesa seleccionada
-            const espaciosRestantes = await verificarEspaciosDisponibles(userData.mesa);
-
-            const cantidadAAgregar = userData.tieneAcompaniante && userData.nombreAcompaniante.trim() !== ""
-                ? 2
-                : 1;
-
-            // Si no hay espacio suficiente, marcar el estado como false
-            if (cantidadAAgregar > espaciosRestantes) {
-                setEspacioDisponibleMesa(false);
-                setLoading(false);
-                return;
-            }
-
-            // Si hay espacio suficiente, proceder a agregar los invitados
-            setEspacioDisponibleMesa(true);
-
-            // Añadir el nombre del usuario a la nueva mesa
-            const newMesaRef = doc(db, "mesas", `mesa_${userData.mesa}`);
-            const invitadosArray = [userData.nombre];
-
-            // Si tiene acompañante, añadirlo
-            if (userData.tieneAcompaniante && userData.nombreAcompaniante.trim() !== "") {
-                invitadosArray.push(userData.nombreAcompaniante.trim());
-            }
-
-            await updateDoc(newMesaRef, {
-                invitados: arrayUnion(...invitadosArray),
-            });
-
-            // Actualizar la información del usuario en la colección "invitados"
-            await updateDoc(docRef, {
-                mesa: userData.mesa,
-                menu: userData.menu,
-                tieneAcompaniante: userData.tieneAcompaniante,
-                nombreAcompaniante: userData.nombreAcompaniante,
-                menuAcompaniante: userData.menuAcompaniante,
-            });
-
-            // Si el acompañante tiene un menú, actualizar su conteo
-            if (userData.tieneAcompaniante && userData.menuAcompaniante) {
-                await actualizarConteoMenus(userData.menuAcompaniante, 1);
-            }
-
-            // Resetear el estado del usuario después de enviar los datos
-            setUserData({
-                nombre: "",
-                mesa: "",
-                menu: "",
-                tieneAcompaniante: "",
-                nombreAcompaniante: "",
-                menuAcompaniante: "",
-            });
-
-            actualizarMesasYMenus(); // Actualiza los datos de mesas en Firebase
-        } else {
-            setInvitadoRegistrado("no");
-            console.log("Lo siento, su nombre no se encuentra en la lista de invitados");
-            setLoading(false);
-            return;
+          await actualizarConteoMenus(existingData.menu, -1); // Actualizar el conteo de menús
         }
-    } catch (error) {
-        console.error("Error al verificar el invitado en Firebase:", error);
-    } finally {
+
+        // Verificar si hay espacio en la nueva mesa seleccionada
+        const espaciosRestantes = await verificarEspaciosDisponibles(
+          userData.mesa
+        );
+
+        const cantidadAAgregar =
+          userData.tieneAcompaniante &&
+          userData.nombreAcompaniante.trim() !== ""
+            ? 2
+            : 1;
+
+        // Si no hay espacio suficiente, marcar el estado como false
+        if (cantidadAAgregar > espaciosRestantes) {
+          setEspacioDisponibleMesa(false);
+          setLoading(false);
+          return;
+        }
+
+        // Si hay espacio suficiente, proceder a agregar los invitados
+        setEspacioDisponibleMesa(true);
+
+        // Añadir el nombre del usuario a la nueva mesa
+        const newMesaRef = doc(db, "mesas", `mesa_${userData.mesa}`);
+        const invitadosArray = [userData.nombre];
+
+        // Si tiene acompañante, añadirlo
+        if (
+          userData.tieneAcompaniante &&
+          userData.nombreAcompaniante.trim() !== ""
+        ) {
+          invitadosArray.push(userData.nombreAcompaniante.trim());
+        }
+
+        await updateDoc(newMesaRef, {
+          invitados: arrayUnion(...invitadosArray),
+        });
+
+        // Actualizar la información del usuario en la colección "invitados"
+        await updateDoc(docRef, {
+          mesa: userData.mesa,
+          menu: userData.menu,
+          tieneAcompaniante: userData.tieneAcompaniante,
+          nombreAcompaniante: userData.nombreAcompaniante,
+          menuAcompaniante: userData.menuAcompaniante,
+        });
+
+        // Si el acompañante tiene un menú, actualizar su conteo
+        if (userData.tieneAcompaniante && userData.menuAcompaniante) {
+          await actualizarConteoMenus(userData.menuAcompaniante, 1);
+        }
+
+        // Resetear el estado del usuario después de enviar los datos
+        setUserData({
+          nombre: "",
+          mesa: "",
+          menu: "",
+          tieneAcompaniante: "",
+          nombreAcompaniante: "",
+          menuAcompaniante: "",
+        });
+
+        actualizarMesasYMenus(); // Actualiza los datos de mesas en Firebase
+      } else {
+        setInvitadoRegistrado("no");
+        console.log(
+          "Lo siento, su nombre no se encuentra en la lista de invitados"
+        );
         setLoading(false);
-        cambiarSeccion("pantalla6");
-        setInvitadoRegistrado("");
+        return;
+      }
+    } catch (error) {
+      console.error("Error al verificar el invitado en Firebase:", error);
+    } finally {
+      setLoading(false);
+      cambiarSeccion("pantalla6");
+      setInvitadoRegistrado("");
     }
-};
-  
-  
-  
+  };
 
   const actualizarMesasYMenus = async () => {
     const db = getFirestore();
     const invitadosCollection = collection(db, "invitados");
-  
+
     try {
       // Obtener todos los documentos de invitados
       const invitadosSnapshot = await getDocs(invitadosCollection);
-  
+
       // Inicializar objetos para almacenar la información
       const mesasData = {};
       const menusData = { asado: 0, lasagna: 0 };
-  
+
       // Recorrer los invitados y organizar la información
       invitadosSnapshot.forEach((doc) => {
         const data = doc.data();
@@ -375,27 +389,27 @@ const InfoContextProvider = ({ children }) => {
           menuAcompaniante,
           nombreAcompaniante,
         } = data;
-  
+
         // Actualizar la información de las mesas
         if (mesa) {
           if (!mesasData[mesa]) {
             mesasData[mesa] = []; // Inicializa una nueva mesa
           }
           mesasData[mesa].push(nombre); // Añade el nombre del invitado a la mesa
-          
+
           // Solo añadir nombre del acompañante si no está vacío
           if (tieneAcompaniante && nombreAcompaniante.trim() !== "") {
             mesasData[mesa].push(nombreAcompaniante.trim()); // Añadir acompañante solo si no está vacío
           }
         }
-  
+
         // Contar los menús seleccionados
         if (menu === "asado") {
           menusData.asado++;
         } else if (menu === "lasagna") {
           menusData.lasagna++;
         }
-  
+
         // Considerar el acompañante si tiene
         if (tieneAcompaniante && menuAcompaniante) {
           if (menuAcompaniante === "asado") {
@@ -405,21 +419,20 @@ const InfoContextProvider = ({ children }) => {
           }
         }
       });
-  
+
       // Guardar la información de mesas en la colección "mesas"
       for (const [mesa, invitados] of Object.entries(mesasData)) {
         await setDoc(doc(db, "mesas", `mesa_${mesa}`), { invitados });
       }
-  
+
       // Guardar la información de menús en la colección "menus"
       await setDoc(doc(db, "menus", "totalMenus"), menusData);
-  
+
       console.log("Mesas y menús actualizados correctamente.");
     } catch (error) {
       console.error("Error al actualizar mesas y menús:", error);
     }
   };
-  
 
   const actualizarConteoMenus = async (menu, cantidad) => {
     const db = getFirestore();

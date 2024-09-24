@@ -80,7 +80,7 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
             {cardColapsado[index] && (
               <>
                 <Accordion.Body className="acordion-expandido-container">
-                  <div >
+                  <div>
                     {espaciosRestantes[index] === 8 ? (
                       <p style={{ color: "white", margin: "auto" }}>
                         No hay personas registradas
@@ -89,9 +89,19 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                       <div className="acordion-expandido-asistentes">
                         <p style={{ color: "white" }}>Personas registradas</p>
                         <div className="acordion-expandido-asistentes-1">
-                          {asistentesPorMesa[index].map((nombre, i) => (
-                            <p key={i}>{nombre}</p>
-                          ))}
+                          {asistentesPorMesa[index].map((nombre, i) => {
+                            // Separar el nombre en palabras
+                            const nombreSeparado = nombre
+                              .split(/(?=[A-Z])/) // Divide el nombre donde hay letras mayúsculas
+                              .map(
+                                (word) =>
+                                  word.charAt(0).toUpperCase() +
+                                  word.slice(1).toLowerCase()
+                              ) // Capitaliza la primera letra de cada parte y convierte el resto a minúsculas
+                              .join(" "); // Une las palabras con un espacio
+
+                            return <p key={i}>{nombreSeparado}</p>; // Devuelve el nombre separado
+                          })}
                         </div>
                       </div>
                     )}
@@ -110,13 +120,13 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                   <div className="acordion-expandido-boton">
                     <div className="boton-container">
                       <button
-                        /* onClick={() => {
+                        onClick={() => {
                           funcionAbrirPopUp();
                           setUserData((prevUserData) => ({
                             ...prevUserData,
                             mesa: mesa,
                           }));
-                        }} */
+                        }}
                       >
                         <Link>REGISTRARSE</Link>
                       </button>
