@@ -110,13 +110,13 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                   <div className="acordion-expandido-boton">
                     <div className="boton-container">
                       <button
-                        onClick={() => {
+                        /* onClick={() => {
                           funcionAbrirPopUp();
                           setUserData((prevUserData) => ({
                             ...prevUserData,
                             mesa: mesa,
                           }));
-                        }}
+                        }} */
                       >
                         <Link>REGISTRARSE</Link>
                       </button>
