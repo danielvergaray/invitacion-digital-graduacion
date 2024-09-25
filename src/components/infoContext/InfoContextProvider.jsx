@@ -173,6 +173,7 @@ const InfoContextProvider = ({ children }) => {
       menuAcompaniante: "",
     });
     setInvitadoRegistrado("");
+    setSeccionActual("pantalla1")
     console.log(userData);
   };
   console.log(userData.nombre);
@@ -246,7 +247,7 @@ const InfoContextProvider = ({ children }) => {
   const handleEnviar = async (event) => {
     event.preventDefault();
     setLoading(true);
-
+console.log("enviando")
     const db = getFirestore();
 
     const invitadosFirebase = collection(db, "invitados");
@@ -376,7 +377,7 @@ const InfoContextProvider = ({ children }) => {
 
       // Inicializar objetos para almacenar la información
       const mesasData = {};
-      const menusData = { asado: 0, lasagna: 0 };
+      const menusData = { Asado: 0, Lasagna: 0 };
 
       // Recorrer los invitados y organizar la información
       invitadosSnapshot.forEach((doc) => {
@@ -404,18 +405,18 @@ const InfoContextProvider = ({ children }) => {
         }
 
         // Contar los menús seleccionados
-        if (menu === "asado") {
-          menusData.asado++;
-        } else if (menu === "lasagna") {
-          menusData.lasagna++;
+        if (menu === "Asado") {
+          menusData.Asado++;
+        } else if (menu === "Lasagna") {
+          menusData.Lasagna++;
         }
 
         // Considerar el acompañante si tiene
         if (tieneAcompaniante && menuAcompaniante) {
-          if (menuAcompaniante === "asado") {
-            menusData.asado++;
-          } else if (menuAcompaniante === "lasagna") {
-            menusData.lasagna++;
+          if (menuAcompaniante === "Asado") {
+            menusData.Asado++;
+          } else if (menuAcompaniante === "Lasagna") {
+            menusData.Lasagna++;
           }
         }
       });

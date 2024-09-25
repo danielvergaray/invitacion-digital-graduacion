@@ -55,13 +55,20 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
         <Modal.Header closeButton>
           <Modal.Title>
             <div className="Xcerrar-container">
-              <IoIosCloseCircleOutline onClick={handleClose} />
+              <IoIosCloseCircleOutline
+                onClick={() => {
+                  cerrarSesion();
+                  handleClose();
+                }}
+              />
             </div>
             <>
               {seccionActual === "pantalla1"
                 ? "Hola"
                 : seccionActual === "pantalla5"
                 ? "Resumen de tu selección"
+                : seccionActual === "pantalla6"
+                ? "Hola"
                 : `Hola ${nombreOriginal}`}
             </>
           </Modal.Title>
@@ -77,7 +84,7 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
               <input
                 type="text"
                 name="nombre"
-                placeholder="Ingrese Nombre y Apellido"
+                placeholder="Nombre y Apellido"
                 value={userData.nombre}
                 onChange={getUserDataName}
                 required
@@ -100,7 +107,9 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
               onSubmit={(e) => handleEnviar(e)}
             >
               {invitadoRegistrado === "no" ? (
-                <p style={{padding: '0'}}>Usuario no encontrado, intente nuevamente</p>
+                <p style={{ padding: "0" }}>
+                  Usuario no encontrado, intente nuevamente
+                </p>
               ) : null}
             </form>
           )}
@@ -112,7 +121,7 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
                 {/* <button
                   onClick={() => {
                     setSeccionActual("pantalla3");
-                    setUserData({ ...userData, menu: "lasagna" });
+                    setUserData({ ...userData, menu: "Lasagna" });
                   }}
                 >
                   <p>Menú 1</p>
@@ -122,7 +131,13 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
                   </p>
                 </button> */}
 
-                <div className="menu1-container">
+                <div
+                  onClick={() => {
+                    setSeccionActual("pantalla3");
+                    setUserData({ ...userData, menu: "Lasagna" });
+                  }}
+                  className="menu1-container"
+                >
                   <div className="menu1-textos">
                     <p>Menú 1</p>
                     <p>
@@ -130,36 +145,30 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
                       acompañado de 3 panes al ajo
                     </p>
                   </div>
-                  <input
-                    type="radio"
-                    onClick={() => {
-                      setSeccionActual("pantalla3");
-                      setUserData({ ...userData, menu: "lasagna" });
-                    }}
-                  />
+                  <input type="radio" />
                 </div>
 
-                <div className="menu2-container">
+                <div
+                  onClick={() => {
+                    setSeccionActual("pantalla3");
+                    setUserData({ ...userData, menu: "Asado" });
+                  }}
+                  className="menu2-container"
+                >
                   <div className="menu1-textos">
                     <p>Menú 2</p>
                     <p>
-                      Asado en su jugo con pure de papa amarilla y arroz con
+                      Asado en su jugo con puré de papa amarilla y arroz con
                       alverjas
                     </p>
                   </div>
-                  <input
-                    type="radio"
-                    onClick={() => {
-                      setSeccionActual("pantalla3");
-                      setUserData({ ...userData, menu: "asado" });
-                    }}
-                  />
+                  <input type="radio" />
                 </div>
 
                 {/*  <button
                   onClick={() => {
                     setSeccionActual("pantalla3");
-                    setUserData({ ...userData, menu: "asado" });
+                    setUserData({ ...userData, menu: "Asado" });
                   }}
                 >
                   Asado
@@ -242,7 +251,7 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
                 <input
                   type="text"
                   name="nombreAcompaniante"
-                  placeholder="Ingrese Nombre y Apellido"
+                  placeholder="Nombre y Apellido"
                   value={userData.nombreAcompaniante || ""}
                   onChange={getUserDataName}
                 />
@@ -257,7 +266,7 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
 
           {seccionActual === "pantalla4" && (
             <>
-              <p>Escoge el menu de tu acompañante</p>
+              <p>Escoge el menú de tu acompañante</p>
 
               <div className="menus-opciones-container">
                 <div className="menu1-container">
@@ -272,7 +281,7 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
                     type="radio"
                     onClick={() => {
                       setSeccionActual("pantalla5");
-                      setUserData({ ...userData, menuAcompaniante: "lasagna" });
+                      setUserData({ ...userData, menuAcompaniante: "Lasagna" });
                     }}
                   />
                 </div>
@@ -281,7 +290,7 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
                   <div className="menu1-textos">
                     <p>Menú 2</p>
                     <p>
-                      Asado en su jugo con pure de papa amarilla y arroz con
+                      Asado en su jugo con puré de papa amarilla y arroz con
                       alverjas
                     </p>
                   </div>
@@ -289,7 +298,7 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
                     type="radio"
                     onClick={() => {
                       setSeccionActual("pantalla5");
-                      setUserData({ ...userData, menuAcompaniante: "asado" });
+                      setUserData({ ...userData, menuAcompaniante: "Asado" });
                     }}
                   />
                 </div>
@@ -318,6 +327,18 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
                   )}
                 </>
               )}
+
+              <div className="boton-container">
+                <button
+                  variant="primary"
+                  onClick={(event) => {
+                    handleEnviar(event);
+                    //handleClose();
+                  }}
+                >
+                  CONFIRMAR
+                </button>
+              </div>
             </>
           )}
         </Modal.Body>
@@ -329,7 +350,8 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
         </Modal.Body>
 
         <Modal.Footer>
-          {seccionActual !== "pantalla6" && (
+          {/* {seccionActual !==
+            "pantalla6"  && (
             <div className="boton-container boton-container-volver-empezar">
               <button
                 variant="primary"
@@ -341,9 +363,9 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
                 VOLVER A EMPEZAR
               </button>
             </div>
-          )}
+          )} */}
 
-          {seccionActual === "pantalla5" && (
+          {/*  {seccionActual === "pantalla5" && (
             <div className="boton-container">
               <button
                 variant="primary"
@@ -355,9 +377,9 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
                 CONFIRMAR
               </button>
             </div>
-          )}
+          )} */}
 
-          {seccionActual === "pantalla6" && (
+          {/*   {seccionActual === "pantalla6" && (
             <Button
               variant="primary"
               onClick={() => {
@@ -367,7 +389,7 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
             >
               Cerrar
             </Button>
-          )}
+          )} */}
         </Modal.Footer>
       </Modal>
     </>
