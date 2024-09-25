@@ -64,7 +64,7 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
             </div>
             <>
               {seccionActual === "pantalla1"
-                ? "Hola"
+                ? "Sigue los pasos para registrarte en esta mesa"
                 : seccionActual === "pantalla5"
                 ? "Resumen de tu selección"
                 : seccionActual === "pantalla6"
@@ -76,29 +76,33 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
 
         <Modal.Body>
           {seccionActual === "pantalla1" && invitadoRegistrado === "" && (
-            <form
-              className="inputs-container"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <label htmlFor="nombre"></label>
-              <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre y Apellido"
-                value={userData.nombre}
-                onChange={getUserDataName}
-                required
-              />
-              <div className="boton-container">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  onClick={verificarInvitado}
-                >
-                  {loading ? "Enviando..." : "Enviar"}
-                </button>
-              </div>
-            </form>
+            <>
+              <p>Ingresa tu nombre y apellido</p>
+
+              <form
+                className="inputs-container"
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <label htmlFor="nombre"></label>
+                <input
+                  type="text"
+                  name="nombre"
+                  placeholder="Nombre y Apellido"
+                  value={userData.nombre}
+                  onChange={getUserDataName}
+                  required
+                />
+                <div className="boton-container">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    onClick={verificarInvitado}
+                  >
+                    {loading ? "Enviando..." : "Enviar"}
+                  </button>
+                </div>
+              </form>
+            </>
           )}
 
           {seccionActual === "pantalla1" && invitadoRegistrado === "no" && (
@@ -107,7 +111,7 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
               onSubmit={(e) => handleEnviar(e)}
             >
               {invitadoRegistrado === "no" ? (
-                <p style={{ padding: "0" }}>
+                <p style={{ padding: "0", position:'absolute', top:'80%', left:'25%', transform: 'translate(-50%, -50%);' }}>
                   Usuario no encontrado, intente nuevamente
                 </p>
               ) : null}
@@ -118,61 +122,43 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
             <>
               <p>Escoge tu menú</p>
               <div className="menus-opciones-container">
-                {/* <button
-                  onClick={() => {
-                    setSeccionActual("pantalla3");
-                    setUserData({ ...userData, menu: "Lasagna" });
-                  }}
-                >
-                  <p>Menú 1</p>
-                  <p>
-                    Lasagna de carne con salsa bolognesa y salsa bechamel,
-                    acompañado de 3 panes al ajoa
-                  </p>
-                </button> */}
+                <div className="menu-container">
+                  <button
+                    onClick={() => {
+                      setSeccionActual("pantalla3");
+                      setUserData({ ...userData, menu: "Lasagna" });
+                    }}
+                  >
+                    <div className="menu-textos">
+                      <p>Menú 1</p>
+                      <p>
+                        Lasagna de carne con salsa bolognesa y salsa bechamel,
+                        acompañado de 3 panes al ajo
+                      </p>
+                    </div>
+                    <div className="menu-circulo">
+                      <span></span>
+                    </div>
+                  </button>
 
-                <div
-                  onClick={() => {
-                    setSeccionActual("pantalla3");
-                    setUserData({ ...userData, menu: "Lasagna" });
-                  }}
-                  className="menu1-container"
-                >
-                  <div className="menu1-textos">
-                    <p>Menú 1</p>
-                    <p>
-                      Lasagna de carne con salsa bolognesa y salsa bechamel,
-                      acompañado de 3 panes al ajo
-                    </p>
-                  </div>
-                  <input type="radio" />
+                  <button
+                    onClick={() => {
+                      setSeccionActual("pantalla3");
+                      setUserData({ ...userData, menu: "Asado" });
+                    }}
+                  >
+                    <div className="menu-textos">
+                      <p>Menú 2</p>
+                      <p>
+                        Asado en su jugo con puré de papa amarilla y arroz con
+                        alverjas
+                      </p>
+                    </div>
+                    <div className="menu-circulo">
+                      <span></span>
+                    </div>
+                  </button>
                 </div>
-
-                <div
-                  onClick={() => {
-                    setSeccionActual("pantalla3");
-                    setUserData({ ...userData, menu: "Asado" });
-                  }}
-                  className="menu2-container"
-                >
-                  <div className="menu1-textos">
-                    <p>Menú 2</p>
-                    <p>
-                      Asado en su jugo con puré de papa amarilla y arroz con
-                      alverjas
-                    </p>
-                  </div>
-                  <input type="radio" />
-                </div>
-
-                {/*  <button
-                  onClick={() => {
-                    setSeccionActual("pantalla3");
-                    setUserData({ ...userData, menu: "Asado" });
-                  }}
-                >
-                  Asado
-                </button> */}
               </div>
             </>
           )}
@@ -269,38 +255,42 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
               <p>Escoge el menú de tu acompañante</p>
 
               <div className="menus-opciones-container">
-                <div className="menu1-container">
-                  <div className="menu1-textos">
-                    <p>Menú 1</p>
-                    <p>
-                      Lasagna de carne con salsa bolognesa y salsa bechamel,
-                      acompañado de 3 panes al ajo
-                    </p>
-                  </div>
-                  <input
-                    type="radio"
+                <div className="menu-container">
+                  <button
                     onClick={() => {
                       setSeccionActual("pantalla5");
                       setUserData({ ...userData, menuAcompaniante: "Lasagna" });
                     }}
-                  />
-                </div>
+                  >
+                    <div className="menu-textos">
+                      <p>Menú 1</p>
+                      <p>
+                        Lasagna de carne con salsa bolognesa y salsa bechamel,
+                        acompañado de 3 panes al ajo
+                      </p>
+                    </div>
+                    <div className="menu-circulo">
+                      <span></span>
+                    </div>
+                  </button>
 
-                <div className="menu2-container">
-                  <div className="menu1-textos">
-                    <p>Menú 2</p>
-                    <p>
-                      Asado en su jugo con puré de papa amarilla y arroz con
-                      alverjas
-                    </p>
-                  </div>
-                  <input
-                    type="radio"
+                  <button
                     onClick={() => {
                       setSeccionActual("pantalla5");
                       setUserData({ ...userData, menuAcompaniante: "Asado" });
                     }}
-                  />
+                  >
+                    <div className="menu-textos">
+                      <p>Menú 2</p>
+                      <p>
+                        Asado en su jugo con puré de papa amarilla y arroz con
+                        alverjas
+                      </p>
+                    </div>
+                    <div className="menu-circulo">
+                      <span></span>
+                    </div>
+                  </button>
                 </div>
               </div>
             </>
@@ -350,6 +340,33 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
         </Modal.Body>
 
         <Modal.Footer>
+          <div className="barras-indicadores">
+            <span
+              className={
+                seccionActual === "pantalla1" ? "indicador-actual" : ""
+              }
+            ></span>
+            <span
+              className={
+                seccionActual === "pantalla2" ? "indicador-actual" : ""
+              }
+            ></span>
+            <span
+              className={
+                seccionActual === "pantalla3" ||
+                seccionActual === "conAcompaniante" ||
+                seccionActual === "pantalla4"
+                  ? "indicador-actual"
+                  : ""
+              }
+            ></span>
+            <span
+              className={
+                seccionActual === "pantalla5" ? "indicador-actual" : ""
+              }
+            ></span>
+          </div>
+
           {/* {seccionActual !==
             "pantalla6"  && (
             <div className="boton-container boton-container-volver-empezar">

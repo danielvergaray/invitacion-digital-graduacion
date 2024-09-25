@@ -141,6 +141,7 @@ const InfoContextProvider = ({ children }) => {
 
   const [nombreOriginal, setNombreOriginal] = useState(""); // Nuevo estado para el nombre original
 
+  console.log(seccionActual)
   function capitalizeWords(str) {
     return str
       .split(" ") // Divide la cadena en palabras

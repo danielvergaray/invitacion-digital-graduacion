@@ -1,123 +1,177 @@
-.modal-dialog {
-  padding: 0 20px;
-  margin-top: 40px;
-  .modal-content {
-    background-color: $Cards-acordion;
-
-    .modal-header {
-      border: none;
-      padding-bottom: 0;
-
-      .modal-title {
-        color: white;
-        width: 100%;
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-
-        .Xcerrar-container {
+.modal{
+  .modal-dialog {
+    padding: 0 20px;
+    margin-top: 40px;
+  
+    .modal-content {
+      background-color: $Cards-acordion;
+      height: 375px;
+      .modal-header {
+        border: none;
+        padding-bottom: 0;
+  
+        .modal-title {
+          color: white;
           width: 100%;
-          text-align: right;
-
-          svg {
-            color: $Principal-dorado;
-            font-size: 30px;
-          }
-        }
-      }
-      button {
-        display: none;
-      }
-    }
-    .modal-body {
-      padding: 16px 0;
-      padding-top: 0;
-      padding-bottom: 0;
-      height: 100px;
-      p {
-        color: white;
-        margin: 0;
-        padding-left: 16px;
-      }
-      .inputs-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        padding: 0 16px;
-        input {
-          height: 34px;
-          border: none;
-          width: 190px;
-          padding: 10px;
-          background-color: $Gris-claro;
-          width: 100%;
-          outline: none;
-        }
-      }
-
-      .menus-opciones-container {
-        display: flex;
-        flex-direction: column;
-        padding: 16px;
-
-        .menu1-container,
-        .menu2-container {
           display: grid;
-          grid-template-columns: 80% 20%;
-          background-color: $Gris-medio;
-          padding: 16px;
-          .menu1-textos {
-            grid-column: 1;
-            p {
-              padding: 0;
-              line-height: 1.25;
-              font-size: 12px;
+          grid-template-rows: 1fr 1fr;
+  
+          .Xcerrar-container {
+            width: 100%;
+            text-align: right;
+  
+            svg {
+              color: $Principal-dorado;
+              font-size: 30px;
             }
-            p:nth-child(1) {
-              text-transform: uppercase;
-              font-size: 0.6em;
-              margin: 0;
-              letter-spacing: 3px;
-              font-weight: 700;
-              font-family: "Selofier";
-            }
-          }
-          input {
-            width: 20%;
-            margin: auto;
           }
         }
-        .menu2-container {
-          margin-top: 10px;
+        button {
+          display: none;
         }
       }
-
-      .acompaniantes-seccion {
+      .modal-body {
+        padding: 16px 0;
+        padding-top: 0;
+        padding-bottom: 0;
+  
         p {
-          font-size: 14px;
+          color: white;
+          margin: 0;
+          padding-left: 16px;
         }
-        .acompaniantes-preguntas {
-          padding-top: 20px;
-          .pregunta-acompaniante-container {
-            display: flex;
-            padding-left: 16px;
-
-            p {
-              padding-left: 5px;
+        .inputs-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          padding: 0 16px;
+          input {
+            height: 34px;
+            border: none;
+            width: 190px;
+            padding: 10px;
+            background-color: $Gris-claro;
+            width: 100%;
+            outline: none;
+          }
+        }
+  
+        .menus-opciones-container {
+          display: flex;
+          flex-direction: column;
+          padding: 16px;
+  
+          .menu-container {
+            width: 100%;
+            button {
+              background-color: $Gris-medio;
+              display: grid;
+              grid-template-columns: 90% 10%;
+              border: none;
+              padding: 16px;
+              width: 100%;
+  
+              .menu-textos {
+                grid-column: 1;
+                text-align: left;
+                p {
+                  padding: 0;
+                  line-height: 1.25;
+                  font-size: 12px;
+                  padding-top: 5px;
+                }
+                p:nth-child(1) {
+                  text-transform: uppercase;
+                  font-size: 0.6em;
+                  margin: 0;
+                  letter-spacing: 3px;
+                  font-weight: 700;
+                }
+                font-family: "Selofier";
+              }
+              .menu-circulo {
+                grid-column: 2;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                span {
+                  display: inline-block; /* Necesario para permitir el tamaño y la forma */
+                  width: 15px; /* Ajusta el tamaño del círculo */
+                  height: 15px; /* Debe ser igual al width para un círculo perfecto */
+                  background-color: transparent; /* El color de fondo del círculo */
+                  border-radius: 50%; /* 50% para hacer el elemento redondo */
+                  border: 1px solid $Principal-dorado;
+                }
+              }
             }
+  
             input {
-              border-color: blue;
+              width: 20%;
+              margin: auto;
+            }
+          }
+          :nth-child(2) {
+            margin-top: 10px;
+          }
+        }
+  
+        .acompaniantes-seccion {
+          p {
+            font-size: 14px;
+          }
+          .acompaniantes-preguntas {
+            padding-top: 20px;
+            .pregunta-acompaniante-container {
+              display: flex;
+              padding-left: 16px;
+  
+              p {
+                padding-left: 5px;
+              }
+              input {
+                border-color: blue;
+              }
             }
           }
         }
+        .boton-container {
+          text-align: right;
+          padding-right: 16px;
+        }
       }
-      .boton-container{
-        text-align: right;
-        padding-right: 16px;
+      .modal-footer {
+        border: none;
+        display: flex;
+        justify-content: left;
+        align-items: left;
+        .barras-indicadores {
+          span {
+            display: inline-block; /* Necesario para permitir el tamaño y la forma */
+            width: 20px; /* Ajusta el tamaño del círculo */
+            height: 5px; /* Debe ser igual al width para un círculo perfecto */
+            background-color: $Gris-medio; /* El color de fondo del círculo */
+            border: none;
+            margin: 0 2.5px;
+          }
+          .indicador-actual {
+            display: inline-block; /* Necesario para permitir el tamaño y la forma */
+            width: 20px; /* Ajusta el tamaño del círculo */
+            height: 5px; /* Debe ser igual al width para un círculo perfecto */
+            background-color: $Gris-claro; /* El color de fondo del círculo */
+            border: none;
+            margin: 0 2.5px;
+          }
+        }
       }
-    }
-    .modal-footer {
-      border: none;
     }
   }
+}
+
+
+.modal-backdrop {
+  background-color: black; /* Cambia el color de fondo a negro */
+  opacity: 0.8 !important; /* Aumenta la opacidad del fondo a 85% */
 }
