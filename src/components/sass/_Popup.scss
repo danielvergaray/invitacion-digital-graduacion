@@ -43,13 +43,14 @@
         align-items: center;
         justify-content: center;
         width: 100%;
+        padding: 0 16px;
         input {
           height: 34px;
           border: none;
           width: 190px;
           padding: 10px;
           background-color: $Gris-claro;
-
+          width: 100%;
           outline: none;
         }
       }
@@ -63,7 +64,7 @@
         .menu2-container {
           display: grid;
           grid-template-columns: 80% 20%;
-          background-color: gray;
+          background-color: $Gris-medio;
           padding: 16px;
           .menu1-textos {
             grid-column: 1;
@@ -101,6 +102,8 @@
           }
         }
       }
+
+      
     }
     .modal-footer {
       border: none;

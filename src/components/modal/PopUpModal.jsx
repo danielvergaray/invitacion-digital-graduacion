@@ -51,7 +51,7 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
 
   return (
     <>
-      <Modal show={abrirPopUp} onHide={handleClose} animation={false}>
+      <Modal centered show={abrirPopUp} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>
             <div className="Xcerrar-container">
@@ -60,6 +60,8 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
             <>
               {seccionActual === "pantalla1"
                 ? "Hola"
+                : seccionActual === "pantalla5"
+                ? "Resumen de tu selección"
                 : `Hola ${nombreOriginal}`}
             </>
           </Modal.Title>
@@ -98,14 +100,14 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
               onSubmit={(e) => handleEnviar(e)}
             >
               {invitadoRegistrado === "no" ? (
-                <p>Usuario no encontrado, intente nuevamente</p>
+                <p style={{padding: '0'}}>Usuario no encontrado, intente nuevamente</p>
               ) : null}
             </form>
           )}
 
           {seccionActual === "pantalla2" && (
             <>
-              <p>Escoge tu menu</p>
+              <p>Escoge tu menú</p>
               <div className="menus-opciones-container">
                 {/* <button
                   onClick={() => {
@@ -226,51 +228,72 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
           )}
 
           {seccionActual === "conAcompaniante" && (
-            <form className="inputs-container"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSeccionActual("pantalla4");
-              }}
-            >
-              <label htmlFor="nombreAcompaniante"></label>
+            <>
               <p>Ingresa el nombre de tu acompañante</p>
-              <input
-                type="text"
-                name="nombreAcompaniante"
-                placeholder="Ingrese Nombre y Apellido"
-                value={userData.nombreAcompaniante || ""}
-                onChange={getUserDataName}
-              />
-              <div className="boton-container">
-                <button
-                  type="submit"
-                  disabled={loading}
-                >
-                  {loading ? "Enviando..." : "Enviar"}
-                </button>
-              </div>
-            </form>
+              <form
+                className="inputs-container "
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setSeccionActual("pantalla4");
+                }}
+              >
+                <label htmlFor="nombreAcompaniante"></label>
+
+                <input
+                  type="text"
+                  name="nombreAcompaniante"
+                  placeholder="Ingrese Nombre y Apellido"
+                  value={userData.nombreAcompaniante || ""}
+                  onChange={getUserDataName}
+                />
+                <div className="boton-container">
+                  <button type="submit" disabled={loading}>
+                    {loading ? "Enviando..." : "Enviar"}
+                  </button>
+                </div>
+              </form>
+            </>
           )}
 
           {seccionActual === "pantalla4" && (
             <>
               <p>Escoge el menu de tu acompañante</p>
-              <button
-                onClick={() => {
-                  setSeccionActual("pantalla5");
-                  setUserData({ ...userData, menuAcompaniante: "lasagna" });
-                }}
-              >
-                Lasagna
-              </button>
-              <button
-                onClick={() => {
-                  setSeccionActual("pantalla5");
-                  setUserData({ ...userData, menuAcompaniante: "asado" });
-                }}
-              >
-                Asado
-              </button>
+
+              <div className="menus-opciones-container">
+                <div className="menu1-container">
+                  <div className="menu1-textos">
+                    <p>Menú 1</p>
+                    <p>
+                      Lasagna de carne con salsa bolognesa y salsa bechamel,
+                      acompañado de 3 panes al ajo
+                    </p>
+                  </div>
+                  <input
+                    type="radio"
+                    onClick={() => {
+                      setSeccionActual("pantalla5");
+                      setUserData({ ...userData, menuAcompaniante: "lasagna" });
+                    }}
+                  />
+                </div>
+
+                <div className="menu2-container">
+                  <div className="menu1-textos">
+                    <p>Menú 2</p>
+                    <p>
+                      Asado en su jugo con pure de papa amarilla y arroz con
+                      alverjas
+                    </p>
+                  </div>
+                  <input
+                    type="radio"
+                    onClick={() => {
+                      setSeccionActual("pantalla5");
+                      setUserData({ ...userData, menuAcompaniante: "asado" });
+                    }}
+                  />
+                </div>
+              </div>
             </>
           )}
 
@@ -307,27 +330,31 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
 
         <Modal.Footer>
           {seccionActual !== "pantalla6" && (
-            <Button
-              variant="primary"
-              onClick={() => {
-                setSeccionActual("pantalla1");
-                cerrarSesion();
-              }}
-            >
-              Empezar de nuevo
-            </Button>
+            <div className="boton-container boton-container-volver-empezar">
+              <button
+                variant="primary"
+                onClick={() => {
+                  setSeccionActual("pantalla1");
+                  cerrarSesion();
+                }}
+              >
+                VOLVER A EMPEZAR
+              </button>
+            </div>
           )}
 
           {seccionActual === "pantalla5" && (
-            <Button
-              variant="primary"
-              onClick={(event) => {
-                handleEnviar(event);
-                //handleClose();
-              }}
-            >
-              ENVIAR PEDIDO
-            </Button>
+            <div className="boton-container">
+              <button
+                variant="primary"
+                onClick={(event) => {
+                  handleEnviar(event);
+                  //handleClose();
+                }}
+              >
+                CONFIRMAR
+              </button>
+            </div>
           )}
 
           {seccionActual === "pantalla6" && (
