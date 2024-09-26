@@ -1,17 +1,33 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import InfoContext from "../infoContext/InfoContext";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const SeccionCarrusel = () => {
   const { infoCarruselArray } = useContext(InfoContext);
+
+  useEffect(() => {
+    Aos.init();
+  }, [{ duration: 100 }]);
 
   return (
     <>
       {infoCarruselArray.map((info, index) => (
         <div key={index}>
-          <div className="titulo-imagen-onda">
+          <div className="titulo-imagen-onda"
+          data-aos-easing="linear"
+          data-aos="fade-up"
+          data-aos-duration="250"
+          data-aos-delay="0"
+          >
             <img src={info.imagenTitulo} alt="imagen onda" />
           </div>
-          <div className="seccion-titulo">
+          <div className="seccion-titulo"
+          data-aos-easing="linear"
+          data-aos="fade-up"
+          data-aos-duration="250"
+          data-aos-delay="0"
+          >
             <h1>{info.textoTitulo} </h1>
           </div>
 

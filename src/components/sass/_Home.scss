@@ -125,24 +125,24 @@
         color: white;
       }
 
-      /*  @keyframes ZoomIn {
-      0% {
-        opacity: 1;
-        transform: scale(0.95);
+      @keyframes ZoomIn {
+        0% {
+          opacity: 1;
+          transform: scale(0.95);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(0.95);
+        }
       }
-      50% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(0.95);
-      }
-    } */
     }
   }
-  .boton-container-volver-empezar{
-    button{
+  .boton-container-volver-empezar {
+    button {
       background-color: $Gris-medio;
     }
   }

@@ -1,15 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import InfoContext from "../infoContext/InfoContext";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const SobreEvento = () => {
   const { infoSobreEventoArray } = useContext(InfoContext);
+
+  useEffect(() => {
+    Aos.init();
+  }, [{ duration: 100 }]);
 
   return (
     <>
       {infoSobreEventoArray.map((info, index) => (
         <div key={index}>
-          <div className="titulo-imagen-letras">
+          <div className="titulo-imagen-letras"
+          data-aos-easing="linear"
+          data-aos="fade-up"
+          data-aos-duration="250"
+          data-aos-delay="0"
+          >
             <img
               key={index}
               src={info.imagenTitulo}
@@ -17,7 +28,12 @@ const SobreEvento = () => {
             />
           </div>
 
-          <div className="sobreEvento-fecha-hora-container">
+          <div className="sobreEvento-fecha-hora-container"
+          data-aos-easing="linear"
+          data-aos="fade-up"
+          data-aos-duration="250"
+          data-aos-delay="0"
+          >
             <div className="sobreEvento-subtitulo">
               <p>fecha y hora</p>
             </div>
@@ -37,7 +53,12 @@ const SobreEvento = () => {
             </div>
           </div>
 
-          <div className="informacion-boton-container">
+          <div className="informacion-boton-container"
+          data-aos-easing="linear"
+          data-aos="fade-up"
+          data-aos-duration="250"
+          data-aos-delay="0"
+          >
             <div className="sobreEvento-subtitulo">
               <p>{info.textoLugar}</p>
             </div>
@@ -59,7 +80,12 @@ const SobreEvento = () => {
           </div>
 
           <div className="dresscode">
-            <div className="titulo-imagen-letras">
+            <div className="titulo-imagen-letras"
+            data-aos-easing="linear"
+            data-aos="fade-up"
+            data-aos-duration="250"
+            data-aos-delay="0"
+            >
               <img
                 key={index}
                 src={info.imagenTituloDressCode}
@@ -67,7 +93,12 @@ const SobreEvento = () => {
               />
             </div>
 
-            <div className="informacion-boton-container">
+            <div className="informacion-boton-container"
+            data-aos-easing="linear"
+            data-aos="fade-up"
+            data-aos-duration="250"
+            data-aos-delay="0"
+            >
               <div className="lugar-titulo">
                 <p>Etiqueta</p>
               </div>

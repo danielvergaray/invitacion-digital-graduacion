@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const CuentaRegresivaLogica = () => {
+  useEffect(() => {
+    Aos.init();
+  }, [{ duration: 100 }]);
+
   const [year] = useState(new Date().getFullYear()); /* nos da el año actual */
   /* se usa [year]  porque solamente nos importa el estado y no la funcion de actualizacion*/
   const [timeLeft, setTimeLeft] = useState(
@@ -78,7 +84,13 @@ const CuentaRegresivaLogica = () => {
   });
 
   return (
-    <div className="conteo">
+    <div
+      className="conteo"
+      data-aos-easing="linear"
+      data-aos="fade-down"
+      data-aos-duration="250"
+      data-aos-delay="100"
+    >
       {timerComponents.length ? timerComponents : <span>Time's up!</span>}
     </div>
   );

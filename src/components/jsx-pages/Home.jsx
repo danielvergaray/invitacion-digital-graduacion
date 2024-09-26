@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import CuentaRegresiva from "./CuentaRegresiva";
 import SobreEvento from "./SobreEvento";
 import InfoContext from "../infoContext/InfoContext";
@@ -8,9 +8,16 @@ import Footer from "./Footer";
 import SeccionMesas from "./SeccionMesas";
 import { IoIosArrowDropdown } from "react-icons/io";
 import AgregarAsistentes from "../agregarAsistentes/AgregarAsistentes";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Home = () => {
   const { infoHomeArray } = useContext(InfoContext);
+
+  useEffect(() => {
+    Aos.init();
+  }, [{ duration: 100 }]);
+
   return (
     <>
       <div className="section-hero">
