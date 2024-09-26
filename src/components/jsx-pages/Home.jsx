@@ -25,7 +25,7 @@ const Home = () => {
         <div className="desktop-info">
           <GiSmartphone />
           <div>
-            <p>¡Hola! Este sitio está optimizado sólo para sitios móviles</p>
+            <p>¡Hola! Este sitio está optimizado sólo para sitios móviles.</p>
             <p>Visítanos desde tu télefono para una mejor experiencia.</p>
           </div>
         </div>
