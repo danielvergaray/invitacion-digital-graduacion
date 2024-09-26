@@ -1,6 +1,5 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import InfoContext from "../infoContext/InfoContext";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import "bootstrap/dist/css/bootstrap.min.css";
