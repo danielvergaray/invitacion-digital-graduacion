@@ -6,6 +6,7 @@ import SeccionCarrusel from "./SeccionCarrusel";
 import SeccionPlaylist from "./SeccionPlaylist";
 import Footer from "./Footer";
 import SeccionMesas from "./SeccionMesas";
+import { GiSmartphone } from "react-icons/gi";
 import { IoIosArrowDropdown } from "react-icons/io";
 import AgregarAsistentes from "../agregarAsistentes/AgregarAsistentes";
 import Aos from "aos";
@@ -20,79 +21,90 @@ const Home = () => {
 
   return (
     <>
-      <div className="section-hero">
-        <>
-          {infoHomeArray.map((info, index) => (
-            <div key={index}>
-              <div className="hero-cabecera">
-                <div className="imagen-onda-container">
-                  <img src={info.imagenOnda2} alt="imagen-onda" />
-                </div>
-
-                <div className="hero-cabera-titulo">
-                  <p>sor querubina de san pedro</p>
-                </div>
-                <div className="imagen-onda-container imagen-onda-container-derecha">
-                  <img src={info.imagenOnda2} alt="imagen-onda" />
-                </div>
-              </div>
-              <div className="hero-titulo-container">
-                <div
-                  className="hero-titulo-fecha"
-                  data-aos-easing="linear"
-                  data-aos="fade-in"
-                  data-aos-duration="1000"
-                  data-aos-delay="2800"
-                >
-                  <p>{info.fecha} </p>
-                </div>
-                <div
-                  className="hero-titulo-imagen"
-                  data-aos-easing="linear"
-                  data-aos="fade-in"
-                  data-aos-duration="2500"
-                  data-aos-delay="0"
-                >
-                  <img src={info.imagenEvento} alt="imagen prom" />
-                </div>
-                <div
-                  className="hero-titulo-subtitulo"
-                  data-aos-easing="linear"
-                  data-aos="fade-in"
-                  data-aos-duration="1000"
-                >
-                  <img src={info.imagenProm} alt="" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </>
-        <div className="hero-flecha-mobile">
-          <IoIosArrowDropdown />
+      <section className="desktop-version">
+        <div className="desktop-info">
+          <GiSmartphone />
+          <div>
+            <p>¡Hola! Este sitio está optimizado sólo para sitios móviles</p>
+            <p>Visítanos desde tu télefono para una mejor experiencia.</p>
+          </div>
         </div>
-      </div>
+      </section>
+      <section className="mobile-version">
+        <div className="section-hero">
+          <>
+            {infoHomeArray.map((info, index) => (
+              <div key={index}>
+                <div className="hero-cabecera">
+                  <div className="imagen-onda-container">
+                    <img src={info.imagenOnda2} alt="imagen-onda" />
+                  </div>
 
-      <div className="section-cuentaRegresiva">
-        <CuentaRegresiva />
-      </div>
+                  <div className="hero-cabera-titulo">
+                    <p>sor querubina de san pedro</p>
+                  </div>
+                  <div className="imagen-onda-container imagen-onda-container-derecha">
+                    <img src={info.imagenOnda2} alt="imagen-onda" />
+                  </div>
+                </div>
+                <div className="hero-titulo-container">
+                  <div
+                    className="hero-titulo-fecha"
+                    data-aos-easing="linear"
+                    data-aos="fade-in"
+                    data-aos-duration="1000"
+                    data-aos-delay="2800"
+                  >
+                    <p>{info.fecha} </p>
+                  </div>
+                  <div
+                    className="hero-titulo-imagen"
+                    data-aos-easing="linear"
+                    data-aos="fade-in"
+                    data-aos-duration="2500"
+                    data-aos-delay="0"
+                  >
+                    <img src={info.imagenEvento} alt="imagen prom" />
+                  </div>
+                  <div
+                    className="hero-titulo-subtitulo"
+                    data-aos-easing="linear"
+                    data-aos="fade-in"
+                    data-aos-duration="1000"
+                  >
+                    <img src={info.imagenProm} alt="" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </>
+          <div className="hero-flecha-mobile">
+            <IoIosArrowDropdown />
+          </div>
+        </div>
 
-      <div className="section-sobreEvento">
-        <SobreEvento />
-      </div>
-      <div className="section-carrusel">
-        <SeccionCarrusel />
-      </div>
-      <div className="section-mesas">
-        <SeccionMesas />
-      </div>
-      <div className="section-playlist">
-        <SeccionPlaylist />
-      </div>
-      <div className="section-footer">
-        <Footer />
-      </div>
+        <div className="section-cuentaRegresiva">
+          <CuentaRegresiva />
+        </div>
 
-      {/*  <AgregarAsistentes/> */}
+        <div className="section-sobreEvento">
+          <SobreEvento />
+        </div>
+        <div className="section-carrusel">
+          <SeccionCarrusel />
+        </div>
+        <div className="section-mesas">
+          <SeccionMesas />
+        </div>
+        <div className="section-playlist">
+          <SeccionPlaylist />
+        </div>
+        <div className="section-footer">
+          <Footer />
+        </div>
+
+        {/*  <AgregarAsistentes/> */}
+      </section>
     </>
   );
 };
