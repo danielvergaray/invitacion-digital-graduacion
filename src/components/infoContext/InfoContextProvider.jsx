@@ -470,7 +470,7 @@ const InfoContextProvider = ({ children }) => {
     seccionActual,
     setSeccionActual,
     //acompanianteNombre,
-    //setAcompanianteNombre,
+    espacioDisponibleMesa,
     loading,
     nombreOriginal,
     handleClose,

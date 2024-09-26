@@ -84,11 +84,11 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                     {espaciosRestantes[index] === 8 ? (
                       <p style={{ color: "white", margin: "auto" }}>
                         No hay personas registradas
-                      </p>
-                    ) : espaciosRestantes[index] === 0 ? (
+                      </p> /* : espaciosRestantes[index] === 0 ? (
                       <p style={{ color: "white", margin: "auto" }}>
                         La mesa está llena
                       </p>
+                    ) */
                     ) : (
                       <div className="acordion-expandido-asistentes">
                         <p style={{ color: "white" }}>Personas registradas</p>
@@ -116,7 +116,6 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                     )}
                   </div>
 
-
                   <div className="acordion-expandido-boton">
                     <div className="boton-container">
                       <button
@@ -127,8 +126,12 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                             mesa: mesa,
                           }));
                         }}
+                        disabled={espaciosRestantes[index] === 0} // Desactivar si no hay espacios
+                        className={espaciosRestantes[index] === 0 ? "boton-sin-espacio" : ""}
                       >
-                        <Link>REGISTRARSE</Link>
+                        {espaciosRestantes[index] === 0
+                          ? "SIN CUPOS DISPONIBLES"
+                          : "REGISTRARSE"}
                       </button>
                     </div>
                   </div>
@@ -137,6 +140,7 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                     <PopUpModal
                       abrirPopUp={abrirPopUp}
                       setAbrirPopUp={setAbrirPopUp}
+                      espaciosRestantes={espaciosRestantes}
                     />
                   ) : null}
                 </Accordion.Body>

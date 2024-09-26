@@ -5,7 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
+function PopUpModal({ abrirPopUp, espaciosRestantes }) {
   const {
     handleEnviar,
     userData,
@@ -23,6 +23,7 @@ function PopUpModal({ abrirPopUp, setAbrirPopUp, mesa }) {
     verificarInvitado,
     cerrarSesion,
   } = useContext(InfoContext);
+  console.log(espaciosRestantes)
 
   const nombreAcompanianteMinuscula = userData.nombreAcompaniante
     ? userData.nombreAcompaniante.toLowerCase()
