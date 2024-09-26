@@ -17,7 +17,7 @@ const SeccionCarrusel = () => {
           <div className="titulo-imagen-onda"
           data-aos-easing="linear"
           data-aos="fade-up"
-          data-aos-duration="250"
+          data-aos-duration="500"
           data-aos-delay="0"
           >
             <img src={info.imagenTitulo} alt="imagen onda" />
@@ -25,8 +25,8 @@ const SeccionCarrusel = () => {
           <div className="seccion-titulo"
           data-aos-easing="linear"
           data-aos="fade-up"
-          data-aos-duration="250"
-          data-aos-delay="0"
+          data-aos-duration="500"
+          data-aos-delay="250"
           >
             <h1>{info.textoTitulo} </h1>
           </div>

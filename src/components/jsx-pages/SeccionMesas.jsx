@@ -19,7 +19,7 @@ const SeccionMesas = () => {
           <div className="titulo-imagen-letras"
           data-aos-easing="linear"
           data-aos="fade-up"
-          data-aos-duration="250"
+          data-aos-duration="500"
           data-aos-delay="0"
           >
             <img
@@ -33,8 +33,8 @@ const SeccionMesas = () => {
             <div className="seccion-titulo"
             data-aos-easing="linear"
             data-aos="fade-up"
-            data-aos-duration="250"
-            data-aos-delay="0"
+            data-aos-duration="500"
+            data-aos-delay="250"
             >
               <h1> {info.textoTitulo} </h1>
             </div>

@@ -88,8 +88,8 @@ const CuentaRegresivaLogica = () => {
       className="conteo"
       data-aos-easing="linear"
       data-aos="fade-down"
-      data-aos-duration="250"
-      data-aos-delay="100"
+      data-aos-duration="500"
+      data-aos-delay="250"
     >
       {timerComponents.length ? timerComponents : <span>Time's up!</span>}
     </div>

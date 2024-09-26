@@ -25,16 +25,41 @@ const Home = () => {
           {infoHomeArray.map((info, index) => (
             <div key={index}>
               <div className="hero-cabecera">
-                <p>sor querubina de san pedro</p>
+                <div className="imagen-onda-container">
+                  <img src={info.imagenOnda2} alt="imagen-onda" />
+                </div>
+
+                <div className="hero-cabera-titulo">
+                  <p>sor querubina de san pedro</p>
+                </div>
+                <div className="imagen-onda-container imagen-onda-container-derecha">
+                  <img src={info.imagenOnda2} alt="imagen-onda" />
+                </div>
               </div>
               <div className="hero-titulo-container">
-                <div className="hero-titulo-fecha">
+                <div
+                  className="hero-titulo-fecha"
+                  data-aos-easing="linear"
+                  data-aos="fade-in"
+                  data-aos-duration="1000"
+                  data-aos-delay="2000"
+                >
                   <p>{info.fecha} </p>
                 </div>
-                <div className="hero-titulo-imagen">
+                <div
+                  className="hero-titulo-imagen"
+                  data-aos-easing="linear"
+                  data-aos="fade-in"
+                  data-aos-duration="1000"
+                >
                   <img src={info.imagenEvento} alt="" />
                 </div>
-                <div className="hero-titulo-subtitulo">
+                <div
+                  className="hero-titulo-subtitulo"
+                  data-aos-easing="linear"
+                  data-aos="fade-in"
+                  data-aos-duration="1000"
+                >
                   <img src={info.imagenProm} alt="" />
                 </div>
               </div>

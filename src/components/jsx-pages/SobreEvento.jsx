@@ -18,7 +18,7 @@ const SobreEvento = () => {
           <div className="titulo-imagen-letras"
           data-aos-easing="linear"
           data-aos="fade-up"
-          data-aos-duration="250"
+          data-aos-duration="500"
           data-aos-delay="0"
           >
             <img
@@ -31,8 +31,8 @@ const SobreEvento = () => {
           <div className="sobreEvento-fecha-hora-container"
           data-aos-easing="linear"
           data-aos="fade-up"
-          data-aos-duration="250"
-          data-aos-delay="0"
+          data-aos-duration="500"
+          data-aos-delay="250"
           >
             <div className="sobreEvento-subtitulo">
               <p>fecha y hora</p>
@@ -56,8 +56,8 @@ const SobreEvento = () => {
           <div className="informacion-boton-container"
           data-aos-easing="linear"
           data-aos="fade-up"
-          data-aos-duration="250"
-          data-aos-delay="0"
+          data-aos-duration="500"
+          data-aos-delay="250"
           >
             <div className="sobreEvento-subtitulo">
               <p>{info.textoLugar}</p>
@@ -83,8 +83,8 @@ const SobreEvento = () => {
             <div className="titulo-imagen-letras"
             data-aos-easing="linear"
             data-aos="fade-up"
-            data-aos-duration="250"
-            data-aos-delay="0"
+            data-aos-duration="500"
+            data-aos-delay="250"
             >
               <img
                 key={index}
@@ -96,8 +96,8 @@ const SobreEvento = () => {
             <div className="informacion-boton-container"
             data-aos-easing="linear"
             data-aos="fade-up"
-            data-aos-duration="250"
-            data-aos-delay="0"
+            data-aos-duration="500"
+            data-aos-delay="250"
             >
               <div className="lugar-titulo">
                 <p>Etiqueta</p>

@@ -10,7 +10,7 @@ const CuentaRegresiva = () => {
   useEffect(() => {
     Aos.init();
   }, [{ duration: 100 }]);
-  
+
   return (
     <>
       {infoContadorArray.map((info, index) => (
@@ -19,7 +19,7 @@ const CuentaRegresiva = () => {
             className="titulo-imagen-onda"
             data-aos-easing="linear"
             data-aos="fade-up"
-            data-aos-duration="250"
+            data-aos-duration="500"
             data-aos-delay="0"
           >
             <img src={info.imagenTitulo} alt="Imagen cuenta regresiva" />
@@ -29,8 +29,8 @@ const CuentaRegresiva = () => {
             className="cuentaRegresiva-titulo"
             data-aos-easing="linear"
             data-aos="fade-up"
-            data-aos-duration="250"
-            data-aos-delay="100"
+            data-aos-duration="500"
+            data-aos-delay="250"
           >
             <h1> {info.textoTitulo} </h1>
             <p>{info.textoSubtitulo}</p>

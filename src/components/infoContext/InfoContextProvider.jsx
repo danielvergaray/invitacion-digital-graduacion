@@ -5,6 +5,7 @@ import imagenProm from "../../assets/imagenes/NOMBREPROM.png";
 import imagenTituloSobreEvento from "../../assets/imagenes/EVENTO.png";
 import imagenTituloDressCode from "../../assets/imagenes/DRESSCODE.png";
 import imagenOnda from "../../assets/imagenes/ONDA.png";
+import imagenOnda2 from "../../assets/imagenes/ONDA2.png";
 import imagen1 from "../../assets/imagenes/carrusel/1.jpg";
 import imagen2 from "../../assets/imagenes/carrusel/2.jpg";
 import imagen3 from "../../assets/imagenes/carrusel/3.jpg";
@@ -35,7 +36,7 @@ import {
 const InfoContextProvider = ({ children }) => {
   const informacion = [
     {
-      seccionHome: [{ imagenEvento, imagenProm, fecha: "21.12.24" }],
+      seccionHome: [{ imagenEvento, imagenProm, fecha: "21.12.24", imagenOnda2 }],
       seccionSobreEvento: [
         {
           imagenTitulo: imagenTituloSobreEvento,
@@ -141,7 +142,7 @@ const InfoContextProvider = ({ children }) => {
 
   const [nombreOriginal, setNombreOriginal] = useState(""); // Nuevo estado para el nombre original
 
-  console.log(seccionActual)
+  console.log(seccionActual);
   function capitalizeWords(str) {
     return str
       .split(" ") // Divide la cadena en palabras
@@ -174,7 +175,7 @@ const InfoContextProvider = ({ children }) => {
       menuAcompaniante: "",
     });
     setInvitadoRegistrado("");
-    setSeccionActual("pantalla1")
+    setSeccionActual("pantalla1");
     console.log(userData);
   };
   console.log(userData.nombre);
@@ -206,7 +207,7 @@ const InfoContextProvider = ({ children }) => {
           setUserData({
             ...userData,
             nombre: existingData.nombre,
-            nombreAcompaniante: (userData.nombreAcompaniante),
+            nombreAcompaniante: userData.nombreAcompaniante,
             nombreOriginal: nombreOriginal,
           });
           setInvitadoRegistrado("si");
@@ -228,7 +229,6 @@ const InfoContextProvider = ({ children }) => {
         //setInvitadoRegistrado("");
       });
   };
- 
 
   // Verificar si hay espacio en una mesa
   const verificarEspaciosDisponibles = async (mesa) => {
@@ -248,7 +248,7 @@ const InfoContextProvider = ({ children }) => {
   const handleEnviar = async (event) => {
     event.preventDefault();
     setLoading(true);
-console.log("enviando")
+    console.log("enviando");
     const db = getFirestore();
 
     const invitadosFirebase = collection(db, "invitados");
