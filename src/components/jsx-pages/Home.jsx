@@ -16,7 +16,7 @@ const Home = () => {
 
   useEffect(() => {
     Aos.init();
-  }, [{ duration: 100 }]);
+  }, [{ duration: 500 }]);
 
   return (
     <>
@@ -42,7 +42,7 @@ const Home = () => {
                   data-aos-easing="linear"
                   data-aos="fade-in"
                   data-aos-duration="1000"
-                  data-aos-delay="2000"
+                  data-aos-delay="2800"
                 >
                   <p>{info.fecha} </p>
                 </div>
@@ -50,9 +50,10 @@ const Home = () => {
                   className="hero-titulo-imagen"
                   data-aos-easing="linear"
                   data-aos="fade-in"
-                  data-aos-duration="1000"
+                  data-aos-duration="2500"
+                  data-aos-delay="0"
                 >
-                  <img src={info.imagenEvento} alt="" />
+                  <img src={info.imagenEvento} alt="imagen prom" />
                 </div>
                 <div
                   className="hero-titulo-subtitulo"

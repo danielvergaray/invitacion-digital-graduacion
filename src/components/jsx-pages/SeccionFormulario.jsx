@@ -20,7 +20,6 @@ const SeccionFormulario = ({ seccion }) => {
 
   return (
     <>
-      {/* {seccion === 'datos' ? ( */}
       {invitadoRegistrado === "" ? (
         <form
           className="inputs-container"
@@ -55,7 +54,7 @@ const SeccionFormulario = ({ seccion }) => {
           className="inputs-container"
           onSubmit={(event) => handleEnviar(event)}
         >
-            <p>Usuario no registrado, intente nuevamente</p>
+          <p>Usuario no registrado, intente nuevamente</p>
           <label htmlFor="nombre"></label>
           <input
             type="text"
@@ -83,29 +82,6 @@ const SeccionFormulario = ({ seccion }) => {
       ) : (
         "registrado"
       )}
-      {/* ) : invitadoRegistrado === "si" ? (
-        <form className="inputs-container" onSubmit={(e) => handleEnviar(e)}>
-          <label htmlFor="nombre"></label>
-          <input
-            type="text"
-            name="nombre"
-            pattern="^[a-zA-Z ]*$" // Acepta solo letras (mayúsculas y minúsculas) y espacios
-            title="Solo se permiten letras (mayúsculas y minúsculas) y espacios"
-            placeholder="Nombre y Apellido"
-            value={userData.nombre}
-            onChange={getUserDataName}
-            required
-          />
-
-          <button
-            onClick={() => cambiarSeccion("seccionMenu")}
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? "Enviando..." : "Enviar"}
-          </button>
-        </form>
-      ) : null} */}
     </>
   );
 };

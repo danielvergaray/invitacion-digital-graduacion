@@ -84,14 +84,6 @@
               text-align: left;
               width: 50%;
             }
-            span {
-              background-color: white;
-              width: 30%;
-              height: 0.5px;
-              display: block;
-
-              margin-top: 0px;
-            }
 
             .acordion-expandido-asistentes-1 {
               padding-top: 20px;
@@ -99,7 +91,31 @@
               display: flex;
               flex-direction: column;
               flex-wrap: wrap;
-              height: 100px;
+              height: 130px; // Esta altura permiite que cuando se llegue ahi, pasen a la columna de al lado
+
+              div {
+                display: flex;
+                padding: 2px 0;
+
+                p{
+                  width: 100%;
+                }
+
+                svg {
+                  color: $Principal-dorado;
+                  margin-right: 5px;
+                  margin-top: 2px;
+                }
+              }
+
+              span {
+                background-color: white;
+                width: 30%;
+                height: 0.5px;
+                display: block;
+                margin-left: 20px;
+                margin-top: 0px;
+              }
             }
 
             /*   .acordion-expandido-asistentes-2 {
@@ -127,7 +143,7 @@
                 padding: 0;
               }
             }
-            .boton-sin-espacio{
+            .boton-sin-espacio {
               background-color: $Gris-medio;
             }
           }

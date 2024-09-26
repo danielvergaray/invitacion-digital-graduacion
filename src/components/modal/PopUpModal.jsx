@@ -11,19 +11,17 @@ function PopUpModal({ abrirPopUp, espaciosRestantes }) {
     userData,
     setUserData,
     invitadoRegistrado,
-    //setInvitadoRegistrado,
     seccionActual,
     getUserDataName,
     loading,
     setSeccionActual,
-    /* acompanianteNombre,
-    setAcompanianteNombre, */
     nombreOriginal,
     handleClose,
     verificarInvitado,
     cerrarSesion,
+    mensajeSinEspacio,
+    setMensajeSinEspacio,
   } = useContext(InfoContext);
-  console.log(espaciosRestantes)
 
   const nombreAcompanianteMinuscula = userData.nombreAcompaniante
     ? userData.nombreAcompaniante.toLowerCase()
@@ -112,7 +110,15 @@ function PopUpModal({ abrirPopUp, espaciosRestantes }) {
               onSubmit={(e) => handleEnviar(e)}
             >
               {invitadoRegistrado === "no" ? (
-                <p style={{ padding: "0", position:'absolute', top:'80%', left:'25%', transform: 'translate(-50%, -50%);' }}>
+                <p
+                  style={{
+                    padding: "0",
+                    position: "absolute",
+                    top: "80%",
+                    left: "7%",
+                    transform: "translate(-50%, -50%);",
+                  }}
+                >
                   Usuario no encontrado, intente nuevamente
                 </p>
               ) : null}
@@ -167,29 +173,20 @@ function PopUpModal({ abrirPopUp, espaciosRestantes }) {
           {seccionActual === "pantalla3" && (
             <div className="acompaniantes-seccion">
               <p>¿Vienes con acompañante?</p>
-              {/* <button
-                onClick={() => {
-                  setSeccionActual("conAcompaniante");
-                  setUserData({
-                    ...userData,
-                    tieneAcompaniante: "Si",
-                  });
-                }}
-              >
-                SI
-              </button> */}
 
               <div className="acompaniantes-preguntas">
                 <div className="pregunta-acompaniante-container">
                   <input
                     type="radio"
-                    onClick={() => {
-                      setSeccionActual("conAcompaniante");
-                      setUserData({
-                        ...userData,
-                        tieneAcompaniante: "Si",
-                      });
-                    }}
+                    onClick={() =>
+                      espaciosRestantes > 1
+                        ? (setSeccionActual("conAcompaniante"),
+                          setUserData({
+                            ...userData,
+                            tieneAcompaniante: "Si",
+                          }))
+                        : setMensajeSinEspacio(true)
+                    }
                   />
                   <p>Sí</p>
                 </div>
@@ -209,17 +206,9 @@ function PopUpModal({ abrirPopUp, espaciosRestantes }) {
                 </div>
               </div>
 
-              {/* <button
-                onClick={() => {
-                  setSeccionActual("pantalla5");
-                  setUserData({
-                    ...userData,
-                    tieneAcompaniante: "No",
-                  });
-                }}
-              >
-                NO
-              </button> */}
+              {mensajeSinEspacio && (
+                <p>Solamente queda un espacio disponible en la mesa</p>
+              )}
             </div>
           )}
 
@@ -324,7 +313,6 @@ function PopUpModal({ abrirPopUp, espaciosRestantes }) {
                   variant="primary"
                   onClick={(event) => {
                     handleEnviar(event);
-                    //handleClose();
                   }}
                 >
                   CONFIRMAR
@@ -367,47 +355,6 @@ function PopUpModal({ abrirPopUp, espaciosRestantes }) {
               }
             ></span>
           </div>
-
-          {/* {seccionActual !==
-            "pantalla6"  && (
-            <div className="boton-container boton-container-volver-empezar">
-              <button
-                variant="primary"
-                onClick={() => {
-                  setSeccionActual("pantalla1");
-                  cerrarSesion();
-                }}
-              >
-                VOLVER A EMPEZAR
-              </button>
-            </div>
-          )} */}
-
-          {/*  {seccionActual === "pantalla5" && (
-            <div className="boton-container">
-              <button
-                variant="primary"
-                onClick={(event) => {
-                  handleEnviar(event);
-                  //handleClose();
-                }}
-              >
-                CONFIRMAR
-              </button>
-            </div>
-          )} */}
-
-          {/*   {seccionActual === "pantalla6" && (
-            <Button
-              variant="primary"
-              onClick={() => {
-                setSeccionActual("pantalla1");
-                cerrarSesion();
-              }}
-            >
-              Cerrar
-            </Button>
-          )} */}
         </Modal.Footer>
       </Modal>
     </>

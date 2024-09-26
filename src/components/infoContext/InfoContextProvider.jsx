@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import InfoContext from "./InfoContext";
 import imagenEvento from "../../assets/imagenes/NOMBREEVENTO.png";
 import imagenProm from "../../assets/imagenes/NOMBREPROM.png";
@@ -36,7 +36,9 @@ import {
 const InfoContextProvider = ({ children }) => {
   const informacion = [
     {
-      seccionHome: [{ imagenEvento, imagenProm, fecha: "21.12.24", imagenOnda2 }],
+      seccionHome: [
+        { imagenEvento, imagenProm, fecha: "21.12.24", imagenOnda2 },
+      ],
       seccionSobreEvento: [
         {
           imagenTitulo: imagenTituloSobreEvento,
@@ -111,6 +113,9 @@ const InfoContextProvider = ({ children }) => {
 
   const cantidadMesas = Array.from({ length: 8 }, (_, i) => i + 1);
 
+  // Mensaje que aparece en el popup cuando no hay espacios en la mesa para acompañantes
+  const [mensajeSinEspacio, setMensajeSinEspacio] = useState(false);
+
   // Estado para gestionar si hay espacio disponible en la mesa
   const [espacioDisponibleMesa, setEspacioDisponibleMesa] = useState(true);
 
@@ -124,12 +129,8 @@ const InfoContextProvider = ({ children }) => {
     menuAcompaniante: "",
   });
 
-  // Estados para los datos de mesas y menús
-  const [datosMesas, setDatosMesas] = useState([]);
-  const [datosMenus, setDatosMenus] = useState({});
   const [invitadoRegistrado, setInvitadoRegistrado] = useState("");
   const [seccionActual, setSeccionActual] = useState("pantalla1");
-  //const [acompanianteNombre, setAcompanianteNombre] = useState("");
 
   const getUserDataName = (event) => {
     const { name, value } = event.target;
@@ -142,7 +143,6 @@ const InfoContextProvider = ({ children }) => {
 
   const [nombreOriginal, setNombreOriginal] = useState(""); // Nuevo estado para el nombre original
 
-  console.log(seccionActual);
   function capitalizeWords(str) {
     return str
       .split(" ") // Divide la cadena en palabras
@@ -176,20 +176,17 @@ const InfoContextProvider = ({ children }) => {
     });
     setInvitadoRegistrado("");
     setSeccionActual("pantalla1");
-    console.log(userData);
+    setMensajeSinEspacio(false);
   };
-  console.log(userData.nombre);
+
   const verificarInvitado = () => {
     const db = getFirestore();
-    //const nombreCapitalizado = userData.nombre.toLowerCase().split(" ").join("");
 
     const nombreCapitalizado = userData.nombre
       .toLowerCase() // Convierte todo a minúsculas
       .split(" ") // Separa las palabras
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitaliza la primera letra de cada palabra
       .join(""); // Une las palabras en una sola cadena
-
-    console.log(nombreCapitalizado);
 
     const invitadosFirebase = collection(db, "invitados");
     const buscarInvitado = query(
@@ -226,7 +223,6 @@ const InfoContextProvider = ({ children }) => {
       })
       .finally(() => {
         setLoading(false);
-        //setInvitadoRegistrado("");
       });
   };
 
@@ -248,7 +244,7 @@ const InfoContextProvider = ({ children }) => {
   const handleEnviar = async (event) => {
     event.preventDefault();
     setLoading(true);
-    console.log("enviando");
+
     const db = getFirestore();
 
     const invitadosFirebase = collection(db, "invitados");
@@ -365,6 +361,7 @@ const InfoContextProvider = ({ children }) => {
       setLoading(false);
       cambiarSeccion("pantalla6");
       setInvitadoRegistrado("");
+      setMensajeSinEspacio(false);
     }
   };
 
@@ -469,7 +466,6 @@ const InfoContextProvider = ({ children }) => {
     cambiarSeccion,
     seccionActual,
     setSeccionActual,
-    //acompanianteNombre,
     espacioDisponibleMesa,
     loading,
     nombreOriginal,
@@ -479,6 +475,8 @@ const InfoContextProvider = ({ children }) => {
     funcionAbrirPopUp,
     verificarInvitado,
     cerrarSesion,
+    mensajeSinEspacio,
+    setMensajeSinEspacio,
   };
 
   return <InfoContext.Provider value={values}>{children}</InfoContext.Provider>;

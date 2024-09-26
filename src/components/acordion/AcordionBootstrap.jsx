@@ -1,10 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import Accordion from "react-bootstrap/Accordion";
-import { Link } from "react-router-dom";
-import {
-  PiArrowCircleDownRightLight,
-  PiArrowCircleUpLeftLight,
-} from "react-icons/pi";
+import {PiArrowCircleDownRightLight, PiArrowCircleUpLeftLight} from "react-icons/pi";
+import { FaRegCheckCircle } from "react-icons/fa";
 import PopUpModal from "../modal/PopUpModal";
 import InfoContext from "../infoContext/InfoContext";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
@@ -84,11 +81,7 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                     {espaciosRestantes[index] === 8 ? (
                       <p style={{ color: "white", margin: "auto" }}>
                         No hay personas registradas
-                      </p> /* : espaciosRestantes[index] === 0 ? (
-                      <p style={{ color: "white", margin: "auto" }}>
-                        La mesa está llena
                       </p>
-                    ) */
                     ) : (
                       <div className="acordion-expandido-asistentes">
                         <p style={{ color: "white" }}>Personas registradas</p>
@@ -106,7 +99,10 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
 
                             return (
                               <>
-                                <p key={i}>{nombreSeparado}</p>
+                                <div>
+                                  <FaRegCheckCircle />
+                                  <p key={i}>{nombreSeparado}</p>
+                                </div>
                                 <span></span>
                               </>
                             ); // Devuelve el nombre separado
@@ -127,7 +123,11 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                           }));
                         }}
                         disabled={espaciosRestantes[index] === 0} // Desactivar si no hay espacios
-                        className={espaciosRestantes[index] === 0 ? "boton-sin-espacio" : ""}
+                        className={
+                          espaciosRestantes[index] === 0
+                            ? "boton-sin-espacio"
+                            : ""
+                        }
                       >
                         {espaciosRestantes[index] === 0
                           ? "SIN CUPOS DISPONIBLES"
@@ -140,7 +140,7 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                     <PopUpModal
                       abrirPopUp={abrirPopUp}
                       setAbrirPopUp={setAbrirPopUp}
-                      espaciosRestantes={espaciosRestantes}
+                      espaciosRestantes={espaciosRestantes[index]}
                     />
                   ) : null}
                 </Accordion.Body>

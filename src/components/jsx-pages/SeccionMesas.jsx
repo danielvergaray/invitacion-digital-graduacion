@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import InfoContext from "../infoContext/InfoContext";
-import { Link } from "react-router-dom";
 import AcordionBootstrap from "../acordion/AcordionBootstrap";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -16,11 +15,12 @@ const SeccionMesas = () => {
     <>
       {infoMesasArray.map((info, index) => (
         <div key={index}>
-          <div className="titulo-imagen-letras"
-          data-aos-easing="linear"
-          data-aos="fade-up"
-          data-aos-duration="500"
-          data-aos-delay="0"
+          <div
+            className="titulo-imagen-letras"
+            data-aos-easing="linear"
+            data-aos="fade-up"
+            data-aos-duration="500"
+            data-aos-delay="0"
           >
             <img
               key={index}
@@ -30,52 +30,22 @@ const SeccionMesas = () => {
           </div>
 
           <div className="informacion-boton-container">
-            <div className="seccion-titulo"
-            data-aos-easing="linear"
-            data-aos="fade-up"
-            data-aos-duration="500"
-            data-aos-delay="250"
+            <div
+              className="seccion-titulo"
+              data-aos-easing="linear"
+              data-aos="fade-up"
+              data-aos-duration="500"
+              data-aos-delay="250"
             >
               <h1> {info.textoTitulo} </h1>
             </div>
 
-            {/* <div className="section-acordion">
-              {cantidadMesas.map((mesa, index) => (
-                <AcordionBootstrap key={index}
-                  titulo={`Mesa ${mesa}`}
-                  disponibles="3"
-                  textoDisponibles="Asientos disponibles:"
-                  index = {index}
-                />
-              ))} */}
-
             <div className="section-acordion">
-          
-                <AcordionBootstrap
-                  key={index}
-                  textoDisponibles="Asientos disponibles:"
-                  
-                />
-        
-
-              {/* <AcordionBootstrap
-                
-                titulo={`Mesa `}
-                disponibles="3"
-                textoDisponibles="Asientos disponibles:"
-              
-              /> */}
-            </div>
-
-            {/* <div className="section-acordion">
               <AcordionBootstrap
-                titulo= "Hola"
-                disponibles="3"
-                textoDisponibles="Asientos disponibles:" 
-                 />
-              
-            
-            </div> */}
+                key={index}
+                textoDisponibles="Asientos disponibles:"
+              />
+            </div>
           </div>
         </div>
       ))}
