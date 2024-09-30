@@ -10,8 +10,6 @@
       background-position: center;
       height: 100vh;
 
-      
-
       .hero-titulo-container {
         position: absolute;
         top: 50%;
@@ -38,7 +36,6 @@
           margin: auto;
           img {
             width: 100%;
-            
           }
         }
 
@@ -60,19 +57,20 @@
           /* display: grid;
           grid-template-columns: 15% 70% 15%; */
           margin: auto;
-  
+
           .hero-cabera-titulo {
             margin: auto 0;
             grid-column: 2;
-            width: 100%;
+            width: 90%;
             p {
               text-transform: uppercase;
-              word-spacing: 0.2rem;
+              word-spacing: .3rem;
               font-size: 0.8rem;
               margin: 0;
               height: min-content;
-              text-align: center;
+              text-align: left;
               width: 100%;
+              letter-spacing: 0.1rem;
             }
           }
           .imagen-onda-container {
@@ -86,19 +84,17 @@
           .imagen-onda-container-derecha {
             grid-column: 3;
             text-align: left;
-  
+
             img {
               margin-right: 70px;
             }
           }
-  
+
           :nth-child(3) {
             transform: scaleX(-1);
           }
         }
       }
-
-      
 
       .hero-flecha-mobile {
         display: flex;
@@ -239,7 +235,6 @@
           margin: 0;
           font-size: 2rem;
           font-family: "NEUEHAAS";
-
         }
       }
     }
