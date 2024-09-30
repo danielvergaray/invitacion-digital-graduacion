@@ -42,7 +42,7 @@ const Home = () => {
                       data-aos-easing="linear"
                       data-aos="fade-in"
                       data-aos-duration="1000"
-                      data-aos-delay="2800"
+                      data-aos-delay="1800"
                     >
                       <p>{info.fecha} </p>
                     </div>
@@ -57,14 +57,19 @@ const Home = () => {
                     </div>
                     <div
                       className="hero-titulo-subtitulo"
-                      /* data-aos-easing="linear"
+                      data-aos-easing="linear"
                       data-aos="fade-in"
-                      data-aos-duration="1000" */
+                      data-aos-duration="500"
                     >
                       <img src={info.imagenProm} alt="" />
                     </div>
 
-                    <div className="hero-cabecera">
+                    <div
+                      className="hero-cabecera"
+                      data-aos-easing="linear"
+                      data-aos="fade-in"
+                      data-aos-duration="500"
+                    >
                       <div className="imagen-onda-container">
                         <img src={info.imagenOnda2} alt="imagen-onda" />
                       </div>
