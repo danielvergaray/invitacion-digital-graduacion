@@ -42,7 +42,7 @@ const Home = () => {
                       data-aos-easing="linear"
                       data-aos="fade-in"
                       data-aos-duration="1000"
-                      data-aos-delay="1800"
+                      data-aos-delay="2100"
                     >
                       <p>{info.fecha} </p>
                     </div>
@@ -50,18 +50,10 @@ const Home = () => {
                       className="hero-titulo-imagen"
                       data-aos-easing="linear"
                       data-aos="fade-in"
-                      data-aos-duration="2500"
-                      data-aos-delay="0"
+                      data-aos-duration="1500"
+                      data-aos-delay="100"
                     >
                       <img src={info.imagenEvento} alt="imagen prom" />
-                    </div>
-                    <div
-                      className="hero-titulo-subtitulo"
-                      data-aos-easing="linear"
-                      data-aos="fade-in"
-                      data-aos-duration="500"
-                    >
-                      <img src={info.imagenProm} alt="" />
                     </div>
 
                     <div
@@ -69,17 +61,29 @@ const Home = () => {
                       data-aos-easing="linear"
                       data-aos="fade-in"
                       data-aos-duration="500"
+                      data-aos-offset="0"
+                      data-aos-delay="1600"
                     >
-                      <div className="imagen-onda-container">
+                   {/*    <div className="imagen-onda-container">
                         <img src={info.imagenOnda2} alt="imagen-onda" />
-                      </div>
+                      </div> */}
 
                       <div className="hero-cabera-titulo">
                         <p>sor querubina de san pedro</p>
                       </div>
-                      <div className="imagen-onda-container imagen-onda-container-derecha">
+                     {/*  <div className="imagen-onda-container imagen-onda-container-derecha">
                         <img src={info.imagenOnda2} alt="imagen-onda" />
-                      </div>
+                      </div> */}
+                    </div>
+                    <div
+                      className="hero-titulo-subtitulo"
+                      data-aos-easing="linear"
+                      data-aos="fade-in"
+                      data-aos-duration="500"
+                      data-aos-delay="1000"
+                      data-aos-offset="0"
+                    >
+                      <img src={info.imagenProm} alt="" />
                     </div>
                   </div>
                 </div>

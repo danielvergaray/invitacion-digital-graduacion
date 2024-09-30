@@ -38,7 +38,7 @@ const SeccionMesas = () => {
               data-aos-delay="250"
             >
               {/* <h1> {info.textoTitulo} </h1> */} {/* DESCOMENTAR ESTA SECCION EL 5 DE NOVIEMBRE */}
-              <h1 style={{padding: '0 50px 50px', color: '#e0e0e0'}}>Reservación de mesas momentáneamente cerrada</h1> {/* COMENTAR ESTA SECCION EL 5 DE NOVIEMBRE */}
+              <h1 style={{padding: '0 0px 90px', color: '#e0e0e0'}}>Reservación de mesas momentáneamente cerrada</h1> {/* COMENTAR ESTA SECCION EL 5 DE NOVIEMBRE */}
             </div>
 
 
