@@ -10,56 +10,19 @@
       background-position: center;
       height: 100vh;
 
-      .hero-cabecera {
-        color: white;
-        padding-top: 10px;
-        display: grid;
-        grid-template-columns: 15% 70% 15%;
-        margin: auto;
-
-        .hero-cabera-titulo {
-          margin: auto 0;
-          grid-column: 2;
-          p {
-            text-transform: uppercase;
-            word-spacing: 0.2rem;
-            font-size: 0.8rem;
-            margin: 0;
-            height: min-content;
-            text-align: center;
-          }
-        }
-        .imagen-onda-container {
-          grid-column: 1;
-          text-align: right;
-          img {
-            scale: 0.4;
-            margin-left: 25px;
-          }
-        }
-        .imagen-onda-container-derecha {
-          grid-column: 3;
-          text-align: left;
-
-          img {
-            margin-right: 70px;
-          }
-        }
-
-        :nth-child(3) {
-          transform: scaleX(-1);
-        }
-      }
+      
 
       .hero-titulo-container {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        margin: auto;
         .hero-titulo-fecha {
           display: flex;
           position: absolute;
           top: 0%;
+          left: 10%;
           width: 100%;
 
           p {
@@ -72,21 +35,68 @@
 
         .hero-titulo-imagen {
           width: 70vw;
+          margin: auto;
           img {
             width: 100%;
+            
           }
         }
 
         .hero-titulo-subtitulo {
           width: 50vw;
-          position: absolute;
-          left: 20%;
+          /* position: absolute;
+          left: 20%; */
+          margin: 0 auto;
           margin-top: 20px;
+          margin-right: 30px;
           img {
             width: 100%;
           }
         }
+
+        .hero-cabecera {
+          color: white;
+          padding-top: 10px;
+          display: grid;
+          grid-template-columns: 15% 70% 15%;
+          margin: auto;
+  
+          .hero-cabera-titulo {
+            margin: auto 0;
+            grid-column: 2;
+            p {
+              text-transform: uppercase;
+              word-spacing: 0.2rem;
+              font-size: 0.8rem;
+              margin: 0;
+              height: min-content;
+              text-align: center;
+            }
+          }
+          .imagen-onda-container {
+            grid-column: 1;
+            text-align: right;
+            img {
+              scale: 0.4;
+              margin-left: 25px;
+            }
+          }
+          .imagen-onda-container-derecha {
+            grid-column: 3;
+            text-align: left;
+  
+            img {
+              margin-right: 70px;
+            }
+          }
+  
+          :nth-child(3) {
+            transform: scaleX(-1);
+          }
+        }
       }
+
+      
 
       .hero-flecha-mobile {
         display: flex;

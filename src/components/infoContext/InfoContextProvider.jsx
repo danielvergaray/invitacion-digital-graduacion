@@ -52,7 +52,7 @@ const InfoContextProvider = ({ children }) => {
           textoDistrito: "Chorrillos",
           textoVermapa: "Ver mapa",
           textoVerideas: "Ver ideas",
-          vestimenta: "usar negro, blanco y dorado",
+          vestimenta: "De preferencia usar negro, blanco y dorado",
           linkUbicacion:
             "https://www.google.com/maps/place/12%C2%B012'36.5%22S+76%C2%B058'40.2%22W/@-12.2101316,-76.9804191,17z/data=!3m1!4b1",
           linkDressCode: "https://pin.it/NpTAelzaf",

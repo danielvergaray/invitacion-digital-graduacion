@@ -20,7 +20,7 @@
       .slider-track {
         display: flex;
         width: calc(400px * 20); //Cantidad de imagenes * 2
-        animation: scroll 30s linear infinite alternate;
+        animation: scroll 50s linear infinite alternate;
 
         &:hover {
           animation-play-state: paused;

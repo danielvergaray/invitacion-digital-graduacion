@@ -5,7 +5,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 
 const SeccionMesas = () => {
-  const { infoMesasArray, cantidadMesas } = useContext(InfoContext);
+  const { infoMesasArray } = useContext(InfoContext);
 
   useEffect(() => {
     Aos.init();
@@ -25,7 +25,7 @@ const SeccionMesas = () => {
             <img
               key={index}
               src={info.imagenTitulo}
-              alt="titulo sobre el playlist"
+              alt="titulo sobre mesas"
             />
           </div>
 
@@ -37,15 +37,20 @@ const SeccionMesas = () => {
               data-aos-duration="500"
               data-aos-delay="250"
             >
-              <h1> {info.textoTitulo} </h1>
+              {/* <h1> {info.textoTitulo} </h1> */} {/* DESCOMENTAR ESTA SECCION EL 5 DE NOVIEMBRE */}
+              <h1 style={{padding: '0 50px 50px'}}>Reservación de mesas momentáneamente cerrada</h1> {/* COMENTAR ESTA SECCION EL 5 DE NOVIEMBRE */}
             </div>
 
-            <div className="section-acordion">
+
+{/* DESCOMENTAR ESTA SECCION EL 5 DE NOVIEMBRE */}
+
+
+           {/*  <div className="section-acordion">
               <AcordionBootstrap
                 key={index}
                 textoDisponibles="Asientos disponibles:"
               />
-            </div>
+            </div> */}
           </div>
         </div>
       ))}
