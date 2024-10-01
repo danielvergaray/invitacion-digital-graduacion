@@ -1,19 +1,17 @@
 import React, { useContext, useState } from "react";
 import InfoContext from "../infoContext/InfoContext";
 
-const SeccionFormulario = ({ seccion }) => {
+const SeccionFormulario = () => {
   const {
     handleEnviar,
     userData,
     getUserDataName,
     loading,
     cambiarSeccion,
-    seccionActual,
-    setSeccionActual,
     invitadoRegistrado,
   } = useContext(InfoContext);
 
-  const [invitadoAsistente, setInvitadoAsistente] = useState("");
+  const [setInvitadoAsistente] = useState("");
   const preguntarPorInvitadoFuncion = (respuesta) => {
     setInvitadoAsistente(respuesta);
   };

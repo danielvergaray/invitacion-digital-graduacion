@@ -37,20 +37,20 @@ const SeccionMesas = () => {
               data-aos-duration="500"
               data-aos-delay="250"
             >
-              {/* <h1> {info.textoTitulo} </h1> */} {/* DESCOMENTAR ESTA SECCION EL 5 DE NOVIEMBRE */}
-              <h1 style={{padding: '0 0px 90px', color: '#e0e0e0'}}>Reservación de mesas momentáneamente cerrada</h1> {/* COMENTAR ESTA SECCION EL 5 DE NOVIEMBRE */}
+              <h1> {info.textoTitulo} </h1> {/* DESCOMENTAR ESTA SECCION EL 5 DE NOVIEMBRE */}
+              {/* <h1 style={{padding: '0 0px 90px', color: '#e0e0e0'}}>Reservación de mesas momentáneamente cerrada</h1> */} {/* COMENTAR ESTA SECCION EL 5 DE NOVIEMBRE */}
             </div>
 
 
 {/* DESCOMENTAR ESTA SECCION EL 5 DE NOVIEMBRE */}
 
 
-           {/*  <div className="section-acordion">
+            <div className="section-acordion">
               <AcordionBootstrap
                 key={index}
                 textoDisponibles="Asientos disponibles:"
               />
-            </div> */}
+            </div>
           </div>
         </div>
       ))}

@@ -55,6 +55,28 @@
             width: 100%;
             outline: none;
           }
+
+          .boton-container {
+            padding: 20px 0;
+            button {
+              padding: 10px 30px;
+              border: none;
+              background-color: $Principal-dorado;
+              text-transform: uppercase;
+              font-weight: 100;
+              color: white;
+              font-size: 0.6rem;
+              text-transform: uppercase;
+              letter-spacing: 3px;
+              animation: none;
+              a {
+                text-decoration: none;
+                color: white;
+              }
+      
+              
+            }
+          }
         }
   
         .menus-opciones-container {
