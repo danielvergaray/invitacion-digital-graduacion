@@ -56,13 +56,25 @@ const Home = () => {
                       <img src={info.imagenEvento} alt="imagen prom" />
                     </div>
 
+                    
                     <div
-                      className="hero-cabecera"
+                      className="hero-titulo-subtitulo"
                       data-aos-easing="linear"
                       data-aos="fade-in"
                       data-aos-duration="500"
+                      data-aos-delay="1000"
                       data-aos-offset="0"
-                      data-aos-delay="1600"
+                    >
+                      <img src={info.imagenProm} alt="" />
+                    </div>
+
+                    <div
+                      className="hero-cabecera"
+                      /* data-aos-easing="linear"
+                      data-aos="fade-in"
+                      data-aos-duration="500"
+                      data-aos-offset="0"
+                      data-aos-delay="1600" */
                     >
                    {/*    <div className="imagen-onda-container">
                         <img src={info.imagenOnda2} alt="imagen-onda" />
@@ -74,16 +86,6 @@ const Home = () => {
                      {/*  <div className="imagen-onda-container imagen-onda-container-derecha">
                         <img src={info.imagenOnda2} alt="imagen-onda" />
                       </div> */}
-                    </div>
-                    <div
-                      className="hero-titulo-subtitulo"
-                      data-aos-easing="linear"
-                      data-aos="fade-in"
-                      data-aos-duration="500"
-                      data-aos-delay="1000"
-                      data-aos-offset="0"
-                    >
-                      <img src={info.imagenProm} alt="" />
                     </div>
                   </div>
                 </div>

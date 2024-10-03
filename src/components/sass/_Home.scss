@@ -53,22 +53,25 @@
 
         .hero-cabecera {
           color: white;
-          padding-top: 10px;
+          padding: 10px;
           /* display: grid;
           grid-template-columns: 15% 70% 15%; */
           margin: auto;
+          margin-top: 50px;
+          border: 1.5px solid white;
+          border-radius: 50px / 100%;
 
           .hero-cabera-titulo {
             margin: auto 0;
             grid-column: 2;
-            width: 90%;
+            width: 100%;
             p {
               text-transform: uppercase;
               word-spacing: .3rem;
               font-size: 0.8rem;
               margin: 0;
               height: min-content;
-              text-align: left;
+              margin: auto;
               width: 100%;
               letter-spacing: 0.1rem;
             }
