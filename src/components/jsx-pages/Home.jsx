@@ -57,8 +57,7 @@ const Home = () => {
                     </div>
 
                     
-                    <div
-                      className="hero-titulo-subtitulo"
+                    <div className="hero-titulo-subtitulo"
                       data-aos-easing="linear"
                       data-aos="fade-in"
                       data-aos-duration="500"
@@ -76,16 +75,17 @@ const Home = () => {
                       data-aos-offset="0"
                       data-aos-delay="1600" */
                     >
-                   {/*    <div className="imagen-onda-container">
+                      <div className="imagen-onda-container">
                         <img src={info.imagenOnda2} alt="imagen-onda" />
-                      </div> */}
+                      </div>
 
                       <div className="hero-cabera-titulo">
-                        <p>sor querubina de san pedro</p>
+                        <p>sor querubina</p>
+                        <p>de san pedro</p>
                       </div>
-                     {/*  <div className="imagen-onda-container imagen-onda-container-derecha">
+                      <div className="imagen-onda-container-derecha">
                         <img src={info.imagenOnda2} alt="imagen-onda" />
-                      </div> */}
+                      </div>
                     </div>
                   </div>
                 </div>
