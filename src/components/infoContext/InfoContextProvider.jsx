@@ -98,14 +98,14 @@ const InfoContextProvider = ({ children }) => {
           textoBoton: "Ver Playlist",
           textoTitulo:
             "Sube las canciones que más te gusten, para crear juntos una noche inolvidable",
-          link: "https://open.spotify.com/playlist/4POc50gu3Wiv4xN16M7hc0?si=dd07f6f998a64554&pt=44b98d1983b622e2b1542daed7752f51",
+          link: "https://open.spotify.com/playlist/4POc50gu3Wiv4xN16M7hc0?si=e822eec428034d2f&pt=6a1f1a9341cb5178ddbaae1e7549ac11",
         },
       ],
       footer: [
         {
           texto: "Designed by",
           empresa: "StudioCode",
-          link: "www.devdanielvergaray.com",
+          link: "https://www.devdanielvergaray.com/",
         },
       ],
     },
