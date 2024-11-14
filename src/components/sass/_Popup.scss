@@ -1,25 +1,25 @@
-.modal{
+.modal {
   .modal-dialog {
     padding: 0 20px;
     margin-top: 40px;
-  
+
     .modal-content {
       background-color: $Cards-acordion;
       height: 375px;
       .modal-header {
         border: none;
         padding-bottom: 0;
-  
+
         .modal-title {
           color: white;
           width: 100%;
           display: grid;
           grid-template-rows: 1fr 1fr;
-  
+
           .Xcerrar-container {
             width: 100%;
             text-align: right;
-  
+
             svg {
               color: $Principal-dorado;
               font-size: 30px;
@@ -34,7 +34,7 @@
         padding: 16px 0;
         padding-top: 0;
         padding-bottom: 0;
-  
+
         p {
           color: white;
           margin: 0;
@@ -73,17 +73,15 @@
                 text-decoration: none;
                 color: white;
               }
-      
-              
             }
           }
         }
-  
+
         .menus-opciones-container {
           display: flex;
           flex-direction: column;
           padding: 16px;
-  
+
           .menu-container {
             width: 100%;
             button {
@@ -93,7 +91,7 @@
               border: none;
               padding: 16px;
               width: 100%;
-  
+
               .menu-textos {
                 grid-column: 1;
                 text-align: left;
@@ -111,7 +109,6 @@
                   font-weight: 700;
                   font-family: "Selofier";
                 }
-                
               }
               .menu-circulo {
                 grid-column: 2;
@@ -130,7 +127,7 @@
                 }
               }
             }
-  
+
             input {
               width: 20%;
               margin: auto;
@@ -141,7 +138,7 @@
             margin-top: 10px;
           }
         }
-  
+
         .acompaniantes-seccion {
           p {
             font-size: 14px;
@@ -151,7 +148,7 @@
             .pregunta-acompaniante-container {
               display: flex;
               padding-left: 16px;
-  
+
               p {
                 padding-left: 5px;
               }
@@ -163,10 +160,20 @@
         }
         .boton-container {
           text-align: right;
+          padding-top: 50px;
           padding-right: 16px;
 
-          button{
+          button {
             animation: none;
+            padding: 10px 30px;
+            border: none;
+            background-color: $Principal-dorado;
+            text-transform: uppercase;
+            font-weight: 100;
+            color: white;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
           }
         }
       }
@@ -197,7 +204,6 @@
     }
   }
 }
-
 
 .modal-backdrop {
   background-color: black; /* Cambia el color de fondo a negro */

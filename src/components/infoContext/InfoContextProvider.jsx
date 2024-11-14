@@ -89,7 +89,7 @@ const InfoContextProvider = ({ children }) => {
         {
           imagenTitulo: imagenTituloMesas,
           textoTitulo: "Selecciona tu mesa ideal y regístrate",
-          cantidadMesas: 8,
+          cantidadMesas: 6,
         },
       ],
       seccionPlaylist: [
@@ -111,7 +111,7 @@ const InfoContextProvider = ({ children }) => {
     },
   ];
 
-  const cantidadMesas = Array.from({ length: 8 }, (_, i) => i + 1);
+  const cantidadMesas = Array.from({ length: 6 }, (_, i) => i + 1);
 
   // Mensaje que aparece en el popup cuando no hay espacios en la mesa para acompañantes
   const [mensajeSinEspacio, setMensajeSinEspacio] = useState(false);
@@ -235,7 +235,7 @@ const InfoContextProvider = ({ children }) => {
     const invitadosActuales = mesaDoc.exists()
       ? mesaDoc.data().invitados || []
       : [];
-    const espaciosRestantes = 8 - invitadosActuales.length;
+    const espaciosRestantes = 10 - invitadosActuales.length;
 
     setEspacioDisponibleMesa(espaciosRestantes > 0); // Actualiza el estado de espacio disponible
     return espaciosRestantes;

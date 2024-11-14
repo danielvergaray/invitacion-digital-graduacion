@@ -22,8 +22,8 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
     Array(cantidadMesas.length).fill([])
   );
   const [espaciosRestantes, setEspaciosRestantes] = useState(
-    Array(cantidadMesas.length).fill(8)
-  ); // Máximo 8 asientos por mesa
+    Array(cantidadMesas.length).fill(10)
+  ); // Máximo 10 asientos por mesa
 
   const ocultarInfo = (index) => {
     const updatedState = Array(cantidadMesas.length).fill(false);
@@ -38,14 +38,14 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
       const querySnapshot = await getDocs(mesasRef);
 
       const asistentes = Array(cantidadMesas.length).fill([]);
-      const espacios = Array(cantidadMesas.length).fill(8); // Inicializamos con 8 espacios
+      const espacios = Array(cantidadMesas.length).fill(10); // Inicializamos con 10 espacios
 
       querySnapshot.forEach((doc) => {
         const data = doc.data();
         const mesaIndex = parseInt(doc.id.split("_")[1]) - 1; // Suponiendo que los IDs son mesa_1, mesa_2, etc.
         if (data.invitados) {
           asistentes[mesaIndex] = data.invitados;
-          espacios[mesaIndex] = 8 - data.invitados.length; // Calculamos espacios restantes
+          espacios[mesaIndex] = 10 - data.invitados.length; // Calculamos espacios restantes
         }
       });
 
@@ -78,7 +78,7 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
               <>
                 <Accordion.Body className="acordion-expandido-container">
                   <div>
-                    {espaciosRestantes[index] === 8 ? (
+                    {espaciosRestantes[index] === 10 ? (
                       <p style={{ color: "white", margin: "auto" }}>
                         No hay personas registradas
                       </p>
