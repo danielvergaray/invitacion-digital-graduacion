@@ -65,7 +65,7 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
               <div className="acordion-header">
                 <p>Mesa {mesa}</p>
                 <p>
-                  {textoDisponibles} {espaciosRestantes[index]}
+                  {textoDisponibles} {espaciosRestantes[index] >=0 ?  espaciosRestantes[index] : 0} {/* {espaciosRestantes[index]} */} {/* Se modifica ya que hay una mesa que da -1 porque se agregó un invitado de ultima hora y no quiero modificar la logica */}
                 </p>
               </div>
 
@@ -122,14 +122,14 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                             mesa: mesa,
                           }));
                         }}
-                        disabled={espaciosRestantes[index] === 0} // Desactivar si no hay espacios
+                        disabled={espaciosRestantes[index] <= 0} // Desactivar si no hay espacios /* Antes habia solamente ===0 pero se ha modificado porque un valro da -1 debido a un invitado agregado a ultima hora */
                         className={
-                          espaciosRestantes[index] === 0
+                          espaciosRestantes[index] <= 0
                             ? "boton-sin-espacio"
                             : ""
                         }
                       >
-                        {espaciosRestantes[index] === 0
+                        {espaciosRestantes[index] <= 0
                           ? "SIN CUPOS DISPONIBLES"
                           : "REGISTRARSE"}
                       </button>
