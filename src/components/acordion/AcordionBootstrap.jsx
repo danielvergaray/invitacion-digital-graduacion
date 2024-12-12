@@ -116,7 +116,7 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                     <div className="boton-container">
                       <button
                         onClick={() => {
-                          funcionAbrirPopUp();
+                          /* funcionAbrirPopUp(); */  /* Se oculta la funcion ya que se han cerrado las mesas */
                           setUserData((prevUserData) => ({
                             ...prevUserData,
                             mesa: mesa,
@@ -124,13 +124,13 @@ const AcordionBootstrap = ({ textoDisponibles }) => {
                         }}
                         disabled={espaciosRestantes[index] <= 0} // Desactivar si no hay espacios /* Antes habia solamente ===0 pero se ha modificado porque un valro da -1 debido a un invitado agregado a ultima hora */
                         className={
-                          espaciosRestantes[index] <= 0
+                          espaciosRestantes[index] <= 0 || espaciosRestantes[index] ===2 /* Se agrega la condicion del OR ya que hay una mesa con 2 espacios disponibles */
                             ? "boton-sin-espacio"
                             : ""
                         }
                       >
-                        {espaciosRestantes[index] <= 0
-                          ? "SIN CUPOS DISPONIBLES"
+                        {espaciosRestantes[index] <= 0 || espaciosRestantes[index] ===2  /* Se agrega la condicion del OR ya que hay una mesa con 2 espacios disponibles */
+                          ? "MESA CERRADA" /* Se muestra MESA CERRADA ya que la mesa esta cerrada pero antes decia "SIN CUPOS DISPONIBLES" */
                           : "REGISTRARSE"}
                       </button>
                     </div>
